@@ -1,4 +1,4 @@
-<diagram program="umletino" version="15.0.0"><zoom_level>1</zoom_level><element><id>UMLClass</id><coordinates><x>512</x><y>251</y><w>24</w><h>61</h></coordinates><panel_attributes>&lt;&lt;Java Class&gt;&gt;
+<diagram program="umletino" version="15.0.0"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>20</x><y>150</y><w>240</w><h>610</h></coordinates><panel_attributes>&lt;&lt;Java Class&gt;&gt;
 Ticket
 edu.bowdoin.csci.TicketManager.Ticket
 --
@@ -9,7 +9,7 @@ edu.bowdoin.csci.TicketManager.Ticket
 -subject: String
 -category: String
 -priority: String
--note: String
+-note: ArrayList&lt;String&gt;
 -feedbackCode: String
 -resolutionCode: String 
 -cancellationCode: String
@@ -27,22 +27,21 @@ edu.bowdoin.csci.TicketManager.Ticket
 +getFeedbackCode(): String
 +getResolutionCode(): String
 +getCancellationCode(): String
-+setOwnerId(): String
-+setType(): String
-+setState(): State
-+setSubject(): String
-+setCategory(): String
-+setPriority(): String
-+setNote(): String
-+setFeedbackCode(): String
-+setResolutionCode(): String
-+setCancellationCode(): String
++setOwnerId(String): void
++setType(String): void
++setSubject(String): void
++setCategory(String): void
++setPriority(String): void
++addNote(String): void
++setFeedbackCode(String): void
++setResolutionCode(String): void
++setCancellationCode(String): void
 +toString(): String
-+changeState(State): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>550</x><y>251</y><w>25</w><h>22</h></coordinates><panel_attributes>&lt;&lt;Java Class&gt;&gt;
++changeState(State): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>400</x><y>160</y><w>250</w><h>220</h></coordinates><panel_attributes>&lt;&lt;Java Class&gt;&gt;
 TicketList
 edu.bowdoin.csci.TicketManager.TicketList
 --
-- ticketList: ArrayList&lt;E&gt;
+- ticketList: ArrayList&lt;Ticket&gt;
 --
 + TicketList
 + loadFromFile(): void
@@ -53,79 +52,91 @@ edu.bowdoin.csci.TicketManager.TicketList
 +displayAll(): String[][]
 +displayFiltered(String): String[][]
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>630</x><y>251</y><w>21</w><h>8</h></coordinates><panel_attributes>&lt;&lt;Java Class&gt;&gt;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>860</x><y>0</y><w>210</w><h>80</h></coordinates><panel_attributes>&lt;&lt;Java Class&gt;&gt;
 UI
 edu.bowdoin.csci.TicketManager.UI
 --
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>567</x><y>285</y><w>21</w><h>12</h></coordinates><panel_attributes>&lt;&lt;Java Class&gt;&gt;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>570</x><y>470</y><w>430</w><h>160</h></coordinates><panel_attributes>&lt;&lt;Java Class&gt;&gt;
 AbstractState
 edu.bowdoin.csci.TicketManager.AbstractState
 --
 
 --
-/+TransitionTo(State)/</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>535</x><y>286</y><w>33</w><h>4</h></coordinates><panel_attributes>lt=&lt;-
+/+TransitionTo(new: State, old: State, subject: String, /
+/category: String, priority: String, note: ArrayList&lt;String&gt;,/
+/feedbackCode: string, resolutionCode: String, cancellationCode: String): bool/</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>250</x><y>510</y><w>340</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
 m1=
-0..1</panel_attributes><additional_attributes>310;20;10;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>593</x><y>251</y><w>26</w><h>19</h></coordinates><panel_attributes>&lt;&lt;Java Class&gt;&gt;
+0..1</panel_attributes><additional_attributes>320;20;10;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>830</x><y>170</y><w>260</w><h>180</h></coordinates><panel_attributes>&lt;&lt;Java Class&gt;&gt;
 Application
 edu.bowdoin.csci.TicketManager.Application
 --
 -currentList: TicketList
 --
-+open(String): void
++open(): void
 +save(): void
 +quit(): void
 +createNewList(): void
 //should these be views instead?
-+addNewTicket(): bool
++addNewTicket(): void
 +editTicket(Ticket): void
 
 
 edit state? 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>535</x><y>256</y><w>17</w><h>4</h></coordinates><panel_attributes>lt=&lt;-
-m1=0..n</panel_attributes><additional_attributes>10;10;150;10</additional_attributes></element><element><id>Relation</id><coordinates><x>574</x><y>255</y><w>21</w><h>5</h></coordinates><panel_attributes>lt=&lt;-
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>250</x><y>210</y><w>170</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+m1=0..n</panel_attributes><additional_attributes>10;10;150;10</additional_attributes></element><element><id>Relation</id><coordinates><x>640</x><y>200</y><w>210</w><h>50</h></coordinates><panel_attributes>lt=&lt;-
 m1=0..1
 
-</panel_attributes><additional_attributes>10;20;190;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>543</x><y>304</y><w>24</w><h>10</h></coordinates><panel_attributes>&lt;&lt;Java Class&gt;&gt;
+</panel_attributes><additional_attributes>10;20;190;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>160</x><y>1460</y><w>410</w><h>130</h></coordinates><panel_attributes>&lt;&lt;Java Class&gt;&gt;
 Closed
 edu.bowdoin.csci.TicketManager.Closed
 --
 +name: String
 --
-+transitionToState(State): void
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>543</x><y>316</y><w>24</w><h>10</h></coordinates><panel_attributes>&lt;&lt;Java Class&gt;&gt;
++TransitionTo(new: State, old: State, subject: String, 
+category: String, priority: String, note: ArrayList&lt;String&gt;,
+feedbackCode: string, resolutionCode: String, cancellationCode: String): bool
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>160</x><y>770</y><w>410</w><h>120</h></coordinates><panel_attributes>&lt;&lt;Java Class&gt;&gt;
 Resolved
 edu.bowdoin.csci.TicketManager.Resolved
 --
 +name: String
 --
-+transitionToState(State): void
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>543</x><y>329</y><w>24</w><h>10</h></coordinates><panel_attributes>&lt;&lt;Java Class&gt;&gt;
++TransitionTo(new: State, old: State, subject: String, 
+category: String, priority: String, note: ArrayList&lt;String&gt;,
+feedbackCode: string, resolutionCode: String, cancellationCode: String): bool
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>160</x><y>900</y><w>410</w><h>130</h></coordinates><panel_attributes>&lt;&lt;Java Class&gt;&gt;
 New
 edu.bowdoin.csci.TicketManager.New
 --
 +name: String
 --
-+transitionToState(State): void
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>543</x><y>342</y><w>24</w><h>10</h></coordinates><panel_attributes>&lt;&lt;Java Class&gt;&gt;
++TransitionTo(new: State, old: State, subject: String, 
+category: String, priority: String, note: ArrayList&lt;String&gt;,
+feedbackCode: string, resolutionCode: String, cancellationCode: String): bool</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>160</x><y>1040</y><w>410</w><h>130</h></coordinates><panel_attributes>&lt;&lt;Java Class&gt;&gt;
 Working
 edu.bowdoin.csci.TicketManager.Working
 --
 +name: String
 --
-+transitionToState(State): void
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>543</x><y>355</y><w>24</w><h>10</h></coordinates><panel_attributes>&lt;&lt;Java Class&gt;&gt;
++TransitionTo(new: State, old: State, subject: String, 
+category: String, priority: String, note: ArrayList&lt;String&gt;,
+feedbackCode: string, resolutionCode: String, cancellationCode: String): bool
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>160</x><y>1180</y><w>410</w><h>130</h></coordinates><panel_attributes>&lt;&lt;Java Class&gt;&gt;
 Canceled
 edu.bowdoin.csci.TicketManager.Canceled
 --
 +name: String
 --
-+transitionToState(State): void
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>543</x><y>367</y><w>24</w><h>10</h></coordinates><panel_attributes>&lt;&lt;Java Class&gt;&gt;
++TransitionTo(new: State, old: State, subject: String, 
+category: String, priority: String, note: ArrayList&lt;String&gt;,
+feedbackCode: string, resolutionCode: String, cancellationCode: String): bool</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>160</x><y>1320</y><w>410</w><h>130</h></coordinates><panel_attributes>&lt;&lt;Java Class&gt;&gt;
 Feedback
 edu.bowdoin.csci.TicketManager.Feedback
 --
 +name: String
 --
-+transitionToState(State): void
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>566</x><y>297</y><w>9</w><h>27</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>70;10;70;250;10;250</additional_attributes></element><element><id>Relation</id><coordinates><x>566</x><y>297</y><w>7</w><h>16</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>50;10;50;140;10;140</additional_attributes></element><element><id>Relation</id><coordinates><x>566</x><y>297</y><w>12</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>100;10;100;380;10;380</additional_attributes></element><element><id>Relation</id><coordinates><x>566</x><y>297</y><w>19</w><h>66</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>160;10;170;640;10;640</additional_attributes></element><element><id>Relation</id><coordinates><x>566</x><y>297</y><w>15</w><h>53</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>130;10;130;510;10;510</additional_attributes></element><element><id>Relation</id><coordinates><x>566</x><y>297</y><w>22</w><h>78</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>190;10;200;760;10;760</additional_attributes></element><element><id>Relation</id><coordinates><x>618</x><y>256</y><w>14</w><h>4</h></coordinates><panel_attributes>lt=&lt;-
-m1=0..1</panel_attributes><additional_attributes>10;10;120;10</additional_attributes></element></diagram>
++TransitionTo(new: State, old: State, subject: String, 
+category: String, priority: String, note: ArrayList&lt;String&gt;,
+feedbackCode: string, resolutionCode: String, cancellationCode: String): bool
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>560</x><y>620</y><w>90</w><h>250</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>70;10;70;230;10;230</additional_attributes></element><element><id>Relation</id><coordinates><x>560</x><y>620</y><w>260</w><h>930</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>230;10;240;910;10;910</additional_attributes></element><element><id>Relation</id><coordinates><x>560</x><y>620</y><w>120</w><h>390</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>100;10;100;370;10;370</additional_attributes></element><element><id>Relation</id><coordinates><x>560</x><y>620</y><w>190</w><h>660</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>160;10;170;640;10;640</additional_attributes></element><element><id>Relation</id><coordinates><x>560</x><y>620</y><w>150</w><h>530</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>130;10;130;510;10;510</additional_attributes></element><element><id>Relation</id><coordinates><x>560</x><y>620</y><w>220</w><h>780</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>190;10;200;760;10;760</additional_attributes></element><element><id>Relation</id><coordinates><x>950</x><y>70</y><w>50</w><h>120</h></coordinates><panel_attributes>lt=&lt;-
+m1=0..1</panel_attributes><additional_attributes>10;100;10;10</additional_attributes></element></diagram>
