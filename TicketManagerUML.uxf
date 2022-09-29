@@ -86,7 +86,7 @@ edit state?
 m1=0..n</panel_attributes><additional_attributes>10;10;150;10</additional_attributes></element><element><id>Relation</id><coordinates><x>640</x><y>200</y><w>210</w><h>50</h></coordinates><panel_attributes>lt=&lt;-
 m1=0..1
 
-</panel_attributes><additional_attributes>10;20;190;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>160</x><y>1460</y><w>410</w><h>130</h></coordinates><panel_attributes>&lt;&lt;Java Class&gt;&gt;
+</panel_attributes><additional_attributes>10;20;190;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>130</x><y>1460</y><w>440</w><h>130</h></coordinates><panel_attributes>&lt;&lt;Java Class&gt;&gt;
 Closed
 edu.bowdoin.csci.TicketManager.Closed
 --
@@ -95,7 +95,7 @@ edu.bowdoin.csci.TicketManager.Closed
 +TransitionTo(new: State, old: State, subject: String, 
 category: String, priority: String, note: ArrayList&lt;String&gt;,
 feedbackCode: string, resolutionCode: String, cancellationCode: String): bool
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>160</x><y>770</y><w>410</w><h>120</h></coordinates><panel_attributes>&lt;&lt;Java Class&gt;&gt;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>130</x><y>770</y><w>440</w><h>120</h></coordinates><panel_attributes>&lt;&lt;Java Class&gt;&gt;
 Resolved
 edu.bowdoin.csci.TicketManager.Resolved
 --
@@ -104,7 +104,7 @@ edu.bowdoin.csci.TicketManager.Resolved
 +TransitionTo(new: State, old: State, subject: String, 
 category: String, priority: String, note: ArrayList&lt;String&gt;,
 feedbackCode: string, resolutionCode: String, cancellationCode: String): bool
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>160</x><y>900</y><w>410</w><h>130</h></coordinates><panel_attributes>&lt;&lt;Java Class&gt;&gt;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>130</x><y>900</y><w>440</w><h>130</h></coordinates><panel_attributes>&lt;&lt;Java Class&gt;&gt;
 New
 edu.bowdoin.csci.TicketManager.New
 --
@@ -112,7 +112,7 @@ edu.bowdoin.csci.TicketManager.New
 --
 +TransitionTo(new: State, old: State, subject: String, 
 category: String, priority: String, note: ArrayList&lt;String&gt;,
-feedbackCode: string, resolutionCode: String, cancellationCode: String): bool</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>160</x><y>1040</y><w>410</w><h>130</h></coordinates><panel_attributes>&lt;&lt;Java Class&gt;&gt;
+feedbackCode: string, resolutionCode: String, cancellationCode: String): bool</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>130</x><y>1040</y><w>440</w><h>130</h></coordinates><panel_attributes>&lt;&lt;Java Class&gt;&gt;
 Working
 edu.bowdoin.csci.TicketManager.Working
 --
@@ -121,7 +121,7 @@ edu.bowdoin.csci.TicketManager.Working
 +TransitionTo(new: State, old: State, subject: String, 
 category: String, priority: String, note: ArrayList&lt;String&gt;,
 feedbackCode: string, resolutionCode: String, cancellationCode: String): bool
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>160</x><y>1180</y><w>410</w><h>130</h></coordinates><panel_attributes>&lt;&lt;Java Class&gt;&gt;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>130</x><y>1180</y><w>440</w><h>130</h></coordinates><panel_attributes>&lt;&lt;Java Class&gt;&gt;
 Canceled
 edu.bowdoin.csci.TicketManager.Canceled
 --
@@ -129,7 +129,7 @@ edu.bowdoin.csci.TicketManager.Canceled
 --
 +TransitionTo(new: State, old: State, subject: String, 
 category: String, priority: String, note: ArrayList&lt;String&gt;,
-feedbackCode: string, resolutionCode: String, cancellationCode: String): bool</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>160</x><y>1320</y><w>410</w><h>130</h></coordinates><panel_attributes>&lt;&lt;Java Class&gt;&gt;
+feedbackCode: string, resolutionCode: String, cancellationCode: String): bool</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>130</x><y>1320</y><w>440</w><h>130</h></coordinates><panel_attributes>&lt;&lt;Java Class&gt;&gt;
 Feedback
 edu.bowdoin.csci.TicketManager.Feedback
 --
