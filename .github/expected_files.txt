@@ -1,0 +1,12 @@
+Command.java,TS_CommandTest.class
+TicketReader.java,TS_TicketReaderTest.class
+TicketWriter.java,TS_TicketWriterTest.class
+TicketList.java,TS_TicketListTest.class
+TicketManager.java,TS_TicketManagerTest.class
+Ticket.java,TS_TicketCanceledStateTest.class
+Ticket.java,TS_TicketClosedStateTest.class
+Ticket.java,TS_TicketFeedbackStateTest.class
+Ticket.java,TS_TicketNewStateTest.class
+Ticket.java,TS_TicketResolvedStateTest.class
+Ticket.java,TS_TicketWorkingStateTest.class
+Ticket.java,TS_TicketTest.class

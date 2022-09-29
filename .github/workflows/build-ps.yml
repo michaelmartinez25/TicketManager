@@ -1,0 +1,179 @@
+name: Build TicketManager with Github Actions
+on: 
+  pull_request:
+    branches:
+      - '**'
+  push:
+    branches:
+      - master
+      - main
+jobs:
+  Build-TicketManager:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Publish reminder
+        uses: actions/github-script@v4.0.2
+        if: github.event_name == 'pull_request'
+        with:
+          script: |
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'Reminder: Wait until Github Actions has finished running the build before merging this PR!'
+            })
+                    
+    
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+      - name: List files in the repository
+        run: |
+          ls -la ${{ github.workspace }}
+     
+      
+      - name: Setup JDK 17
+        uses: actions/setup-java@v3.4.0
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      
+      - name: Build TicketManager with Maven
+        run: |
+          cd TicketManager && mvn --batch-mode --update-snapshots clean test pmd:pmd spotbugs:spotbugs checkstyle:checkstyle
+          echo "BUILD_STATUS=$?" >> $GITHUB_ENV
+ 
+      - name: Generate coverage badges
+        id: jacoco
+        run: > 
+            python3 .github/generate_badge.py "TicketManager/target/site/jacoco-ut/jacoco.csv"
+            ".github/badges" "jacoco.svg" "branches.svg" "true" "true"
+            "fail" "80" "0" "false" "false" "100 90 80 70 60 0" "#4c1 #97ca00 #a4a61d #dfb317 #fe7d37 #e05d44" "true"
+            
+            
+      - name: Log coverage percentage
+        if: always()
+        run: |
+          echo "coverage = ${{ steps.jacoco.outputs.coverage }}"
+          echo "branch coverage = ${{ steps.jacoco.outputs.branches }}"
+          
+      - name: Check coverage across all classes
+        if: always()
+        run: |
+          chmod +x .github/testingChecker.sh
+          .github/testingChecker.sh
+          echo "INSUFFICIENT_TESTS=$?" >> $GITHUB_ENV
+        shell: bash
+          
+      
+      - name: Publish Test Report
+        if: ${{ always() }}
+        uses: ScaCap/action-surefire-report@v1.0.13
+          
+      - name: Add coverage to PR
+        id: publishJacoco
+        if: ${{ always() }}
+        uses: Madrapps/jacoco-report@v1.2
+        with:
+          paths: ${{ github.workspace }}/TicketManager/target/site/jacoco-ut/jacoco.xml
+          token: ${{ secrets.GITHUB_TOKEN }}
+          min-coverage-overall: 80
+          min-coverage-changed-files: 80          
+          
+      - name: Publish SpotBugs Report
+        uses: jwgmeligmeyling/spotbugs-github-action@master
+        with:
+          path: '**/spotbugsXml.xml'
+          
+      - name: Publish PMD Report
+        uses: jwgmeligmeyling/pmd-github-action@master
+        with:
+          path: '**/pmd.xml'
+          
+      - name: Publish CheckStyle Report
+        uses: jwgmeligmeyling/checkstyle-github-action@master
+        with:
+          path: '**/checkstyle-result.xml'
+          
+      - name: Clear `.class` files to prepare running TS tests
+        if: always()
+        run: find . -name "*Test*.class" -type f -delete
+          
+      - name: Fetch hidden TS tests
+        if: always()
+        shell: bash
+        env:
+          TSPW: ${{ secrets.TILDESITEFILEPASSWORD }}
+        run: |
+          export URL="https://tildesites.bowdoin.edu/~k.preslermarshall/download.php?file=2335_Project1_Tests.tar.gz&pw=$TSPW"
+          wget -O Project1_Tests.tar.gz "$URL"
+          
+      - name: Extract & clean up tests
+        shell: bash
+        if: always()
+        run: |
+          tar -xvzf  Project1_Tests.tar.gz -C TicketManager/target/test-classes/ || true
+          rm -rf Project1_Tests.tar.gz
+          chmod +x .github/check_files.sh
+          .github/check_files.sh
+
+
+
+      - name: Make sure project skeleton compiles
+        if: always()
+        run: |
+          cd TicketManager && mvn --batch-mode surefire:test > out.txt 2>&1 || true
+          compilationFailed=$(cat out.txt | grep -E "Unresolved compilation problem|NoSuchMethodError|NoClassDefFound" | wc -l)
+          if [ $compilationFailed -gt 0 ]
+          then
+            echo "$(tput -T linux setaf 3)Warning!  Your project skeleton failed to compile against the Teaching Staff testcases.  Check the log below & the UML diagram to figure out what :$(tput -T linux sgr 0)" && cat out.txt
+            rm -rf out.txt
+            exit 127
+          elif [ ${{ env.MISSING_FILES }} = true ]
+          then
+            echo "$(tput -T linux setaf 3)Warning!  Your project skeleton compiled against the Teaching Staff testcases, but not all expected source files were found.  Check the UML diagram to find out which classe(s) were missing$(tput -T linux sgr 0)"
+            rm -rf out.txt
+            exit 128
+          else
+            echo "$(tput -T linux setaf 2)Your project is complete & compiled against the Teaching Staff testcases!$(tput -T linux sgr 0)"
+            rm -rf out.txt
+          fi
+
+
+      - name: Run all Teaching Staff testcases
+        run: |
+          if [[ ${{ env.INSUFFICIENT_TESTS }} -eq 0 && ${{ env.BUILD_STATUS }} -eq 0 ]]; then
+            cd TicketManager && mvn --batch-mode surefire:test
+          else
+            echo "$(tput  -T linux setaf 2)One or more of your tests failed, or contain 1 or more JUnit-related PMD alerts.  TS tests will not be run$(tput -T linux sgr 0)"
+            exit 37
+          fi
+          
+
+      - name: Clean up temporary files
+        if: always()
+        run: |
+          cd TicketManager && mvn clean
+          
+          
+      - name: Commit the code coverage badge (if it changed)
+        if: always()
+        run: |
+          DETATCHED_HEAD_FOUND=$(git status | grep 'HEAD detached' | wc -l)
+          if [[ `git status --porcelain` && $DETATCHED_HEAD_FOUND -eq 0 ]]; then
+            git config --global user.name 'Github Actions Service Account'
+            git config --global user.email 'bowdoin-csci-gh-actions@gmail.com'
+            git add -A
+            git commit -m "Autogenerated JaCoCo coverage badge"
+            git push
+          fi
+
+      - name: Make sure all tests were run
+        if: always()
+        run: |
+          if [ ${{ env.MISSING_FILES }} = true ] ; then
+              echo "One or more of the expected source files were not found.  Your project is probably not complete!"
+              exit 1
+          fi
