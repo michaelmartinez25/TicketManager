@@ -1,0 +1,24 @@
+The main screens in our UI revolve around the 8 Use Cases. For Use Case 1,
+we have a file menu that provides the general start-up of the application, with 
+options to create a new ticket file, save an active file, load a file into 
+the program, or quit the application. For Use Case 2, the UI displays the Ticket
+List after the user either creates a new ticket list or loads one from a file.
+The user can highlight any of the individual tickets in the list to view options
+to edit or delete them (which displays in a pop-up menu). The user is also able
+to filter the ticket list, show all, or add a new ticket using the buttons at the 
+top of the screen. If the user decides to add a new ticket, they are prompted to
+another screen, in which they can fill out the fields of a ticket. Error message
+pop up if the user does an invalid action. For Use Cases 3-8, the user must select
+a ticket and choose to edit it. For Use Case 3, the user can fill in fields to
+investigate or cancel a 'New' ticket. For Use Case 4, the user can fill in the 
+fields to request 'Feedback,' resolve a 'Working' ticket, or cancel a 'Working' 
+ticket. For Use Case 5, there are two screen that can open based on the type of
+the ticket: Incident or Request. The user can fill in the fields and reopen a
+'Feedback' ticket, resolve a ticket, or cancel a ticket. For Use Case 6, the user
+can fill in the fields and request feedback, reopen the ticket, or confirm the 
+'Resolved' ticket. For Use Case 7, the user can leave a note and reopen the ticket.
+For Use Case 8, the user can only view the displayed information about the 'Closed'
+ticket. For each of these Edit Screens, the user also has the option to return to
+the main ticket list page without changing anything. We made sure to allow the user
+to only change required fields of a ticket; the rest are there for display only 
+(as labled with "x" icons).
