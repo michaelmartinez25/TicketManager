@@ -6,7 +6,7 @@ Create packages, import provided classes, push to git | 2 | no dependencies | Ze
 
 Stub out the Ticket class | 5 | Will depend on enumeration and ticket states; can stub without | Zeb | 4 October | Done 9/30
 
-Stub out the TicketManager class | 2 | No dependencies | Michael | 4 October | Not Started
+Stub out the TicketManager class | 2 | No dependencies | Michael | 4 October | Done 9/30
 
 Stub out the TicketWriter and TicketReader | 1 | No dependencies | Michael | 4 October | Not Started
 
