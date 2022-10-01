@@ -1,5 +1,10 @@
 package edu.bowdoin.csci.TicketManager.model.manager;
 
+import edu.bowdoin.csci.TicketManager.model.command.Command;
+import edu.bowdoin.csci.TicketManager.model.ticket.Ticket;
+import edu.bowdoin.csci.TicketManager.model.ticket.Ticket.Category;
+import edu.bowdoin.csci.TicketManager.model.ticket.Ticket.Priority;
+import edu.bowdoin.csci.TicketManager.model.ticket.Ticket.TicketType;
 
 /**
  * Concrete class that maintains the 'TicketList' and handles 'Commands' from the GUI.

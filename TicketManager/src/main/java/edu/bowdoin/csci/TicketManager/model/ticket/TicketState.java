@@ -1,6 +1,6 @@
 package edu.bowdoin.csci.TicketManager.model.ticket;
 
-import edu.bowdoin.csci.TicketManager.command.Command;
+import edu.bowdoin.csci.TicketManager.model.command.Command;
 
 /**
  * Interface for states in the Ticket Manager State Pattern.  All 

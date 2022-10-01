@@ -2,6 +2,11 @@ package edu.bowdoin.csci.TicketManager.model.ticket;
 
 import java.util.ArrayList;
 
+import edu.bowdoin.csci.TicketManager.model.command.Command;
+import edu.bowdoin.csci.TicketManager.model.command.Command.CancellationCode;
+import edu.bowdoin.csci.TicketManager.model.command.Command.FeedbackCode;
+import edu.bowdoin.csci.TicketManager.model.command.Command.ResolutionCode;
+
 /**
  * Ticket object represents a single filed ticket containing information about a specific issue/request.
  * @author zbecker2
@@ -9,68 +14,72 @@ import java.util.ArrayList;
  */
 public class Ticket {
 	
-	/* Indicates if ticket is of type request */
-	public static final String TT_REQUEST; 
-	/* Indicates if ticket is of type incident */
-	public static final String TT_INCIDENT; 
-	/* Indicates if ticket subject is inquiry */
-	public static final String C_INQUIRY; 
-	/* Indicates if ticket subject is software */
-	public static final String C_SOFTWARE; 
-	/* Indicates if ticket subject is hardware */
-	public static final String C_HARDWARE;
-	/* Indicates if ticket subject is network */
-	public static final String C_NETWORK; 
-	/* Indicates if ticket subject is database */
-	public static final String C_DATABSE; 
-	/* Indicates if ticket priority is urgent */
-	public static final String P_URGENT; 
-	/* Indicates if ticket priority is high */
-	public static final String P_HIGH; 
-	/* Indicates if ticket priority is medium */
-	public static final String P_MEDIUM; 
-	/* Indicates if ticket priority is low */
-	public static final String P_LOW; 
-	/* Name of New state */ 
-	public static final String NEW_NAME; 
-	/* Name of Working state */
-	public static final String WORKING_NAME; 
-	/* Name of Feedback state */ 
-	public static final String FEEDBACK_NAME; 
-	/* Name of Resolved state */ 
-	public static final String RESOLVED_NAME; 
-	/* Name of Closed state */ 
-	public static final String CLOSED_NAME; 
-	/* Name of Canceled state */
-	public static final String CANCELED_NAME; 
-	/* counter variable */
+	/** Indicates if ticket is of type request */
+	public static final String TT_REQUEST = ""; 
+	/** Indicates if ticket is of type incident */
+	public static final String TT_INCIDENT = ""; 
+	/** Indicates if ticket subject is inquiry */
+	public static final String C_INQUIRY = ""; 
+	/** Indicates if ticket subject is software */
+	public static final String C_SOFTWARE = ""; 
+	/** Indicates if ticket subject is hardware */
+	public static final String C_HARDWARE = "";
+	/** Indicates if ticket subject is network */
+	public static final String C_NETWORK = ""; 
+	/** Indicates if ticket subject is database */
+	public static final String C_DATABSE = ""; 
+	/** Indicates if ticket priority is urgent */
+	public static final String P_URGENT = ""; 
+	/** Indicates if ticket priority is high */
+	public static final String P_HIGH = ""; 
+	/** Indicates if ticket priority is medium */
+	public static final String P_MEDIUM = ""; 
+	/** Indicates if ticket priority is low */
+	public static final String P_LOW = ""; 
+	/** Name of New state */ 
+	public static final String NEW_NAME = ""; 
+	/** Name of Working state */
+	public static final String WORKING_NAME = ""; 
+	/** Name of Feedback state */ 
+	public static final String FEEDBACK_NAME = ""; 
+	/** Name of Resolved state */ 
+	public static final String RESOLVED_NAME = ""; 
+	/** Name of Closed state */ 
+	public static final String CLOSED_NAME = ""; 
+	/** Name of Canceled state */
+	public static final String CANCELED_NAME = ""; 
+	/** counter variable */
 	private static int counter; 
-	/* Unique ticket ID assigned by system at ticket creation */ 
+	/** Unique ticket ID assigned by system at ticket creation */ 
 	private int ticketId;
-	/* Subject of ticket */ 
+	/** Subject of ticket */ 
 	private String subject; 
-	/* ID of caller who originated the ticket */ 
+	/** ID of caller who originated the ticket */ 
 	private String caller; 
-	/* ID of owner who is responsible for the ticket */ 
+	/** ID of owner who is responsible for the ticket */ 
 	private String owner; 
-	/* Notes about the ticket */ 
+	/** Notes about the ticket */ 
 	private ArrayList<String> notes; 
-	/* Current state of the ticket */ 
+	/** Current state of the ticket */ 
 	private TicketState state; 
-	/* Current cancellation code of the ticket */ 
+	/** Current cancellation code of the ticket */ 
 	private CancellationCode cancellationCode; 
-	/* Current feedback code of the ticket */ 
+	/** Current feedback code of the ticket */ 
 	private FeedbackCode feedbackCode; 
-	/* Current resolution code of the ticket */ 
+	/** Current resolution code of the ticket */ 
 	private ResolutionCode resolutionCode; 
-	/* Current type of the ticket */ 
+	/** Current type of the ticket */ 
 	private TicketType ticketType; 
-	/* Current categoruy of ticket */ 
+	/** Current category of ticket */ 
 	private Category category; 
-	/* Current priority of the ticket */ 
+	/** Current priority of the ticket */ 
 	private Priority priority; 
-	
-	
+	/** Options for ticket category */
+	public enum Category { INQUIRY, SOFTWARE, HARDWARE, NETWORK, DATABASE }
+	/** options for ticket priority */
+	public enum Priority { URGENT, HIGH, MEDIUM, LOW }
+	/** options for ticket type */
+	public enum TicketType {REQUEST, INCIDENT }
 	
 	/** Increase counter */ 
 	public static void incrementCounter() {
