@@ -14,7 +14,7 @@ Stub out the TicketList | 2 | Will depend on ticket; can stub without | Michael 
 
 Stub out the Enumerations | 3 | No dependencies | Zeb | 4 October | Not Started
 
-Stub out the Command class | 2 | Will depend on the enumerations; can stub without | Zeb | 4 October | Not Started
+Stub out the Command class | 2 | Will depend on the enumerations; can stub without | Zeb | 4 October | Done 10/1
 
 Stub out the TicketState Interface & States | 4 | No dependencies | Michael | 4 October | Not Started
 
