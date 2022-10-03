@@ -11,11 +11,9 @@ import edu.bowdoin.csci.TicketManager.model.ticket.Ticket;
  */
 public class TicketWriter {
 	
-	/**
-	 * Constructor method
-	 */
+	/** Constructor method */
 	public TicketWriter() {
-		
+	
 	}
 	
 	/**
