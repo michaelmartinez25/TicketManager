@@ -10,7 +10,7 @@ Stub out the TicketManager class | 2 | No dependencies | Michael | 4 October | D
 
 Stub out the TicketWriter and TicketReader | 1 | No dependencies | Michael | 4 October | Not Started
 
-Stub out the TicketList | 2 | Will depend on ticket; can stub without | Michael | 4 October | Not Started
+Stub out the TicketList | 2 | Will depend on ticket; can stub without | Michael | 4 October | Done 10/3
 
 Stub out the Enumerations | 3 | No dependencies | Zeb | 4 October | Done 10/1
 
