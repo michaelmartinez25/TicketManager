@@ -16,7 +16,7 @@ Stub out the Enumerations | 3 | No dependencies | Zeb | 4 October | Done 10/1
 
 Stub out the Command class | 2 | Will depend on the enumerations; can stub without | Zeb | 4 October | Done 10/1
 
-Stub out the Ticket's State classes| 4 | No dependencies | Michael | 4 October | Done 10/3
+Stub out the Ticket's State classes| 4 | No dependencies | Michael | 4 October | Done 10/3 
 
 Run CheckStyle and PMD/Ensure GitHub Actions runs properly | 3 | Dependent on skeleton being complete | Michael | 7 October | Not Started
 
