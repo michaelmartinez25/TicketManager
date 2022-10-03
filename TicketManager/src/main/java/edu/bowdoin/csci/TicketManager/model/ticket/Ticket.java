@@ -319,11 +319,7 @@ public class Ticket {
 		
 	}
 	
-	/**
-	 * Final instance of the NewState inner class
-	 * 
-	 * @author mmartinez
-	 */
+	/** Final instance of the NewState inner class */
 	private final class NewState implements TicketState {
 		
 		/** Constructor method */
@@ -348,11 +344,7 @@ public class Ticket {
 		}
 	}
 	
-	/**
-	 * Final instance of the WorkingState inner class
-	 * 
-	 * @author mmartinez
-	 */
+	/** Final instance of the WorkingState inner class */
 	private final class WorkingState implements TicketState {
 		
 		/** Constructor method */
@@ -377,11 +369,7 @@ public class Ticket {
 		}
 	}
 	
-	/**
-	 * Final instance of the FeedbackState inner class
-	 * 
-	 * @author mmartinez
-	 */
+	/** Final instance of the FeedbackState inner class */
 	private final class FeedbackState implements TicketState {
 		
 		/** Constructor method */
@@ -406,11 +394,7 @@ public class Ticket {
 		}
 	}
 	
-	/**
-	 * Final instance of the ResolvedState inner class
-	 * 
-	 * @author mmartinez
-	 */
+	/** Final instance of the ResolvedState inner class */
 	private final class ResolvedState implements TicketState {
 		
 		/** Constructor method */
@@ -435,11 +419,7 @@ public class Ticket {
 		}
 	}
 	
-	/**
-	 * Final instance of the ClosedState inner class
-	 * 
-	 * @author mmartinez
-	 */
+	/** Final instance of the ClosedState inner class */
 	private final class ClosedState implements TicketState {
 		
 		/** Constructor method */
@@ -464,11 +444,7 @@ public class Ticket {
 		}
 	}
 	
-	/**
-	 * Final instance of the CanceledState inner class
-	 * 
-	 * @author mmartinez
-	 */
+	/** Final instance of the CanceledState inner class */
 	private final class CanceledState implements TicketState {
 		
 		/** Constructor method */
