@@ -58,7 +58,7 @@ public class TicketList {
 	/**
 	 * Gets a filtered list based on the given type
 	 * 
-	 * @param type
+	 * @param type type to filter the list by
 	 * @return the filtered list of the desired type
 	 */
 	public List<Ticket> getTicketsByType(TicketType type) {

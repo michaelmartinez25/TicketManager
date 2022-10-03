@@ -79,7 +79,7 @@ public class Ticket {
 	/** options for ticket priority */
 	public enum Priority { URGENT, HIGH, MEDIUM, LOW }
 	/** options for ticket type */
-	public enum TicketType {REQUEST, INCIDENT }
+	public enum TicketType { REQUEST, INCIDENT }
 	
 	/** Increase counter */ 
 	public static void incrementCounter() {
@@ -337,7 +337,7 @@ public class Ticket {
 		
 		/**
 		 * Updates state based on given command
-		 * @param command
+		 * @param command user command to execute
 		 */
 		public void updateState(Command command) {
 			
@@ -362,7 +362,7 @@ public class Ticket {
 		
 		/**
 		 * Updates state based on given command
-		 * @param command
+		 * @param command user command to execute
 		 */
 		public void updateState(Command command) {
 			
@@ -387,7 +387,7 @@ public class Ticket {
 		
 		/**
 		 * Updates state based on given command
-		 * @param command
+		 * @param command user command to execute
 		 */
 		public void updateState(Command command) {
 			
@@ -412,7 +412,7 @@ public class Ticket {
 		
 		/**
 		 * Updates state based on given command
-		 * @param command
+		 * @param command user command to execute
 		 */
 		public void updateState(Command command) {
 			
@@ -437,7 +437,7 @@ public class Ticket {
 		
 		/**
 		 * Updates state based on given command
-		 * @param command
+		 * @param command user command to execute
 		 */
 		public void updateState(Command command) {
 			
@@ -462,7 +462,7 @@ public class Ticket {
 		
 		/**
 		 * Updates state based on given command
-		 * @param command
+		 * @param command user command to execute
 		 */
 		public void updateState(Command command) {
 			
