@@ -8,7 +8,7 @@ Stub out the Ticket class | 5 | Will depend on enumeration and ticket states; ca
 
 Stub out the TicketManager class | 2 | No dependencies | Michael | 4 October | Done 9/30
 
-Stub out the TicketWriter and TicketReader | 1 | No dependencies | Michael | 4 October | Not Started
+Stub out the TicketWriter and TicketReader | 1 | No dependencies | Michael | 4 October | Done 10/3
 
 Stub out the TicketList | 2 | Will depend on ticket; can stub without | Michael | 4 October | Done 10/3
 
