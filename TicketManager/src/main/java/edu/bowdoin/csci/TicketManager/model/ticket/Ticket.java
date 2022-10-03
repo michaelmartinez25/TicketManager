@@ -10,7 +10,7 @@ import edu.bowdoin.csci.TicketManager.model.command.Command.ResolutionCode;
 /**
  * Ticket object represents a single filed ticket containing information about a specific issue/request.
  * @author zbecker2
- *
+ * @author mmartinez
  */
 public class Ticket {
 	
@@ -319,15 +319,177 @@ public class Ticket {
 		
 	}
 	
+	/**
+	 * Final instance of the NewState inner class
+	 * 
+	 * @author mmartinez
+	 */
+	private final class NewState implements TicketState {
+		
+		/** Constructor method */
+		private NewState() {
+			
+		}
+		
+		/**
+		 * Gets state name
+		 * @return state name
+		 */
+		public String getStateName() {
+			return "";
+		}
+		
+		/**
+		 * Updates state based on given command
+		 * @param command
+		 */
+		public void updateState(Command command) {
+			
+		}
+	}
 	
+	/**
+	 * Final instance of the WorkingState inner class
+	 * 
+	 * @author mmartinez
+	 */
+	private final class WorkingState implements TicketState {
+		
+		/** Constructor method */
+		private WorkingState() {
+			
+		}
+		
+		/**
+		 * Gets state name
+		 * @return state name
+		 */
+		public String getStateName() {
+			return "";
+		}
+		
+		/**
+		 * Updates state based on given command
+		 * @param command
+		 */
+		public void updateState(Command command) {
+			
+		}
+	}
 	
+	/**
+	 * Final instance of the FeedbackState inner class
+	 * 
+	 * @author mmartinez
+	 */
+	private final class FeedbackState implements TicketState {
+		
+		/** Constructor method */
+		private FeedbackState() {
+			
+		}
+		
+		/**
+		 * Gets state name
+		 * @return state name
+		 */
+		public String getStateName() {
+			return "";
+		}
+		
+		/**
+		 * Updates state based on given command
+		 * @param command
+		 */
+		public void updateState(Command command) {
+			
+		}
+	}
 	
+	/**
+	 * Final instance of the ResolvedState inner class
+	 * 
+	 * @author mmartinez
+	 */
+	private final class ResolvedState implements TicketState {
+		
+		/** Constructor method */
+		private ResolvedState() {
+			
+		}
+		
+		/**
+		 * Gets state name
+		 * @return state name
+		 */
+		public String getStateName() {
+			return "";
+		}
+		
+		/**
+		 * Updates state based on given command
+		 * @param command
+		 */
+		public void updateState(Command command) {
+			
+		}
+	}
 	
+	/**
+	 * Final instance of the ClosedState inner class
+	 * 
+	 * @author mmartinez
+	 */
+	private final class ClosedState implements TicketState {
+		
+		/** Constructor method */
+		private ClosedState() {
+			
+		}
+		
+		/**
+		 * Gets state name
+		 * @return state name
+		 */
+		public String getStateName() {
+			return "";
+		}
+		
+		/**
+		 * Updates state based on given command
+		 * @param command
+		 */
+		public void updateState(Command command) {
+			
+		}
+	}
 	
-	
-	
-	
-	
-	
-	
+	/**
+	 * Final instance of the CanceledState inner class
+	 * 
+	 * @author mmartinez
+	 */
+	private final class CanceledState implements TicketState {
+		
+		/** Constructor method */
+		private CanceledState() {
+			
+		}
+		
+		/**
+		 * Gets state name
+		 * @return state name
+		 */
+		public String getStateName() {
+			return "";
+		}
+		
+		/**
+		 * Updates state based on given command
+		 * @param command
+		 */
+		public void updateState(Command command) {
+			
+		}
+	}
  }
