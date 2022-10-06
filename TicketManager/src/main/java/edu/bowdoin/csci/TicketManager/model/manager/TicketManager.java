@@ -15,6 +15,9 @@ import edu.bowdoin.csci.TicketManager.model.ticket.Ticket.TicketType;
  */
 public class TicketManager {
 	
+	/** Stores the one and only instance of this class*/
+	static private TicketManager instance;
+	
 	/**
 	 * Constructor for TicketManager.
 	 * Note: There can only be one instance of this object as part
