@@ -27,7 +27,7 @@ public class Ticket {
 	/** Indicates if ticket subject is network */
 	public static final String C_NETWORK = ""; 
 	/** Indicates if ticket subject is database */
-	public static final String C_DATABSE = ""; 
+	public static final String C_DATABASE = ""; 
 	/** Indicates if ticket priority is urgent */
 	public static final String P_URGENT = ""; 
 	/** Indicates if ticket priority is high */
