@@ -11,7 +11,6 @@ import edu.bowdoin.csci.TicketManager.model.ticket.Ticket.TicketType;
  * Implements the Singleton Design Pattern.
  * Controls the creation and modification of TicketLists
  * @author mmartinez
- *
  */
 public class TicketManager {
 	
