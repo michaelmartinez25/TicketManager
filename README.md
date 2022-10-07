@@ -18,37 +18,37 @@ Stub out the Command class | 2 | Will depend on the enumerations; can stub witho
 
 Stub out the Ticket's State classes| 4 | No dependencies | Michael | 4 October | Done 10/3 
 
-Run CheckStyle and PMD/Ensure GitHub Actions runs properly | 3 | Dependent on skeleton being complete | Michael | 7 October | Started
+Run CheckStyle and PMD/Ensure GitHub Actions runs properly | 3 | Dependent on skeleton being complete | Michael | 7 October | Done 10/7
 
 ---
 
 Expectation:  > 80% coverage for each class before task is done. 
 
-Write unit tests for Command class | 4 | Depends on skeleton | owner | 13 October | Not started
-Implement Command class, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 5 | owner | 13 october | Not Started
+Write unit tests for Command class | 4 | Depends on skeleton | Zeb | 13 October | Started 10/6
+Implement Command class, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 5 | Zeb | 13 october | Not Started
 
-Write unit tests for Ticket class | 7 | Depends on skeleton | owner | 13 October | Not started
-Implement Ticket class, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 8 | owner | 13 october | Not Started
+Write unit tests for Ticket class | 7 | Depends on skeleton | Zeb | 13 October | Not started
+Implement Ticket class, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 8 | Zeb | 13 october | Not Started
 
-Implement State interface | 3 | Depends on skeleton | owner | 13 October | Not Started 
+Implement State interface | 3 | Depends on skeleton | N/A | 13 October | Done
 
-Write unit tests for Ticket.NewState class | 3 | Depends on skeleton, State interface | owner | 13 October | Not started
-Implement NewState class, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 4 | owner | 13 october | Not Started
+Write unit tests for Ticket.NewState class | 3 | Depends on skeleton, State interface | Michael | 13 October | Not started
+Implement NewState class, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 4 | Michael | 13 october | Not Started
 
-Write unit tests for Ticket.FeedbackState class | 3 | Depends on skeleton, State interface | owner | 13 October | Not started
-Implement FeedbackState class, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 4 | owner | 13 october | Not Started
+Write unit tests for Ticket.FeedbackState class | 3 | Depends on skeleton, State interface | Michael | 13 October | Not started
+Implement FeedbackState class, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 4 | Michael | 13 october | Not Started
 
-Write unit tests for Ticket.WorkingState class | 3 | Depends on skeleton, State interface | owner | 13 October | Not started
-Implement WorkingState class, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 4 | owner | 13 october | Not Started
+Write unit tests for Ticket.WorkingState class | 3 | Depends on skeleton, State interface | Michael | 13 October | Not started
+Implement WorkingState class, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 4 | Michael | 13 october | Not Started
 
-Write unit tests for Ticket.ClosedState class | 3 | Depends on skeleton, State interface | owner | 13 October | Not started
-Implement ClosedState class, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 4 | owner | 13 october | Not Started
+Write unit tests for Ticket.ClosedState class | 3 | Depends on skeleton, State interface | Michael | 13 October | Not started
+Implement ClosedState class, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 4 | Michael | 13 october | Not Started
 
-Write unit tests for Ticket.CanceledState class | 3 | Depends on skeleton, State interface | owner | 13 October | Not started
-Implement CanceledState class, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 4 | owner | 13 october | Not Started
+Write unit tests for Ticket.CanceledState class | 3 | Depends on skeleton, State interface | Michael | 13 October | Not started
+Implement CanceledState class, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 4 | Michael | 13 october | Not Started
 
-Write unit tests for Ticket.ResolvedState class | 3 | Depends on skeleton, State interface | owner | 13 October | Not started
-Implement ResolvedState class, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 4 | owner | 13 october | Not Started
+Write unit tests for Ticket.ResolvedState class | 3 | Depends on skeleton, State interface | Michael | 13 October | Not started
+Implement ResolvedState class, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 4 | Michael | 13 october | Not Started
 
 ---
 
@@ -58,11 +58,11 @@ Implement TicketReader, ensure it passes all unit tests, PMD/Checkstyle, TS test
 Write unit tests for TicketWriter | 2 | Depends on Ticket, TicketList| owner | 17 October | Not Started 
 Implement TicketWriter, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 6 | owner | 17 October | Not Started 
 
-Write unit tests for TicketList | 4 | Depends on Ticket, TicketList| owner | 17 October | Not Started 
-Implement TicketList, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 6 | owner | 17 October | Not Started 
+Write unit tests for TicketList | 4 | Depends on Ticket, TicketList| Michael | 17 October | Started 10/7
+Implement TicketList, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 6 | Michael | 17 October | Not Started 
 
-Write unit tests for TicketManager | 6 | Depends on Ticket, TicketList| owner | 17 October | Not Started 
-Implement TicketManager, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 8 | owner | 17 October | Not Started 
+Write unit tests for TicketManager | 6 | Depends on Ticket, TicketList| Michael | 17 October | Start 10/7
+Implement TicketManager, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 8 | Michael | 17 October | Not Started 
 
 First pass of system test, debug any issues found | 4 | depends on implementation being complete. | owner | 17 October
 
