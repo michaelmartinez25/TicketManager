@@ -1,19 +1,11 @@
-package edu.bowdoin.csci.TicketManager.model.command;
-
+package edu.bowdoin.csci.TicketManager.model.ticket;
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
 
 
-public class commandTest {
-	
-	
+public class ticketTest {
 	@Test
 	public void testTest() {
-		assertTrue(true); 
+		assertEquals(1,1); 
 	}
-	
-	
-	
-	
 }
