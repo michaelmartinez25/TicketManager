@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
  */
 public class commandTest {
 	
-	Command testC; 
+	private Command testC; 
 	@BeforeEach
 	public void setup() {
 		CommandValue cv = CommandValue.CONFIRM; 
@@ -82,6 +82,13 @@ public class commandTest {
 		/** Cannot have empty string or null note */ 
 		try {
 			Command c = new Command(CommandValue.CANCEL, "ownerIsZeb", FeedbackCode.AWAITING_CALLER, ResolutionCode.CALLER_CLOSED, CancellationCode.DUPLICATE, ""); 
+			fail("A command with empty or null note should throw IAE, but this does not"); 
+		}
+		catch (IllegalArgumentException iae) {
+			//Exception expected; carry on
+		}
+		try {
+			Command c = new Command(CommandValue.CANCEL, "ownerIsZeb", FeedbackCode.AWAITING_CALLER, ResolutionCode.CALLER_CLOSED, CancellationCode.DUPLICATE, null);
 			fail("A command with empty or null note should throw IAE, but this does not"); 
 		}
 		catch (IllegalArgumentException iae) {
