@@ -1,5 +1,7 @@
 # project1-10 #
 
+NOTE: If you are having trouble with eclipse recognizing packages/tests correctly: right click on project in eclipse finder bar on left, click Refresh Project. Then, right click on the project again, go to Maven->Update Project. 
+
 Expectation: Include Javadocs while stubbing out classes
 
 Create packages, import provided classes, push to git | 2 | no dependencies | Zeb | 30 Sept | Done 9/30
@@ -24,8 +26,8 @@ Run CheckStyle and PMD/Ensure GitHub Actions runs properly | 3 | Dependent on sk
 
 Expectation:  > 80% coverage for each class before task is done. 
 
-Write unit tests for Command class | 4 | Depends on skeleton | Zeb | 13 October | Started 10/6
-Implement Command class, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 5 | Zeb | 13 october | Not Started
+Write unit tests for Command class | 4 | Depends on skeleton | Zeb | 13 October | Done 10/9
+Implement Command class, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 5 | Zeb | 13 october | Done 10/9
 
 Write unit tests for Ticket class | 7 | Depends on skeleton | Zeb | 13 October | Not started
 Implement Ticket class, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 8 | Zeb | 13 october | Not Started
