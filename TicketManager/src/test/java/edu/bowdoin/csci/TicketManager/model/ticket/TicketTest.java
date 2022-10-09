@@ -3,7 +3,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 
-public class ticketTest {
+public class TicketTest {
 	@Test
 	public void testTest() {
 		assertEquals(1,1); 

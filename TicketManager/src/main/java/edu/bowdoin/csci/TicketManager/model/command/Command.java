@@ -7,28 +7,29 @@ package edu.bowdoin.csci.TicketManager.model.command;
  *
  */
 public class Command {
-	/** Caller */
+	/** String representation for feedback code  */
 	public static final String F_CALLER = "Awaiting caller"; 
-	/** Change */ 
+	/** String representation for feedback code */ 
 	public static final String F_CHANGE = "Awaiting change"; 
-	/** Provider */ 
+	/** String representation for feedback code */ 
 	public static final String F_PROVIDER = "Awaiting provider"; 
-	/** resolution code: completed */ 
+	/** String representation for resolution code */ 
 	public static final String RC_COMPLETED = "Completed"; 
-	/** resolution code: not completed */ 
+	/** String representation for resolution code */ 
 	public static final String RC_NOT_COMPLETED = "Not completed"; 
-	/** resolution code: solved */
+	/** String representation for resolution code */
 	public static final String RC_SOLVED = "Solved"; 
-	/** resolution code: workaround */ 
+	/** String representation for resolution code */ 
 	public static final String RC_WORKAROUND = "Workaround"; 
-	/** resolution code: not solved */
+	/** String representation for resolution code */
 	public static final String RC_NOT_SOLVED = "Not solved"; 
-	/** resolution code: caller closed */ 
+	/** String representation for resolution code */ 
 	public static final String RC_CALLER_CLOSED = "Caller closed"; 
-	/** cancellation code: duplicate */
+	/** String representation for cancellation code */
 	public static final String CC_DUPLICATE = "Duplicate"; 
-	/** cancellation code: inappropriate */
+	/** String representation for cancellation code */
 	public static final String CC_INAPPROPRIATE = "Inappropriate"; 
+	
 	/** ID of the person who is responsible for (owns) this ticket */
 	private String ownerId;
 	/** note on this command */ 
@@ -42,13 +43,13 @@ public class Command {
 	/** CancellationCode for this command */ 
 	private CancellationCode cc; 
 	
-	/** type of command */
+	/** Enumerate possible types of command */
 	public enum CommandValue { PROCESS, FEEDBACK, RESOLVE, CONFIRM, REOPEN, CANCEL }
-	/** feedback code options */
+	/** Enumerate feedback code options */
 	public enum FeedbackCode { AWAITING_CALLER, AWAITING_CHANGE, AWAITING_PROVIDER }
-	/** resolution code options */
+	/** Enumerate resolution code options */
 	public enum ResolutionCode { COMPLETED, NOT_COMPLETED, SOLVED, WORKAROUND, NOT_SOLVED, CALLER_CLOSED }
-	/** cancellation code options */
+	/** Enumerate cancellation code options */
 	public enum CancellationCode { DUPLICATE, INAPPROPRIATE }
 	
 	/**
@@ -59,7 +60,10 @@ public class Command {
 	 * @param resolutionCode resolution code (set to null if CommandValue is not RESOLVE)
 	 * @param cancellationCode cancellation code (set to null if CommandValue is not CANCEL)
 	 * @param note to add to ticket
-	 */
+	 * @throws Illegal Argument Exception if any required argument is not valid. 
+	 * 			Note that the required arguments can change based on the type of CommandValue: 
+	 * 			If it is Feedback, feedback code is required. If Resolve, resolution code is required. If Cancel, cancellation code is required.
+	 * 	 */
 	public Command(CommandValue c, String ownerId, FeedbackCode feedbackCode, ResolutionCode resolutionCode, CancellationCode cancellationCode, String note) {
 		
 		IllegalArgumentException iae = new IllegalArgumentException(); 
@@ -110,7 +114,7 @@ public class Command {
 	}
 	
 	/**
-	 * Get cv
+	 * Get command value
 	 * @return command value/type of this command
 	 */
 	public CommandValue getCommand() {
@@ -126,7 +130,7 @@ public class Command {
 	}
 	
 	/**
-	 * get rc
+	 * get resolution code
 	 * @return resolution code of command, if any
 	 */
 	public ResolutionCode getResolutionCode() {
@@ -142,7 +146,7 @@ public class Command {
 	}
 	
 	/**
-	 * get fc
+	 * get feedback code
 	 * @return feedback code this command is setting the code of the target ticket to
 	 */
 	public FeedbackCode getFeedbackCode() {
@@ -150,6 +154,7 @@ public class Command {
 	}
 	
 	/**
+	 * get cancellation code
 	 * @return cancellation code this command is setting the code of the target ticket to
 	 */
 	public CancellationCode getCancellationCode() {
