@@ -114,7 +114,7 @@ jobs:
         shell: bash
         if: always()
         run: |
-          tar -xvzf  Project1_Tests.tar.gz -C TicketManager/target/test-classes/ || true
+          tar -xvzf  Project1_Tests.tar.gz -C TicketManager/target/test-classes/
           rm -rf Project1_Tests.tar.gz
           chmod +x .github/check_files.sh
           .github/check_files.sh
@@ -150,6 +150,12 @@ jobs:
             echo "$(tput  -T linux setaf 2)One or more of your tests failed, or contain 1 or more JUnit-related PMD alerts.  TS tests will not be run$(tput -T linux sgr 0)"
             exit 37
           fi
+
+      - name: Process Points 2 Milestone Check
+        run: |
+          chmod +x .github/pp2.sh
+          .github/pp2.sh
+     
           
 
       - name: Clean up temporary files
