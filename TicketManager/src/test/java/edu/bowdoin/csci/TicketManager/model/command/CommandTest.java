@@ -123,6 +123,15 @@ public class CommandTest {
 	}
 	
 	/**
+	 * Test getter for ResolutionCode
+	 */
+	@Test
+	public void testGetResolutionCode() {
+		Command c = new Command(CommandValue.RESOLVE, "ownerIsZeb", null, ResolutionCode.CALLER_CLOSED, null, "Very Good Note TM");
+		assertEquals(ResolutionCode.CALLER_CLOSED, c.getResolutionCode()); 
+	}
+	
+	/**
 	 * Test getter for Note (returns note as String
 	 */
 	@Test
@@ -131,39 +140,12 @@ public class CommandTest {
 	}
 	
 	/**
-	 * Test getter for ResolutionCode
-	 */
-	@Test
-	public void testGetResolutionCode() {
-		Command c = new Command(CommandValue.RESOLVE, "ownerIsZeb", null, ResolutionCode.CALLER_CLOSED, null, "Very Good Note TM");
-		assertEquals(c.getResolutionCode(), Command.RC_CALLER_CLOSED); 
-		c = new Command(CommandValue.RESOLVE, "ownerIsZeb", null, ResolutionCode.COMPLETED, null, "Very Good Note TM");
-		assertEquals(c.getResolutionCode(), Command.RC_COMPLETED); 
-		c = new Command(CommandValue.RESOLVE, "ownerIsZeb", null, ResolutionCode.NOT_COMPLETED, null, "Very Good Note TM");
-		assertEquals(c.getResolutionCode(), Command.RC_NOT_COMPLETED); 
-		c = new Command(CommandValue.RESOLVE, "ownerIsZeb", null, ResolutionCode.SOLVED, null, "Very Good Note TM");
-		assertEquals(c.getResolutionCode(), Command.RC_SOLVED); 
-		c = new Command(CommandValue.RESOLVE, "ownerIsZeb", null, ResolutionCode.NOT_SOLVED, null, "Very Good Note TM");
-		assertEquals(c.getResolutionCode(), Command.RC_NOT_SOLVED); 
-		c = new Command(CommandValue.RESOLVE, "ownerIsZeb", null, ResolutionCode.WORKAROUND, null, "Very Good Note TM");
-		assertEquals(c.getResolutionCode(), Command.RC_WORKAROUND); 
-		c = new Command(CommandValue.FEEDBACK, "ownerIsZeb", FeedbackCode.AWAITING_CALLER, null, null, "Very Good Note TM");
-		assertEquals(c.getResolutionCode(), null); 
-	}
-	
-	/**
 	 * Test getter for FeedbackCode
 	 */
 	@Test
 	public void testGetFeedbackCode() {
 		Command c = new Command(CommandValue.FEEDBACK, "ownerIsZeb", FeedbackCode.AWAITING_CHANGE, ResolutionCode.CALLER_CLOSED, CancellationCode.DUPLICATE, "Very Good Note TM");
-		assertEquals(c.getFeedbackCode(), Command.F_CHANGE);
-		c = new Command(CommandValue.FEEDBACK, "ownerIsZeb", FeedbackCode.AWAITING_CALLER, ResolutionCode.CALLER_CLOSED, CancellationCode.DUPLICATE, "Very Good Note TM");
-		assertEquals(c.getFeedbackCode(), Command.F_CALLER);
-		c = new Command(CommandValue.FEEDBACK, "ownerIsZeb", FeedbackCode.AWAITING_PROVIDER, ResolutionCode.CALLER_CLOSED, CancellationCode.DUPLICATE, "Very Good Note TM");
-		assertEquals(c.getFeedbackCode(), Command.F_PROVIDER);
-		c = new Command(CommandValue.RESOLVE, "ownerIsZeb", null, ResolutionCode.CALLER_CLOSED, null, "Very Good Note TM"); 
-		assertEquals(c.getFeedbackCode(), null);
+		assertEquals(c.getFeedbackCode(), FeedbackCode.AWAITING_CHANGE); 
 	}
 	
 	/**
@@ -172,10 +154,6 @@ public class CommandTest {
 	@Test
 	public void testGetCancellationCode() {
 		Command c = new Command(CommandValue.CANCEL, "ownerIsZeb", FeedbackCode.AWAITING_CALLER, ResolutionCode.CALLER_CLOSED, CancellationCode.DUPLICATE, "Very Good Note TM");
-		assertEquals(c.getCancellationCode(), Command.CC_DUPLICATE); 
-		c = new Command(CommandValue.CANCEL, "ownerIsZeb", FeedbackCode.AWAITING_CALLER, ResolutionCode.CALLER_CLOSED, CancellationCode.INAPPROPRIATE, "Very Good Note TM");
-		assertEquals(c.getCancellationCode(), Command.CC_INAPPROPRIATE); 
-		c = new Command(CommandValue.FEEDBACK, "ownerIsZeb", FeedbackCode.AWAITING_CALLER, null, null, "Very Good Note TM");
-		assertEquals(c.getCancellationCode(), null);
+		assertEquals(c.getCancellationCode(), CancellationCode.DUPLICATE); 
 	}
 }
