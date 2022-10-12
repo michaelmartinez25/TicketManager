@@ -133,8 +133,16 @@ public class Command {
 	 * get resolution code
 	 * @return resolution code of command, if any
 	 */
-	public ResolutionCode getResolutionCode() {
-		return rc;
+	public String getResolutionCode() {
+		
+		if (rc == ResolutionCode.CALLER_CLOSED) return RC_CALLER_CLOSED; 
+		if (rc == ResolutionCode.COMPLETED) return RC_COMPLETED; 
+		if (rc == ResolutionCode.NOT_COMPLETED) return RC_NOT_COMPLETED; 
+		if (rc == ResolutionCode.SOLVED) return RC_SOLVED; 
+		if (rc == ResolutionCode.NOT_SOLVED) return RC_NOT_SOLVED; 
+		if (rc == ResolutionCode.WORKAROUND) return RC_WORKAROUND; 
+		
+		return null;
 	}
 	
 	/**
@@ -149,15 +157,22 @@ public class Command {
 	 * get feedback code
 	 * @return feedback code this command is setting the code of the target ticket to
 	 */
-	public FeedbackCode getFeedbackCode() {
-		return fc; 
+	public String getFeedbackCode() {
+		
+		if (fc == FeedbackCode.AWAITING_CALLER) return F_CALLER; 
+		if (fc == FeedbackCode.AWAITING_CHANGE) return F_CHANGE; 
+		if (fc == FeedbackCode.AWAITING_PROVIDER) return F_PROVIDER; 
+		return null; 
 	}
 	
 	/**
 	 * get cancellation code
 	 * @return cancellation code this command is setting the code of the target ticket to
 	 */
-	public CancellationCode getCancellationCode() {
-		return cc;
+	public String getCancellationCode() {
+		
+		if (cc == CancellationCode.DUPLICATE) return CC_DUPLICATE; 
+		if (cc == CancellationCode.INAPPROPRIATE) return CC_INAPPROPRIATE; 
+		return null;
 	}
 }
