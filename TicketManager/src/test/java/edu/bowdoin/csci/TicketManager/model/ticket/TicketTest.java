@@ -37,7 +37,7 @@ public class TicketTest {
 		notesList.add("Note 3."); 
 		
 		// For testing the FSM; necessary to test the id of a Ticket
-		Ticket.setCounter(1);
+//		Ticket.setCounter(1);
 	}
 	
 	
@@ -474,14 +474,22 @@ public class TicketTest {
 				"Updated ticket should have a Cancellation Code 'Duplicate', but does not.");
 		
 		// Test invalid scenario
-		Command invalidToWorking = new Command(CommandValue.PROCESS, "", null, null, null, "Not So Cool Note");
+		Command invalidCommand = new Command(CommandValue.FEEDBACK, "Owner", FeedbackCode.AWAITING_CALLER, null, null, "Not So Cool Note");
 		Ticket newTicket3 = new Ticket(TicketType.INCIDENT, "Subject", "Caller", Category.SOFTWARE, Priority.MEDIUM, "Note");
 		
 		try {
-			newTicket3.update(invalidToWorking);
+			newTicket3.update(null);
+			Assertions.fail(
+					"Attempting to update a ticket state with a null command should throw UOE, but didn't");
+		} catch (UnsupportedOperationException uoe) {
+			// Exception expected, carry on
+		}
+		
+		try {
+			newTicket3.update(invalidCommand);
 			Assertions.fail(
 					"Attempting to update a ticket state with an invalid command should throw an UOE, but didn't");
-		} catch (UnsupportedOperationException e) {
+		} catch (UnsupportedOperationException uoe) {
 			// Exception expected, carry on
 		}
 	}

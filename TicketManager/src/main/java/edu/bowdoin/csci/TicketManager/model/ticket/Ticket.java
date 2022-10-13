@@ -3,6 +3,7 @@ package edu.bowdoin.csci.TicketManager.model.ticket;
 import java.util.ArrayList;
 
 import edu.bowdoin.csci.TicketManager.model.command.Command;
+import edu.bowdoin.csci.TicketManager.model.command.Command.CommandValue;
 import edu.bowdoin.csci.TicketManager.model.command.Command.CancellationCode;
 import edu.bowdoin.csci.TicketManager.model.command.Command.FeedbackCode;
 import edu.bowdoin.csci.TicketManager.model.command.Command.ResolutionCode;
@@ -381,6 +382,37 @@ public class Ticket {
 		 * @param command user command to execute
 		 */
 		public void updateState(Command command) {
+			if (command == null) {
+				throw new UnsupportedOperationException();
+			}
+			
+			CommandValue cv = command.getCommand();
+			
+			if (!cv.equals(CommandValue.PROCESS) || !cv.equals(CommandValue.CANCEL)) {
+				throw new UnsupportedOperationException();
+			}
+			
+			// Transition to WorkingState
+			if (cv.equals(CommandValue.PROCESS)) {
+				if (command.getOwnerId() == null || command.getOwnerId() == "") {
+					throw new UnsupportedOperationException();
+				}
+				owner = command.getOwnerId();
+				notes.add(command.getNote());
+				state = workingState;
+			}
+			
+			// Transition to CanceledState
+			if (cv.equals(CommandValue.CANCEL)) {
+				CancellationCode newCancellationCode = command.getCancellationCode();
+				if (command.getCancellationCode() == null) {
+					throw new UnsupportedOperationException();
+				}
+				
+				cancellationCode = newCancellationCode;
+				notes.add(command.getNote());
+				state = canceledState;
+			}
 			
 		}
 	}
