@@ -402,7 +402,6 @@ public class Ticket {
 				state = workingState;
 			}
 			
-			// Transition to CanceledState
 			if (cv.equals(CommandValue.CANCEL)) {
 				CancellationCode newCancellationCode = command.getCancellationCode();
 				if (command.getCancellationCode() == null) {
@@ -438,6 +437,46 @@ public class Ticket {
 		 * @param command user command to execute
 		 */
 		public void updateState(Command command) {
+			if (command == null) {
+				throw new UnsupportedOperationException();
+			}
+			
+			CommandValue cv = command.getCommand();
+			
+			if (!cv.equals(CommandValue.FEEDBACK) || !cv.equals(CommandValue.RESOLVE) || !cv.equals(CommandValue.CANCEL)) {
+				throw new UnsupportedOperationException();
+			}
+			
+			if (cv.equals(CommandValue.FEEDBACK)) {
+				FeedbackCode newFeedbackCode = command.getFeedbackCode();
+				if (command.getFeedbackCode() == null) {
+					throw new UnsupportedOperationException();
+				}
+				feedbackCode = newFeedbackCode;
+				notes.add(command.getNote());
+				state = feedbackState;
+			}
+			
+			if (cv.equals(CommandValue.RESOLVE)) {
+				ResolutionCode newResolutionCode =  command.getResolutionCode();
+				if (command.getResolutionCode() == null) {
+					throw new UnsupportedOperationException();
+				}
+				resolutionCode = newResolutionCode;
+				notes.add(command.getNote());
+				state = resolvedState;
+			}
+			
+			if (cv.equals(CommandValue.CANCEL)) {
+				CancellationCode newCancellationCode = command.getCancellationCode();
+				if (command.getCancellationCode() == null) {
+					throw new UnsupportedOperationException();
+				}
+				
+				cancellationCode = newCancellationCode;
+				notes.add(command.getNote());
+				state = canceledState;
+			}
 			
 		}
 	}
