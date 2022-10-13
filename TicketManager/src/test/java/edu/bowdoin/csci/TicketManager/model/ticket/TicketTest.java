@@ -458,22 +458,63 @@ public class TicketTest {
 		Ticket newTicket2 = new Ticket(TicketType.INCIDENT, "Subject", "Caller", Category.SOFTWARE, Priority.MEDIUM, "Note");
 		Assertions.assertEquals("New", newTicket.getState(),
 				"Newly created notes should have a state attribute as 'New', but does not.");
-		Assertions.assertEquals("New", newTicket2.getState(),
-				"Newly created notes should have a state attribute as 'New', but does not.");
 		
+		// Test WorkingState transition
 		newTicket.update(toWorking);
 		Assertions.assertEquals("Working", newTicket.getState(),
 				"Updated ticket should have a state attribute as 'Working', but does not.");
 		Assertions.assertEquals("Mikey", newTicket.getOwner(),
 				"Updated ticket should have an owner 'Mikey', but does not.");
 		
+		// Test CanceledState transition
 		newTicket2.update(toCanceled);
 		Assertions.assertEquals("Canceled", newTicket2.getState(),
 				"Updated ticket should have a state attribute as 'Canceled', but does not.");
 		Assertions.assertEquals("Duplicate", newTicket2.getCancellationCode(),
 				"Updated ticket should have a Cancellation Code 'Duplicate', but does not.");
 		
-		//Include an illegal transition test case with an invalid command
+		// Test invalid scenario
+		Command invalidToWorking = new Command(CommandValue.PROCESS, "", null, null, null, "Not So Cool Note");
+		Ticket newTicket3 = new Ticket(TicketType.INCIDENT, "Subject", "Caller", Category.SOFTWARE, Priority.MEDIUM, "Note");
+		
+		try {
+			newTicket3.update(invalidToWorking);
+			Assertions.fail(
+					"Attempting to update a ticket state with an invalid command should throw an UOE, but didn't");
+		} catch (UnsupportedOperationException e) {
+			// Exception expected, carry on
+		}
 	}
 	
+	/**
+	 * Tests transitions from Working to Feedback, Resolved, and Canceled States
+	 */
+	@Test
+	public void testWorkingStateTransitions() {
+		
+	}
+	
+	/**
+	 * Tests transitions from Feedback to Working, Resolved, and Canceled States
+	 */
+	@Test
+	public void testFeedbackStateTransitions() {
+		
+	}
+	
+	/**
+	 * Tests transitions from Resolved to Feedback, Working, Closed, and Canceled States
+	 */
+	@Test
+	public void testResolvedStateTransitions() {
+		
+	}
+	
+	/**
+	 * Tests transitions from Closed to Working State
+	 */
+	@Test
+	public void testClosedStateTransition() {
+		
+	}
 }

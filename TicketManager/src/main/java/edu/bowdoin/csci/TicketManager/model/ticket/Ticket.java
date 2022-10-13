@@ -63,6 +63,18 @@ public class Ticket {
 	private ArrayList<String> notes; 
 	/** Current state of the ticket. Of type TicketState */ 
 	private TicketState state; 
+	/** Final instance of NewState inner class */
+	private final TicketState newState = new NewState();
+	/** Final instance of WorkingState inner class */
+	private final TicketState workingState = new WorkingState();
+	/** Final instance of FeedbackState inner class */
+	private final TicketState feedbackState = new FeedbackState();
+	/** Final instance of ResolvedState inner class */
+	private final TicketState resolvedState = new ResolvedState();
+	/** Final instance of ClosedState inner class */
+	private final TicketState closedState = new ClosedState();
+	/** Final instance of CanceledState inner class */
+	private final TicketState canceledState = new CanceledState();
 	/** Current cancellation code of the ticket */ 
 	private CancellationCode cancellationCode; 
 	/** Current feedback code of the ticket */ 
@@ -348,12 +360,12 @@ public class Ticket {
 		
 	}
 	
-	/** Final instance of the NewState inner class */
-	private final class NewState implements TicketState {
+	/** NewState inner class */
+	private class NewState implements TicketState {
 		
 		/** Constructor method */
 		private NewState() {
-			
+			// Should be left blank
 		}
 		
 		/**
@@ -373,12 +385,12 @@ public class Ticket {
 		}
 	}
 	
-	/** Final instance of the WorkingState inner class */
-	private final class WorkingState implements TicketState {
+	/** WorkingState inner class */
+	private class WorkingState implements TicketState {
 		
 		/** Constructor method */
 		private WorkingState() {
-			
+			// Should be left blank
 		}
 		
 		/**
@@ -386,7 +398,7 @@ public class Ticket {
 		 * @return state name
 		 */
 		public String getStateName() {
-			return "";
+			return WORKING_NAME;
 		}
 		
 		/**
@@ -398,12 +410,12 @@ public class Ticket {
 		}
 	}
 	
-	/** Final instance of the FeedbackState inner class */
-	private final class FeedbackState implements TicketState {
+	/** FeedbackState inner class */
+	private class FeedbackState implements TicketState {
 		
 		/** Constructor method */
 		private FeedbackState() {
-			
+			// Should be left blank
 		}
 		
 		/**
@@ -411,7 +423,7 @@ public class Ticket {
 		 * @return state name
 		 */
 		public String getStateName() {
-			return "";
+			return FEEDBACK_NAME;
 		}
 		
 		/**
@@ -423,12 +435,12 @@ public class Ticket {
 		}
 	}
 	
-	/** Final instance of the ResolvedState inner class */
-	private final class ResolvedState implements TicketState {
+	/** ResolvedState inner class */
+	private class ResolvedState implements TicketState {
 		
 		/** Constructor method */
 		private ResolvedState() {
-			
+			// Should be left blank
 		}
 		
 		/**
@@ -436,7 +448,7 @@ public class Ticket {
 		 * @return state name
 		 */
 		public String getStateName() {
-			return "";
+			return RESOLVED_NAME;
 		}
 		
 		/**
@@ -448,12 +460,12 @@ public class Ticket {
 		}
 	}
 	
-	/** Final instance of the ClosedState inner class */
-	private final class ClosedState implements TicketState {
+	/** ClosedState inner class */
+	private class ClosedState implements TicketState {
 		
 		/** Constructor method */
 		private ClosedState() {
-			
+			// Should be left blank
 		}
 		
 		/**
@@ -461,7 +473,7 @@ public class Ticket {
 		 * @return state name
 		 */
 		public String getStateName() {
-			return "";
+			return CLOSED_NAME;
 		}
 		
 		/**
@@ -473,12 +485,12 @@ public class Ticket {
 		}
 	}
 	
-	/** Final instance of the CanceledState inner class */
-	private final class CanceledState implements TicketState {
+	/** CanceledState inner class */
+	private class CanceledState implements TicketState {
 		
 		/** Constructor method */
 		private CanceledState() {
-			
+			// Should be left blank
 		}
 		
 		/**
@@ -486,7 +498,7 @@ public class Ticket {
 		 * @return state name
 		 */
 		public String getStateName() {
-			return "";
+			return CANCELED_NAME;
 		}
 		
 		/**
