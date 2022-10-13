@@ -1,5 +1,7 @@
 # project1-10 #
 
+Michael: could you please also implement testUpdateCommand? I think you have a better idea of the FSM since that is what you are working on. Thanks! -Z
+
 NOTE: If you are having trouble with eclipse recognizing packages/tests correctly: right click on project in eclipse finder bar on left, click Refresh Project. Then, right click on the project again, go to Maven->Update Project. 
 
 Expectation: Include Javadocs while stubbing out classes
@@ -29,7 +31,7 @@ Expectation:  > 80% coverage for each class before task is done.
 Write unit tests for Command class | 4 | Depends on skeleton | Zeb | 13 October | Done 10/9
 Implement Command class, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 5 | Zeb | 13 october | Done 10/9
 
-Write unit tests for Ticket class | 7 | Depends on skeleton | Zeb | 13 October | Started 10/12
+Write unit tests for Ticket class | 7 | Depends on skeleton | Zeb | 13 October | Done 10/12
 Implement Ticket class, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 8 | Zeb | 13 october | Started 10/12
 
 Implement State interface | 3 | Depends on skeleton | N/A | 13 October | Done
