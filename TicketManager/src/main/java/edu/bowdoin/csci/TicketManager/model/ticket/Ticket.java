@@ -361,7 +361,7 @@ public class Ticket {
 		 * @return state name
 		 */
 		public String getStateName() {
-			return "";
+			return NEW_NAME;
 		}
 		
 		/**

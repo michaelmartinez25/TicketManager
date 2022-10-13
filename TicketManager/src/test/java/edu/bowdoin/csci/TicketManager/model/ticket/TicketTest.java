@@ -3,10 +3,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import edu.bowdoin.csci.TicketManager.model.command.Command;
+import edu.bowdoin.csci.TicketManager.model.command.Command.CancellationCode;
+import edu.bowdoin.csci.TicketManager.model.command.Command.CommandValue;
+import edu.bowdoin.csci.TicketManager.model.command.Command.FeedbackCode;
+import edu.bowdoin.csci.TicketManager.model.command.Command.ResolutionCode;
 import edu.bowdoin.csci.TicketManager.model.ticket.Ticket.Category;
 import edu.bowdoin.csci.TicketManager.model.ticket.Ticket.Priority;
 import edu.bowdoin.csci.TicketManager.model.ticket.Ticket.TicketType;
@@ -23,13 +28,16 @@ public class TicketTest {
 	/** Example notes list for use in other tests */
 	ArrayList<String> notesList = new ArrayList<String>(); 
 	/**
-	 * Add notes to notes_list for testing  
+	 * Add notes to notes_list for testing
 	 */
 	@BeforeEach
 	public void setup() {
 		notesList.add("Note 1."); 
 		notesList.add("Note 2."); 
 		notesList.add("Note 3."); 
+		
+		// For testing the FSM; necessary to test the id of a Ticket
+		Ticket.setCounter(1);
 	}
 	
 	
@@ -346,6 +354,34 @@ public class TicketTest {
 	 */
 	
 	
-	
+	/**
+	 * Tests transitions from New to both Working and Canceled States
+	 */
+	@Test
+	public void testNewStateTransitions() {
+		Command toWorking = new Command(CommandValue.PROCESS, "Mikey", null, null, null, "Super Cool Note");
+		Command toCanceled = new Command(CommandValue.CANCEL, "Mikey", null, null, CancellationCode.DUPLICATE, "Another Epic Note");
+		
+		Ticket newTicket = new Ticket(TicketType.INCIDENT, "Subject", "Caller", Category.SOFTWARE, Priority.MEDIUM, "Note");
+		Ticket newTicket2 = new Ticket(TicketType.INCIDENT, "Subject", "Caller", Category.SOFTWARE, Priority.MEDIUM, "Note");
+		Assertions.assertEquals("New", newTicket.getState(),
+				"Newly created notes should have a state attribute as 'New', but does not.");
+		Assertions.assertEquals("New", newTicket2.getState(),
+				"Newly created notes should have a state attribute as 'New', but does not.");
+		
+		newTicket.update(toWorking);
+		Assertions.assertEquals("Working", newTicket.getState(),
+				"Updated ticket should have a state attribute as 'Working', but does not.");
+		Assertions.assertEquals("Mikey", newTicket.getOwner(),
+				"Updated ticket should have an owner 'Mikey', but does not.");
+		
+		newTicket2.update(toCanceled);
+		Assertions.assertEquals("Canceled", newTicket2.getState(),
+				"Updated ticket should have a state attribute as 'Canceled', but does not.");
+		Assertions.assertEquals("Duplicate", newTicket2.getCancellationCode(),
+				"Updated ticket should have a Cancellation Code 'Duplicate', but does not.");
+		
+		//Include an illegal transition test case with an invalid command
+	}
 	
 }
