@@ -29,8 +29,8 @@ Expectation:  > 80% coverage for each class before task is done.
 Write unit tests for Command class | 4 | Depends on skeleton | Zeb | 13 October | Done 10/9
 Implement Command class, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 5 | Zeb | 13 october | Done 10/9
 
-Write unit tests for Ticket class | 7 | Depends on skeleton | Zeb | 13 October | Not started
-Implement Ticket class, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 8 | Zeb | 13 october | Not Started
+Write unit tests for Ticket class | 7 | Depends on skeleton | Zeb | 13 October | Started 10/12
+Implement Ticket class, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 8 | Zeb | 13 october | Started 10/12
 
 Implement State interface | 3 | Depends on skeleton | N/A | 13 October | Done
 

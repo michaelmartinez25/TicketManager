@@ -14,53 +14,54 @@ import edu.bowdoin.csci.TicketManager.model.command.Command.ResolutionCode;
  */
 public class Ticket {
 	
-	/** Indicates if ticket is of type request */
-	public static final String TT_REQUEST = ""; 
-	/** Indicates if ticket is of type incident */
-	public static final String TT_INCIDENT = ""; 
-	/** Indicates if ticket subject is inquiry */
-	public static final String C_INQUIRY = ""; 
-	/** Indicates if ticket subject is software */
-	public static final String C_SOFTWARE = ""; 
-	/** Indicates if ticket subject is hardware */
-	public static final String C_HARDWARE = "";
-	/** Indicates if ticket subject is network */
-	public static final String C_NETWORK = ""; 
-	/** Indicates if ticket subject is database */
-	public static final String C_DATABASE = ""; 
-	/** Indicates if ticket priority is urgent */
-	public static final String P_URGENT = ""; 
-	/** Indicates if ticket priority is high */
-	public static final String P_HIGH = ""; 
-	/** Indicates if ticket priority is medium */
-	public static final String P_MEDIUM = ""; 
-	/** Indicates if ticket priority is low */
-	public static final String P_LOW = ""; 
-	/** Name of New state */ 
-	public static final String NEW_NAME = ""; 
-	/** Name of Working state */
-	public static final String WORKING_NAME = ""; 
-	/** Name of Feedback state */ 
-	public static final String FEEDBACK_NAME = ""; 
-	/** Name of Resolved state */ 
-	public static final String RESOLVED_NAME = ""; 
-	/** Name of Closed state */ 
-	public static final String CLOSED_NAME = ""; 
-	/** Name of Canceled state */
-	public static final String CANCELED_NAME = ""; 
-	/** counter variable */
-	private static int counter; 
+	/** String representation for ticket type request */
+	public static final String TT_REQUEST = "Request"; 
+	/** String representation for ticket type incident */
+	public static final String TT_INCIDENT = "Incident"; 
+	/** String representation for ticket category inquiry */
+	public static final String C_INQUIRY = "Inquiry"; 
+	/** String representation for ticket category software */
+	public static final String C_SOFTWARE = "Software"; 
+	/** String representation for ticket category hardware */
+	public static final String C_HARDWARE = "Hardware";
+	/** String representation for ticket category network */
+	public static final String C_NETWORK = "Network"; 
+	/** String representation for ticket category database */
+	public static final String C_DATABASE = "Database"; 
+	/** String representation for ticket priority urgent */
+	public static final String P_URGENT = "Urgen"; 
+	/** String representation for ticket priority high */
+	public static final String P_HIGH = "High"; 
+	/** String representation for ticket priority medium */
+	public static final String P_MEDIUM = "Medium"; 
+	/** String representation for ticket priority low */
+	public static final String P_LOW = "Low"; 
+	/** String representation for New state */ 
+	public static final String NEW_NAME = "New"; 
+	/** String representation for Working state */
+	public static final String WORKING_NAME = "Working"; 
+	/** String representation for Feedback state */ 
+	public static final String FEEDBACK_NAME = "Feedback"; 
+	/** String representation for Resolved state */ 
+	public static final String RESOLVED_NAME = "Resolved"; 
+	/** String representation for Closed state */ 
+	public static final String CLOSED_NAME = "Closed"; 
+	/** String representation for Canceled state */
+	public static final String CANCELED_NAME = "Canceled"; 
+	
+	/** Static counter variable keeps track of the ID value that should be given to the next ticket created */
+	private static int counter = 0; 
 	/** Unique ticket ID assigned by system at ticket creation */ 
 	private int ticketId;
 	/** Subject of ticket */ 
 	private String subject; 
 	/** ID of caller who originated the ticket */ 
 	private String caller; 
-	/** ID of owner who is responsible for the ticket */ 
+	/** ID of owner who is responsible for the ticket or " " (empty string) if none is assigned */ 
 	private String owner; 
 	/** Notes about the ticket */ 
 	private ArrayList<String> notes; 
-	/** Current state of the ticket */ 
+	/** Current state of the ticket. Of type TicketState */ 
 	private TicketState state; 
 	/** Current cancellation code of the ticket */ 
 	private CancellationCode cancellationCode; 
@@ -74,6 +75,7 @@ public class Ticket {
 	private Category category; 
 	/** Current priority of the ticket */ 
 	private Priority priority; 
+	
 	/** Options for ticket category */
 	public enum Category { INQUIRY, SOFTWARE, HARDWARE, NETWORK, DATABASE }
 	/** options for ticket priority */
@@ -86,38 +88,65 @@ public class Ticket {
 		
 	}
 	
-	/** set counter to number 
-	 * @param num: number to set counter to */
+	/** 
+	 * set counter to number 
+	 * @param num number to set counter to 
+	 */
 	public static void setCounter(int num) {
 		
 	}
 	
-	/** constructor 
-	 * @param i 
-	 * @param a
-	 * @param b
-	 * @param c
-	 * @param d
-	 * @param e
-	 * @param f
-	 * @param g
-	 * @param h
-	 * @param j 
+	/** 
+	 * Constructor for existing ticket being read from file
+	 * 
+	 * This constructor is intended to create a Ticket when reading input from a 
+	 * ticket file (as per UC1). Additionally, the Ticket.counter should be 
+	 * updated with Ticket.setCounter(id + 1) IF, the incoming id is greater than the 
+	 * current value in Ticket.counter.
+	 * 
+	 * @throws IllegalArgumentException if any of the rules in UC1 are broken.
+	 * 
+	 * @param id Unique integer ID for this ticket
+	 * @param state : String representing current state of this ticket
+	 * @param ticketType String representing type of this ticket
+	 * @param subject String representing subject of this ticket
+	 * @param caller String identifying caller who originated the ticket
+	 * @param category String identifying category of this ticket
+	 * @param priority String determining what priority level this ticket has
+	 * @param owner String representing owner responsible for this ticket
+	 * @param code String determining what code this ticket has
+	 * @param notes ArrayList of Strings with each note attached to this ticket. 
 	 * */ 
-	public Ticket(int i, String a, String b, String c, String d, String e, String f, String g, String h, ArrayList<String> j) {
+	public Ticket(int id, String state, String ticketType, String subject, String caller, String category, String priority, String owner, String code, ArrayList<String> notes) {
+		ticketId = id; 
+		//use setter methods for validation 
+		//pass all work onto other constructor if possible
 		
 	}
 	
-	/** alternate constructor
-	 * @param t Type of ticket
-	 * @param a
-	 * @param b
-	 * @param c
-	 * @param p Priority of ticket
-	 * @param d
+	/** 
+	 * Constructor for new ticket
+	 * 
+	 * Constructs a Ticket from the provided parameters. The ticketId is set to the 
+	 * value stored in Ticket.counter. The counter is then incremented 
+	 * using Ticket.incrementCounter(). The rest of the fields are initialized 
+	 * to the parameter values, null, false, or an empty object type as 
+	 * appropriate. The owner field should be initialized to an empty string (e.g., "").
+	 * 
+	 * @throws IllegalArgumentException is thrown if any of the parameters are null 
+	 * or empty strings (if a String type), 
+	 * 
+	 * @param type Type of ticket
+	 * @param subject String noting subject of this ticket 
+	 * @param caller String identifying caller who originated the ticket
+	 * @param category Category identifying what category of issue this ticket relates to
+	 * @param priority Priority of ticket
+	 * @param note String? Blank on spec. Guessing this should be note. 
 	 * 
 	 *  */ 
-	public Ticket(TicketType t, String a, String b, Category c, Priority p, String d) {
+	public Ticket(TicketType type, String subject, String caller, Category category, Priority priority, String note) {
+		
+		
 		
 	}
 	
