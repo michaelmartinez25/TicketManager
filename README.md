@@ -39,8 +39,8 @@ Implement State interface | 3 | Depends on skeleton | N/A | 13 October | Done
 Write unit tests for Ticket.NewState class | 3 | Depends on skeleton, State interface | Michael | 13 October | Done 10/13
 Implement NewState class, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 4 | Michael | 13 october | Needs Testing
 
-Write unit tests for Ticket.FeedbackState class | 3 | Depends on skeleton, State interface | Michael | 13 October | Started 10/13
-Implement FeedbackState class, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 4 | Michael | 13 october | Not Started
+Write unit tests for Ticket.FeedbackState class | 3 | Depends on skeleton, State interface | Michael | 13 October | Done 10/13
+Implement FeedbackState class, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 4 | Michael | 13 october | Needs Testing
 
 Write unit tests for Ticket.WorkingState class | 3 | Depends on skeleton, State interface | Michael | 13 October | Done 10/13
 Implement WorkingState class, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 4 | Michael | 13 october | Needs Testing
