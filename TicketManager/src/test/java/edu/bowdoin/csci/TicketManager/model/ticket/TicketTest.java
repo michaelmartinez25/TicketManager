@@ -205,129 +205,73 @@ public class TicketTest {
 			//Exception expected; carry on. 
 		}
 		
-		
-		
-		// This section is wrong 
-		
-		
-		/* Ticket must have a resolution code of either "Completed", "Not Completed", "Solved", "Not Solved", "Caller Closed", or "Workaround" in the "Resolved" or "Closed" states */ 
+		/* The ticket must have a resolution code of either "Completed", 
+		 * "Not Completed", "Solved", "Workaround", "Not Solved", or "Caller 
+		 * Closed" in the "Resolved" or "Closed" states. If the ticket is a 
+		 * "Request", the code can only be "Completed", "Not Completed", or 
+		 * "Caller Closed". If the ticket is an "Incident", the code can only 
+		 * be "Solved", "Workaround", "Not Solved", or "Called Closed".
+		 */
 		try {
-			Ticket fileTicket = new Ticket(1, Ticket.CLOSED_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", null, notesList); 
+			Ticket fileTicket = new Ticket(1, Ticket.CLOSED_NAME, Ticket.TT_REQUEST, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.RC_NOT_SOLVED, notesList); 
 		}
 		catch (IllegalArgumentException iae) {
 			//Exception expected; carry on. 
 		}
 		try {
-			Ticket fileTicket = new Ticket(1, Ticket.RESOLVED_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", null, notesList); 
-		}
-		catch (IllegalArgumentException iae) {
-			//Exception expected; carry on. 
-		}
-		
-		/* Must have resolution code of "Completed", "Not Completed", or "Called Closed" in Request state */ 
-		try {
-			Ticket fileTicket = new Ticket(1, Ticket.RESOLVED_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.RC_NOT_SOLVED, notesList); 
+			Ticket fileTicket = new Ticket(1, Ticket.CLOSED_NAME, Ticket.TT_REQUEST, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.RC_WORKAROUND, notesList); 
 		}
 		catch (IllegalArgumentException iae) {
 			//Exception expected; carry on. 
 		}
 		try {
-			Ticket fileTicket = new Ticket(1, Ticket.RESOLVED_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.RC_SOLVED, notesList); 
+			Ticket fileTicket = new Ticket(1, Ticket.CLOSED_NAME, Ticket.TT_REQUEST, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.RC_SOLVED, notesList); 
 		}
 		catch (IllegalArgumentException iae) {
 			//Exception expected; carry on. 
 		}
 		try {
-			Ticket fileTicket = new Ticket(1, Ticket.RESOLVED_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.RC_WORKAROUND, notesList); 
+			Ticket fileTicket = new Ticket(1, Ticket.RESOLVED_NAME, Ticket.TT_REQUEST, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.RC_WORKAROUND, notesList); 
 		}
 		catch (IllegalArgumentException iae) {
 			//Exception expected; carry on. 
 		}
 		try {
-			Ticket fileTicket = new Ticket(1, Ticket.RESOLVED_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", null, notesList); 
-		}
-		catch (IllegalArgumentException iae) {
-			//Exception expected; carry on. 
-		}
-
-		try {
-			Ticket fileTicket = new Ticket(1, Ticket.CLOSED_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.RC_NOT_SOLVED, notesList); 
+			Ticket fileTicket = new Ticket(1, Ticket.RESOLVED_NAME, Ticket.TT_REQUEST, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.RC_NOT_SOLVED, notesList); 
 		}
 		catch (IllegalArgumentException iae) {
 			//Exception expected; carry on. 
 		}
 		try {
-			Ticket fileTicket = new Ticket(1, Ticket.CLOSED_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.RC_SOLVED, notesList); 
+			Ticket fileTicket = new Ticket(1, Ticket.RESOLVED_NAME, Ticket.TT_REQUEST, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.RC_SOLVED, notesList); 
 		}
 		catch (IllegalArgumentException iae) {
 			//Exception expected; carry on. 
 		}
 		try {
-			Ticket fileTicket = new Ticket(1, Ticket.CLOSED_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.RC_WORKAROUND, notesList); 
+			Ticket fileTicket = new Ticket(1, Ticket.CLOSED_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.RC_COMPLETED, notesList); 
 		}
 		catch (IllegalArgumentException iae) {
 			//Exception expected; carry on. 
 		}
 		try {
-			Ticket fileTicket = new Ticket(1, Ticket.CLOSED_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", null, notesList); 
-		}
-		catch (IllegalArgumentException iae) {
-			//Exception expected; carry on. 
-		}
-		
-		/* If the ticket is a "Request", the code can only be "Completed", 
-		 * "Not Completed", or "Caller Closed".*/
-		try {
-			Ticket fileTicket = new Ticket(1, Ticket.WORKING_NAME, Ticket.TT_REQUEST, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.RC_NOT_SOLVED, notesList); 
+			Ticket fileTicket = new Ticket(1, Ticket.CLOSED_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.RC_NOT_COMPLETED, notesList); 
 		}
 		catch (IllegalArgumentException iae) {
 			//Exception expected; carry on. 
 		}
 		try {
-			Ticket fileTicket = new Ticket(1, Ticket.WORKING_NAME, Ticket.TT_REQUEST, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.RC_SOLVED, notesList); 
+			Ticket fileTicket = new Ticket(1, Ticket.RESOLVED_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.RC_COMPLETED, notesList); 
 		}
 		catch (IllegalArgumentException iae) {
 			//Exception expected; carry on. 
 		}
 		try {
-			Ticket fileTicket = new Ticket(1, Ticket.WORKING_NAME, Ticket.TT_REQUEST, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.RC_WORKAROUND, notesList); 
+			Ticket fileTicket = new Ticket(1, Ticket.RESOLVED_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.RC_NOT_COMPLETED, notesList); 
 		}
 		catch (IllegalArgumentException iae) {
 			//Exception expected; carry on. 
 		}
-		try {
-			Ticket fileTicket = new Ticket(1, Ticket.WORKING_NAME, Ticket.TT_REQUEST, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", null, notesList); 
-		}
-		catch (IllegalArgumentException iae) {
-			//Exception expected; carry on. 
-		}
-		
-		/* If the ticket is an "Incident", the code can only be "Solved", "Workaround", "Not Solved", or "Caller Closed"*/
-		try {
-			Ticket fileTicket = new Ticket(1, Ticket.WORKING_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.RC_COMPLETED, notesList); 
-		}
-		catch (IllegalArgumentException iae) {
-			//Exception expected; carry on. 
-		}
-		try {
-			Ticket fileTicket = new Ticket(1, Ticket.WORKING_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.RC_NOT_COMPLETED, notesList); 
-		}
-		catch (IllegalArgumentException iae) {
-			//Exception expected; carry on. 
-		}
-		try {
-			Ticket fileTicket = new Ticket(1, Ticket.WORKING_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", null, notesList); 
-		}
-		catch (IllegalArgumentException iae) {
-			//Exception expected; carry on. 
-		}
-		
-		
-		
-		
-		//end wrong section
-		
-		
 		
 		
 		/* The ticket must have a cancellation code of either duplicate or inappropriate if in the canceled state */
@@ -344,6 +288,24 @@ public class TicketTest {
 			//Exception expected; carry on. 
 		}
 		
+		/* There must be at least one note line for each ticket. */ 
+		try {
+			Ticket fileTicket = new Ticket(1, Ticket.CANCELED_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.CC_DUPLICATE, null); 
+		}
+		catch (IllegalArgumentException iae) {
+			//Exception expected; carry on. 
+		}
+		try {
+			Ticket fileTicket = new Ticket(1, Ticket.CANCELED_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", null, new ArrayList<String>()); 
+		}
+		catch (IllegalArgumentException iae) {
+			//Exception expected; carry on. 
+		}
+		
+		/* The note may include new line characters. The note text is processed until the next '-' or '*' character that starts a new line. This means that the '-' and '*' characters can appear in a note, 
+		 * but not as the first character in a new line - that would be considered a new note.
+		 */
+	
 	}
 	
 	
@@ -352,7 +314,137 @@ public class TicketTest {
 	 * Additionally, the Ticket.counter should be updated with Ticket.setCounter(id + 1)
 	 *  IF, the incoming id is greater than the current value in Ticket.counter. 
 	 */
+	@Test
+	public void testFileTicketConstructor() {
+		Ticket.setCounter(0); 
+		Ticket one = new Ticket(37, Ticket.WORKING_NAME, Ticket.TT_REQUEST, "Homework regrade request", "student", Ticket.C_INQUIRY, Ticket.P_LOW, "grader", Command.F_CALLER, notesList); 
+		assertEquals(one.getTicketId(), 37); 
+		Ticket two = new Ticket(TicketType.INCIDENT, "Canvas Down", "Rose Clayton", Category.NETWORK, Priority.URGENT, "Students cannot log in to Canvas"); 
+		assertEquals(two.getTicketId(), 38);
+	}
 	
+	/**
+	 * Test getCaller
+	 */
+	@Test
+	public void testGetCaller() {
+		assertEquals(example.getCaller(), "Rose Clayton"); 
+	}
+	
+	/**
+	 * Test getCancellationCode
+	 */
+	@Test
+	public void testGetCancellationCode() {
+		assertEquals(example.getCancellationCode(), null); 
+	}
+	
+	/**
+	 * Test getCategory
+	 */
+	@Test
+	public void testGetCategory() {
+		assertEquals(example.getCategory(), Ticket.C_NETWORK); 
+	}
+	
+	/**
+	 * Test getFeedbackCode
+	 */
+	@Test
+	public void testGetFeedbackCode() {
+		assertEquals(example.getFeedbackCode(), null); 
+	}
+	
+	/**
+	 * Test getNotes
+	 */
+	@Test
+	public void testGetNotes() {
+		assertEquals(example.getNotes(), "Students cannot log in to Canvas"); 
+	}
+	
+	/**
+	 * Test getOwner
+	 */
+	@Test
+	public void testGetOwner() {
+		assertEquals(example.getOwner(), "");
+	}
+	
+	/**
+	 * Test getPriority
+	 */
+	@Test
+	public void testGetPriority() {
+		assertEquals(example.getPriority(), Ticket.P_URGENT); 
+	}
+	
+	/**
+	 * Test getResolutionCode
+	 */
+	@Test
+	public void testGetResolutionCode() {
+		assertEquals(example.getResolutionCode(), null); 
+	}
+	
+	/**
+	 * Test getState
+	 */
+	@Test
+	public void testGetState() {
+		assertEquals(example.getState(), Ticket.NEW_NAME); 
+	}
+	
+	/**
+	 * Test getSubject
+	 */
+	@Test
+	public void testGetSubject() {
+		assertEquals(example.getSubject(), "Canvas Down"); 
+	}
+	
+	/**
+	 * Test getTicketId
+	 */
+	@Test
+	public void testGetTicketId() {
+		assertEquals(example.getTicketId(), 0); 
+	}
+	
+	/**
+	 * Test getTicketType
+	 */
+	@Test
+	public void testGetTicketType() {
+		assertEquals(example.getTicketType(), TicketType.INCIDENT); 
+	}
+	
+	/**
+	 * Test getTicketTypeString
+	 */
+	@Test
+	public void testGetTicketTypeString() {
+		assertEquals(example.getTicketTypeString(), Ticket.TT_INCIDENT); 
+	}
+	
+	
+	/**
+	 *  Test toString (notes: assumes we are implementing by calling getNotes to print notes consistently) 
+	 *  @TODO 
+	 */
+	@Test
+	public void testToString() {
+		assertEquals(example.toString(), "TODO Insert actual string representation here!"); 
+	}
+	
+	/**
+	 * Test updateCommand
+	 * @TODO
+	 */
+	@Test
+	public void testUpdateCommand() {
+		assertEquals(0, 1); 
+	}
 	
 	/**
 	 * Tests transitions from New to both Working and Canceled States
