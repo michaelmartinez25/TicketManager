@@ -502,7 +502,45 @@ public class Ticket {
 		 * @param command user command to execute
 		 */
 		public void updateState(Command command) {
+			if (command == null) {
+				throw new UnsupportedOperationException();
+			}
 			
+			CommandValue cv = command.getCommand();
+			
+			if (!cv.equals(CommandValue.REOPEN) || !cv.equals(CommandValue.RESOLVE) || !cv.equals(CommandValue.CANCEL)) {
+				throw new UnsupportedOperationException();
+			}
+			
+			if (cv.equals(CommandValue.REOPEN)) {
+				if (command.getOwnerId() == null || command.getOwnerId() == "") {
+					throw new UnsupportedOperationException();
+				}
+				owner = command.getOwnerId();
+				notes.add(command.getNote());
+				state = workingState;
+			}
+			
+			if (cv.equals(CommandValue.RESOLVE)) {
+				ResolutionCode newResolutionCode =  command.getResolutionCode();
+				if (command.getResolutionCode() == null) {
+					throw new UnsupportedOperationException();
+				}
+				resolutionCode = newResolutionCode;
+				notes.add(command.getNote());
+				state = resolvedState;
+			}
+			
+			if (cv.equals(CommandValue.CANCEL)) {
+				CancellationCode newCancellationCode = command.getCancellationCode();
+				if (command.getCancellationCode() == null) {
+					throw new UnsupportedOperationException();
+				}
+				
+				cancellationCode = newCancellationCode;
+				notes.add(command.getNote());
+				state = canceledState;
+			}
 		}
 	}
 	

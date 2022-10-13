@@ -510,7 +510,7 @@ public class TicketTest {
 		Assertions.assertEquals("New", toFeedbackTicket.getState(),
 				"Newly created notes should have a state attribute as 'New', but does not.");
 		Ticket toResolvedIncTicket = new Ticket(TicketType.INCIDENT, "Subject", "Caller", Category.SOFTWARE, Priority.MEDIUM, "Note");
-		Ticket toResolvedReqTicket = new Ticket(TicketType.INCIDENT, "Subject", "Caller", Category.SOFTWARE, Priority.MEDIUM, "Note");
+		Ticket toResolvedReqTicket = new Ticket(TicketType.REQUEST, "Subject", "Caller", Category.SOFTWARE, Priority.MEDIUM, "Note");
 		Ticket toCanceledTicket = new Ticket(TicketType.INCIDENT, "Subject", "Caller", Category.SOFTWARE, Priority.MEDIUM, "Note");
 		
 		// Test FeedbackState transition
@@ -588,6 +588,108 @@ public class TicketTest {
 	 */
 	@Test
 	public void testFeedbackStateTransitions() {
+		Command toWorking = new Command(CommandValue.PROCESS, "Mikey", null, null, null, "The OG Super Cool Note");
+		Command toFeedback = new Command(CommandValue.FEEDBACK, "Mikey", FeedbackCode.AWAITING_CALLER, null, null, "Super Cool Note");
+		// Feedback transition commands
+		Command toReopen = new Command(CommandValue.REOPEN, "Mikey", null, null, null, "A Boring Note");
+		Command toResolvedInc = new Command(CommandValue.RESOLVE, "Mikey", null, ResolutionCode.SOLVED, null, "Another Cool Note");
+		Command toResolvedReq = new Command(CommandValue.RESOLVE, "Mikey", null, ResolutionCode.COMPLETED, null, "Epic Note");
+		Command toCanceled = new Command(CommandValue.CANCEL, "Mikey", null, null, CancellationCode.DUPLICATE, "Yet Another Epic Note");
+		
+		Ticket toReopenTicket = new Ticket(TicketType.INCIDENT, "Subject", "Caller", Category.SOFTWARE, Priority.MEDIUM, "Note");
+		Assertions.assertEquals("New", toReopenTicket.getState(),
+				"Newly created notes should have a state attribute as 'New', but does not.");
+		Ticket toResolvedIncTicket = new Ticket(TicketType.INCIDENT, "Subject", "Caller", Category.SOFTWARE, Priority.MEDIUM, "Note");
+		Ticket toResolvedReqTicket = new Ticket(TicketType.REQUEST, "Subject", "Caller", Category.SOFTWARE, Priority.MEDIUM, "Note");
+		Ticket toCanceledTicket = new Ticket(TicketType.INCIDENT, "Subject", "Caller", Category.SOFTWARE, Priority.MEDIUM, "Note");
+		
+		// Test Reopen Transition back to Working
+		toReopenTicket.update(toWorking);
+		Assertions.assertEquals("Working", toReopenTicket.getState(),
+				"Updated ticket should have a state attribute as 'Working', but does not.");
+		Assertions.assertEquals("Mikey", toReopenTicket.getOwner(),
+				"Updated ticket should have an owner 'Mikey', but does not.");
+		toReopenTicket.update(toFeedback);
+		Assertions.assertEquals("Feedback", toReopenTicket.getState(),
+				"Updated ticket should have a state attribute as 'Feedback', but does not.");
+		Assertions.assertEquals("Awaiting Caller", toReopenTicket.getFeedbackCode(),
+				"Updated ticket should have a Feedback Code 'Awaiting Caller', but does not.");
+		toReopenTicket.update(toReopen);
+		Assertions.assertEquals("Working", toReopenTicket.getState(),
+				"Updated ticket should have a state attribute as 'Working', but does not.");
+		Assertions.assertEquals("Mikey", toReopenTicket.getOwner(),
+				"Updated ticket should have an owner 'Mikey', but does not.");
+		
+		// Test ResolvedState 
+		toResolvedIncTicket.update(toWorking);
+		Assertions.assertEquals("Working", toResolvedIncTicket.getState(),
+				"Updated ticket should have a state attribute as 'Working', but does not.");
+		Assertions.assertEquals("Mikey", toResolvedIncTicket.getOwner(),
+				"Updated ticket should have an owner 'Mikey', but does not.");
+		toResolvedIncTicket.update(toFeedback);
+		Assertions.assertEquals("Feedback", toResolvedIncTicket.getState(),
+				"Updated ticket should have a state attribute as 'Feedback', but does not.");
+		Assertions.assertEquals("Awaiting Caller", toResolvedIncTicket.getFeedbackCode(),
+				"Updated ticket should have a Feedback Code 'Awaiting Caller', but does not.");
+		toResolvedIncTicket.update(toResolvedInc);
+		Assertions.assertEquals("Resolved", toResolvedIncTicket.getState(), 
+				"Updated ticket should have a state attribute as 'Resolved', but does not.");
+		Assertions.assertEquals("Solved", toResolvedIncTicket.getResolutionCode(), 
+				"Updated ticket should have a Resolution Code 'Solved', but does not.");
+		
+		toResolvedReqTicket.update(toWorking);
+		Assertions.assertEquals("Working", toResolvedReqTicket.getState(),
+				"Updated ticket should have a state attribute as 'Working', but does not.");
+		Assertions.assertEquals("Mikey", toResolvedReqTicket.getOwner(),
+				"Updated ticket should have an owner 'Mikey', but does not.");
+		toResolvedReqTicket.update(toFeedback);
+		Assertions.assertEquals("Feedback", toResolvedReqTicket.getState(),
+				"Updated ticket should have a state attribute as 'Feedback', but does not.");
+		Assertions.assertEquals("Awaiting Caller", toResolvedReqTicket.getFeedbackCode(),
+				"Updated ticket should have a Feedback Code 'Awaiting Caller', but does not.");
+		toResolvedReqTicket.update(toResolvedReq);
+		Assertions.assertEquals("Resolved", toResolvedReqTicket.getState(), 
+				"Updated ticket should have a state attribute as 'Resolved', but does not.");
+		Assertions.assertEquals("Completed", toResolvedReqTicket.getResolutionCode(), 
+				"Updated ticket should have a Resolution Code 'Completed', but does not.");
+		
+		// Test CanceledState
+		toCanceledTicket.update(toWorking);
+		Assertions.assertEquals("Working", toCanceledTicket.getState(),
+				"Updated ticket should have a state attribute as 'Working', but does not.");
+		Assertions.assertEquals("Mikey", toCanceledTicket.getOwner(),
+				"Updated ticket should have an owner 'Mikey', but does not.");
+		toCanceledTicket.update(toFeedback);
+		Assertions.assertEquals("Feedback", toCanceledTicket.getState(), 
+				"Updated ticket should have a state attribute as 'Feedback', but does not.");
+		Assertions.assertEquals("Awaiting Caller", toCanceledTicket.getFeedbackCode(), 
+				"Updated ticket should have a Feedback Code 'Awaiting Caller");
+		toCanceledTicket.update(toCanceled);;
+		Assertions.assertEquals("Canceled", toCanceledTicket.getState(),
+				"Updated ticket should have a state attribute as 'Canceled', but does not.");
+		Assertions.assertEquals("Duplicate", toCanceled.getCancellationCode(),
+				"Updated ticket should have a Cancellation Code 'Duplicate', but does not.");
+		
+		//Test Invalid Scenarios
+		Ticket invalidTestTicket = new Ticket(TicketType.INCIDENT, "Subject", "Caller", Category.SOFTWARE, Priority.MEDIUM, "Note");
+		invalidTestTicket.update(toWorking);
+		invalidTestTicket.update(toFeedback);
+		
+		try {
+			invalidTestTicket.update(null);
+			Assertions.fail(
+					"Attempting to update a ticket state with a null command should throw UOE, but didn't.");
+		} catch (UnsupportedOperationException uoe) {
+			// Exception expected, carry on.
+		}
+		
+		try {
+			invalidTestTicket.update(toWorking);
+			Assertions.fail(
+					"Attempting to update a ticket state with an invalid command should throw UOE, but didn't.");
+		} catch (UnsupportedOperationException uoe) {
+			// Exception expected, carry on.
+		}
 		
 	}
 	
