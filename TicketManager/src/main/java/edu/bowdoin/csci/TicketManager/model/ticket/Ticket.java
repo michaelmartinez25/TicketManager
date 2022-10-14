@@ -633,7 +633,24 @@ public class Ticket {
 		 * @param command user command to execute
 		 */
 		public void updateState(Command command) {
+			if (command == null) {
+				throw new UnsupportedOperationException();
+			}
 			
+			CommandValue cv = command.getCommand();
+			
+			if (!cv.equals(CommandValue.REOPEN)) {
+				throw new UnsupportedOperationException();
+			}
+			
+			if (cv.equals(CommandValue.REOPEN)) {
+				if (command.getOwnerId() == null || command.getOwnerId() == "") {
+					throw new UnsupportedOperationException();
+				}
+				owner = command.getOwnerId();
+				notes.add(command.getNote());
+				state = workingState;
+			}
 		}
 	}
 	

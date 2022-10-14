@@ -807,6 +807,56 @@ public class TicketTest {
 	 */
 	@Test
 	public void testClosedStateTransition() {
+		Command toWorking = new Command(CommandValue.PROCESS, "Mikey", null, null, null, "The OG Super Cool Note");
+		Command toResolved = new Command(CommandValue.RESOLVE, "Mikey", null, ResolutionCode.SOLVED, null, "Another Cool Note");
+		Command toClosed = new Command(CommandValue.CONFIRM, "Mikey", null, null, null, "A Not-So-Boring Note");
+		// Transition commands
+		Command toReopen = new Command(CommandValue.REOPEN, "Mikey", null, null, null, "A Boring Note");
 		
+		Ticket toReopenTicket = new Ticket(TicketType.INCIDENT, "Subject", "Caller", Category.SOFTWARE, Priority.MEDIUM, "Note");
+		Assertions.assertEquals("New", toReopenTicket.getState(),
+				"Newly created notes should have a state attribute as 'New', but does not.");
+		
+		// Test WorkingState
+		toReopenTicket.update(toWorking);
+		Assertions.assertEquals("Working", toReopenTicket.getState(),
+				"Updated ticket should have a state attribute as 'Working', but does not.");
+		Assertions.assertEquals("Mikey", toReopenTicket.getOwner(),
+				"Updated ticket should have an owner 'Mikey', but does not.");
+		toReopenTicket.update(toResolved);
+		Assertions.assertEquals("Resolved", toReopenTicket.getState(),
+				"Updated ticket should have a state attribute as 'Resolved', but does not.");
+		Assertions.assertEquals("Solved", toReopenTicket.getResolutionCode(),
+				"Updated ticket should have a Resolution Code 'Solved', but does not.");
+		toReopenTicket.update(toClosed);
+		Assertions.assertEquals("Closed", toReopenTicket.getState(), 
+				"Updated ticket should have a state attribute as 'Closed', but does not.");
+		toReopenTicket.update(toReopen);
+		Assertions.assertEquals("Working", toReopenTicket.getState(),
+				"Updated ticket should have a state attribute as 'Working', but does not.");
+		Assertions.assertEquals("Mikey", toReopenTicket.getOwner(),
+				"Updated ticket should have an owner 'Mikey', but does not.");
+		
+		// Test Invalid Scenarios
+		Ticket invalidTestTicket = new Ticket(TicketType.INCIDENT, "Subject", "Caller", Category.SOFTWARE, Priority.MEDIUM, "Note");
+		invalidTestTicket.update(toWorking);
+		invalidTestTicket.update(toResolved);
+		invalidTestTicket.update(toClosed);
+		
+		try {
+			invalidTestTicket.update(null);
+			Assertions.fail(
+					"Attempting to update a ticket state with a null command should throw UOE, but didn't.");
+		} catch (UnsupportedOperationException uoe) {
+			// Exception expected, carry on.
+		}
+		
+		try {
+			invalidTestTicket.update(toWorking);
+			Assertions.fail(
+					"Attempting to update a ticket state with an invalid command should throw UOE, but didn't.");
+		} catch (UnsupportedOperationException uoe) {
+			// Exception expected, carry on.
+		}
 	}
 }
