@@ -48,7 +48,7 @@ Implement WorkingState class, ensure it passes all unit tests, PMD/Checkstyle, T
 Write unit tests for Ticket.ClosedState class | 3 | Depends on skeleton, State interface | Michael | 13 October | Done 10/13
 Implement ClosedState class, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 4 | Michael | 13 october | Needs Testing
 
-Write unit tests for Ticket.CanceledState class | 3 | Depends on skeleton, State interface | Michael | 13 October | Not started
+Write unit tests for Ticket.CanceledState class | 3 | Depends on skeleton, State interface | Michael | 13 October | Done 10/13
 Implement CanceledState class, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 4 | Michael | 13 october | Not Started
 
 Write unit tests for Ticket.ResolvedState class | 3 | Depends on skeleton, State interface | Michael | 13 October | Done 10/13
