@@ -47,8 +47,10 @@ public class TicketTest {
 	 */
 	@Test
 	public void testNewTicketConstructorInvalidValues() {
+		Ticket t = new Ticket(TicketType.REQUEST, "Please add more CS professors", "cs_major", Category.INQUIRY, Priority.MEDIUM, "Course registration. Oof.");
+		
 		try {
-			Ticket t = new Ticket(null, "Espresso Machine Broken", "Andrea R.", Category.HARDWARE, Priority.HIGH, "Italian department espresso machine is broken"); 
+			t = new Ticket(null, "Espresso Machine Broken", "Andrea R.", Category.HARDWARE, Priority.HIGH, "Italian department espresso machine is broken"); 
 			fail("Constructing a new ticket with a null value or empty string input should throw IAE"); 
 		}
 		catch (IllegalArgumentException iae) {
@@ -56,35 +58,35 @@ public class TicketTest {
 		}
 		
 		try {
-			Ticket t = new Ticket(TicketType.INCIDENT, "", "Andrea R.", Category.HARDWARE, Priority.HIGH, "Italian department espresso machine is broken"); 
+			t = new Ticket(TicketType.INCIDENT, "", "Andrea R.", Category.HARDWARE, Priority.HIGH, "Italian department espresso machine is broken"); 
 			fail("Constructing a new ticket with a null value or empty string input should throw IAE"); 
 		}
 		catch (IllegalArgumentException iae) {
 			//Exception expected; carry on
 		}
 		try {
-			Ticket t = new Ticket(TicketType.INCIDENT, "Espresso Machine Broken", "", Category.HARDWARE, Priority.HIGH, "Italian department espresso machine is broken"); 
+			t = new Ticket(TicketType.INCIDENT, "Espresso Machine Broken", "", Category.HARDWARE, Priority.HIGH, "Italian department espresso machine is broken"); 
 			fail("Constructing a new ticket with a null value or empty string input should throw IAE"); 
 		}
 		catch (IllegalArgumentException iae) {
 			//Exception expected; carry on
 		}
 		try {
-			Ticket t = new Ticket(TicketType.INCIDENT, "Espresso Machine Broken", "Andrea R.", null, Priority.HIGH, "Italian department espresso machine is broken"); 
+			t = new Ticket(TicketType.INCIDENT, "Espresso Machine Broken", "Andrea R.", null, Priority.HIGH, "Italian department espresso machine is broken"); 
 			fail("Constructing a new ticket with a null value or empty string input should throw IAE"); 
 		}
 		catch (IllegalArgumentException iae) {
 			//Exception expected; carry on
 		}
 		try {
-			Ticket t = new Ticket(TicketType.INCIDENT, "Espresso Machine Broken", "Andrea R.", Category.HARDWARE, null, "Italian department espresso machine is broken"); 
+			t = new Ticket(TicketType.INCIDENT, "Espresso Machine Broken", "Andrea R.", Category.HARDWARE, null, "Italian department espresso machine is broken"); 
 			fail("Constructing a new ticket with a null value or empty string input should throw IAE"); 
 		}
 		catch (IllegalArgumentException iae) {
 			//Exception expected; carry on
 		}
 		try {
-			Ticket t = new Ticket(TicketType.INCIDENT, "Espresso Machine Broken", "Andrea R.", Category.HARDWARE, Priority.HIGH, ""); 
+			t = new Ticket(TicketType.INCIDENT, "Espresso Machine Broken", "Andrea R.", Category.HARDWARE, Priority.HIGH, ""); 
 			fail("Constructing a new ticket with a null value or empty string input should throw IAE"); 
 		}
 		catch (IllegalArgumentException iae) {
@@ -123,9 +125,12 @@ public class TicketTest {
 	@Test 
 	public void testFileTicketConstructorInvalidValues() {
 		
+		Ticket fileTicket = new Ticket(TicketType.REQUEST, "Please add more CS professors", "cs_major", Category.INQUIRY, Priority.MEDIUM, "Course registration. Oof.");
+		
 		/* ID must be integer >= 0 */
 		try {
-			Ticket fileTicket = new Ticket(-1, Ticket.FEEDBACK_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.F_PROVIDER, notesList); 
+			fileTicket = new Ticket(-1, Ticket.FEEDBACK_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.F_PROVIDER, notesList); 
+			fail();
 		}
 		catch (IllegalArgumentException iae) {
 			//Exception expected; carry on. 
@@ -134,31 +139,36 @@ public class TicketTest {
 		
 		/* Required arguments cannot be null or empty strings */
 		try {
-			Ticket fileTicket = new Ticket(1, null, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.F_PROVIDER, notesList); 
+			fileTicket = new Ticket(1, null, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.F_PROVIDER, notesList);
+			fail();
 		}
 		catch (IllegalArgumentException iae) {
 			//Exception expected; carry on. 
 		}
 		try {
-			Ticket fileTicket = new Ticket(1, Ticket.FEEDBACK_NAME, null, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.F_PROVIDER, notesList); 
+			fileTicket = new Ticket(1, Ticket.FEEDBACK_NAME, null, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.F_PROVIDER, notesList);
+			fail();
 		}
 		catch (IllegalArgumentException iae) {
 			//Exception expected; carry on. 
 		}
 		try {
-			Ticket fileTicket = new Ticket(1, Ticket.FEEDBACK_NAME, Ticket.TT_INCIDENT, "", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.F_PROVIDER, notesList); 
+			fileTicket = new Ticket(1, Ticket.FEEDBACK_NAME, Ticket.TT_INCIDENT, "", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.F_PROVIDER, notesList); 
+			fail();
 		}
 		catch (IllegalArgumentException iae) {
 			//Exception expected; carry on. 
 		}
 		try {
-			Ticket fileTicket = new Ticket(1, Ticket.FEEDBACK_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", null, Ticket.P_LOW, "Coxswain", Command.F_PROVIDER, notesList); 
+			fileTicket = new Ticket(1, Ticket.FEEDBACK_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", null, Ticket.P_LOW, "Coxswain", Command.F_PROVIDER, notesList); 
+			fail();
 		}
 		catch (IllegalArgumentException iae) {
 			//Exception expected; carry on. 
 		}
 		try {
-			Ticket fileTicket = new Ticket(1, Ticket.FEEDBACK_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, null, "Coxswain", Command.F_PROVIDER, notesList); 
+			fileTicket = new Ticket(1, Ticket.FEEDBACK_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, null, "Coxswain", Command.F_PROVIDER, notesList);
+			fail();
 		}
 		catch (IllegalArgumentException iae) {
 			//Exception expected; carry on. 
@@ -167,31 +177,36 @@ public class TicketTest {
 		
 		/* Ticket must have an owner if state is Working, Feedback, Resolved, or Closed */ 
 		try {
-			Ticket fileTicket = new Ticket(1, Ticket.WORKING_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.F_PROVIDER, notesList); 
+			fileTicket = new Ticket(1, Ticket.WORKING_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.F_PROVIDER, notesList);
+			fail();
 		}
 		catch (IllegalArgumentException iae) {
 			//Exception expected; carry on. 
 		}
 		try {
-			Ticket fileTicket = new Ticket(1, Ticket.FEEDBACK_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.F_PROVIDER, notesList); 
+			fileTicket = new Ticket(1, Ticket.FEEDBACK_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.F_PROVIDER, notesList);
+			fail();
 		}
 		catch (IllegalArgumentException iae) {
 			//Exception expected; carry on. 
 		}
 		try {
-			Ticket fileTicket = new Ticket(1, Ticket.RESOLVED_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.F_PROVIDER, notesList); 
+			fileTicket = new Ticket(1, Ticket.RESOLVED_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.F_PROVIDER, notesList);
+			fail();
 		}
 		catch (IllegalArgumentException iae) {
 			//Exception expected; carry on. 
 		}
 		try {
-			Ticket fileTicket = new Ticket(1, Ticket.WORKING_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.F_PROVIDER, notesList); 
+			fileTicket = new Ticket(1, Ticket.WORKING_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.F_PROVIDER, notesList);
+			fail();
 		}
 		catch (IllegalArgumentException iae) {
 			//Exception expected; carry on. 
 		}
 		try {
-			Ticket fileTicket = new Ticket(1, Ticket.CLOSED_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.F_PROVIDER, notesList); 
+			fileTicket = new Ticket(1, Ticket.CLOSED_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.F_PROVIDER, notesList);
+			fail();
 		}
 		catch (IllegalArgumentException iae) {
 			//Exception expected; carry on. 
@@ -199,7 +214,8 @@ public class TicketTest {
 		
 		/* The ticket must have a feedback code of either "Awaiting Caller", "Awaiting Change", or "Awaiting Provider" when in the "Feedback" state. */
 		try {
-			Ticket fileTicket = new Ticket(1, Ticket.FEEDBACK_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", null, notesList); 
+			fileTicket = new Ticket(1, Ticket.FEEDBACK_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", null, notesList);
+			fail();
 		}
 		catch (IllegalArgumentException iae) {
 			//Exception expected; carry on. 
@@ -213,61 +229,71 @@ public class TicketTest {
 		 * be "Solved", "Workaround", "Not Solved", or "Called Closed".
 		 */
 		try {
-			Ticket fileTicket = new Ticket(1, Ticket.CLOSED_NAME, Ticket.TT_REQUEST, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.RC_NOT_SOLVED, notesList); 
+			fileTicket = new Ticket(1, Ticket.CLOSED_NAME, Ticket.TT_REQUEST, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.RC_NOT_SOLVED, notesList);
+			fail();
 		}
 		catch (IllegalArgumentException iae) {
 			//Exception expected; carry on. 
 		}
 		try {
-			Ticket fileTicket = new Ticket(1, Ticket.CLOSED_NAME, Ticket.TT_REQUEST, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.RC_WORKAROUND, notesList); 
+			fileTicket = new Ticket(1, Ticket.CLOSED_NAME, Ticket.TT_REQUEST, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.RC_WORKAROUND, notesList);
+			fail();
 		}
 		catch (IllegalArgumentException iae) {
 			//Exception expected; carry on. 
 		}
 		try {
-			Ticket fileTicket = new Ticket(1, Ticket.CLOSED_NAME, Ticket.TT_REQUEST, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.RC_SOLVED, notesList); 
+			fileTicket = new Ticket(1, Ticket.CLOSED_NAME, Ticket.TT_REQUEST, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.RC_SOLVED, notesList);
+			fail();
 		}
 		catch (IllegalArgumentException iae) {
 			//Exception expected; carry on. 
 		}
 		try {
-			Ticket fileTicket = new Ticket(1, Ticket.RESOLVED_NAME, Ticket.TT_REQUEST, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.RC_WORKAROUND, notesList); 
+			fileTicket = new Ticket(1, Ticket.RESOLVED_NAME, Ticket.TT_REQUEST, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.RC_WORKAROUND, notesList);
+			fail();
 		}
 		catch (IllegalArgumentException iae) {
 			//Exception expected; carry on. 
 		}
 		try {
-			Ticket fileTicket = new Ticket(1, Ticket.RESOLVED_NAME, Ticket.TT_REQUEST, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.RC_NOT_SOLVED, notesList); 
+			fileTicket = new Ticket(1, Ticket.RESOLVED_NAME, Ticket.TT_REQUEST, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.RC_NOT_SOLVED, notesList);
+			fail();
 		}
 		catch (IllegalArgumentException iae) {
 			//Exception expected; carry on. 
 		}
 		try {
-			Ticket fileTicket = new Ticket(1, Ticket.RESOLVED_NAME, Ticket.TT_REQUEST, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.RC_SOLVED, notesList); 
+			fileTicket = new Ticket(1, Ticket.RESOLVED_NAME, Ticket.TT_REQUEST, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.RC_SOLVED, notesList);
+			fail();
 		}
 		catch (IllegalArgumentException iae) {
 			//Exception expected; carry on. 
 		}
 		try {
-			Ticket fileTicket = new Ticket(1, Ticket.CLOSED_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.RC_COMPLETED, notesList); 
+			fileTicket = new Ticket(1, Ticket.CLOSED_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.RC_COMPLETED, notesList);
+			fail();
 		}
 		catch (IllegalArgumentException iae) {
 			//Exception expected; carry on. 
 		}
 		try {
-			Ticket fileTicket = new Ticket(1, Ticket.CLOSED_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.RC_NOT_COMPLETED, notesList); 
+			fileTicket = new Ticket(1, Ticket.CLOSED_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.RC_NOT_COMPLETED, notesList);
+			fail();
 		}
 		catch (IllegalArgumentException iae) {
 			//Exception expected; carry on. 
 		}
 		try {
-			Ticket fileTicket = new Ticket(1, Ticket.RESOLVED_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.RC_COMPLETED, notesList); 
+			fileTicket = new Ticket(1, Ticket.RESOLVED_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.RC_COMPLETED, notesList);
+			fail();
 		}
 		catch (IllegalArgumentException iae) {
 			//Exception expected; carry on. 
 		}
 		try {
-			Ticket fileTicket = new Ticket(1, Ticket.RESOLVED_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.RC_NOT_COMPLETED, notesList); 
+			fileTicket = new Ticket(1, Ticket.RESOLVED_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.RC_NOT_COMPLETED, notesList);
+			fail();
 		}
 		catch (IllegalArgumentException iae) {
 			//Exception expected; carry on. 
@@ -276,13 +302,15 @@ public class TicketTest {
 		
 		/* The ticket must have a cancellation code of either duplicate or inappropriate if in the canceled state */
 		try {
-			Ticket fileTicket = new Ticket(1, Ticket.CANCELED_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.RC_COMPLETED, notesList); 
+			fileTicket = new Ticket(1, Ticket.CANCELED_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.RC_COMPLETED, notesList);
+			fail();
 		}
 		catch (IllegalArgumentException iae) {
 			//Exception expected; carry on. 
 		}
 		try {
-			Ticket fileTicket = new Ticket(1, Ticket.CANCELED_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", null, notesList); 
+			fileTicket = new Ticket(1, Ticket.CANCELED_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", null, notesList); 
+			fail();
 		}
 		catch (IllegalArgumentException iae) {
 			//Exception expected; carry on. 
@@ -290,13 +318,15 @@ public class TicketTest {
 		
 		/* There must be at least one note line for each ticket. */ 
 		try {
-			Ticket fileTicket = new Ticket(1, Ticket.CANCELED_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.CC_DUPLICATE, null); 
+			fileTicket = new Ticket(1, Ticket.CANCELED_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.CC_DUPLICATE, null);
+			fail();
 		}
 		catch (IllegalArgumentException iae) {
 			//Exception expected; carry on. 
 		}
 		try {
-			Ticket fileTicket = new Ticket(1, Ticket.CANCELED_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", null, new ArrayList<String>()); 
+			fileTicket = new Ticket(1, Ticket.CANCELED_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", null, new ArrayList<String>());
+			fail();
 		}
 		catch (IllegalArgumentException iae) {
 			//Exception expected; carry on. 
