@@ -442,6 +442,7 @@ public class TicketTest {
 	 */
 	@Test
 	public void testNewStateTransitions() {
+		//Transition Commands
 		Command toWorking = new Command(CommandValue.PROCESS, "Mikey", null, null, null, "Super Cool Note");
 		Command toCanceled = new Command(CommandValue.CANCEL, "Mikey", null, null, CancellationCode.DUPLICATE, "Another Epic Note");
 		

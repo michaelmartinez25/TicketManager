@@ -578,6 +578,7 @@ public class Ticket {
 	
 	/**
 	 * updates the state of the ticket given a Command object
+	 * 
 	 * @param command instructing ticket what action to take
 	 */
 	public void update(Command c) {
