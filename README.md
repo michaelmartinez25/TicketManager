@@ -54,27 +54,33 @@ Implement ResolvedState class, ensure it passes all unit tests, PMD/Checkstyle, 
 
 ---
 
-Write unit tests for TicketReader | 2 | Depends on Ticket, TicketList | owner | 17 October | Not Started 
+Write unit tests for TicketReader | 2 | Depends on Ticket, TicketList | owner | 18 October | Not Started 
 Implement TicketReader, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 6 | owner | 17 October | Not Started 
 
-Write unit tests for TicketWriter | 2 | Depends on Ticket, TicketList| owner | 17 October | Not Started 
+Write unit tests for TicketWriter | 2 | Depends on Ticket, TicketList| owner | 18 October | Not Started 
 Implement TicketWriter, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 6 | owner | 17 October | Not Started 
 
-Write unit tests for TicketList | 4 | Depends on Ticket, TicketList| Michael | 17 October | Started 10/7
+Write unit tests for TicketList | 4 | Depends on Ticket, TicketList| Michael | 18 October | Started 10/7
 Implement TicketList, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 6 | Michael | 17 October | Not Started 
 
-Write unit tests for TicketManager | 6 | Depends on Ticket, TicketList| Michael | 17 October | Start 10/7
+Write unit tests for TicketManager | 6 | Depends on Ticket, TicketList| Michael | 18 October | Start 10/7
 Implement TicketManager, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 8 | Michael | 17 October | Not Started 
 
-First pass of system test, debug any issues found | 4 | depends on implementation being complete. | owner | 17 October
+---
 
-Review and update javadoc to ensure that it meets standards and reflects final implementation | 4 | Depends on implementation being completed. | owner | 17 October | Not Started
+First pass of system test, debug any issues found | 4 | depends on implementation being complete. | owner | 21 October
 
-Run javadoc utility, ensure everything looks good, commit doc folder to GitHub | Depends on implementation being complete and javadoc review | owner | 17 October  | Not Started
+Review and update javadoc to ensure that it meets standards and reflects final implementation | 4 | Depends on implementation being completed. | owner | 21 October | Not Started
 
-Final check for FindBugs, PMD, Checkstyle errors as recorded by Github Actions | 2 | Depends on implementation being complete | owner | 17 October | Not started
+Run javadoc utility, ensure everything looks good, commit doc folder to GitHub | Depends on implementation being complete and javadoc review | owner | 21 October  | Not Started
 
-Final system test, record results and submit as pdf in project_docs folder on Github| 3 | Depends on implementation being complete | owner | 17 October | Not Started
+Final check for FindBugs, PMD, Checkstyle errors as recorded by Github Actions | 2 | Depends on implementation being complete | owner | 21 October | Not started
+
+Final system test, record results and submit as pdf in project_docs folder on Github| 3 | Depends on implementation being complete | owner | 21 October | Not Started
+
+---
+
+Final submission by the 24th
 
 
 
