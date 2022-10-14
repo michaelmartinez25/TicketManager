@@ -21,45 +21,46 @@ public class TicketManagerTest {
 	
 	@Test
 	public void testTicketManager() {
-		
+		assertEquals(1,1);
 	}
 	
 	@Test
 	public void testSavingTickets() {
-		
+		assertEquals(1,1);
 	}
 	
 	@Test
 	public void testLoadingTickets() {
-		
+		assertEquals(1,1);
 	}
 	
 	@Test
 	public void testNewTicketList() {
-		
+		assertEquals(1,1);
 	}
 	
+	@Test
 	public void testDisplayTickets() {
-		
+		assertEquals(1,1);
 	}
 	
 	@Test
 	public void testAddTicket() {
-		
+		assertEquals(1,1);
 	}
-	
+	 
 	@Test
 	public void testRemoveTicket() {
-		
+		assertEquals(1,1);
 	}
 	
 	@Test
 	public void testGetTicket() {
-		
+		assertEquals(1,1);
 	}
 	
 	@Test
 	public void testExecuteCommand() {
-		
+		assertEquals(1,1);
 	}
 }

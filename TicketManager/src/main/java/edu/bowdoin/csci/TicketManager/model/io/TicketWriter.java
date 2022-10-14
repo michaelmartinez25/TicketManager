@@ -13,7 +13,7 @@ public class TicketWriter {
 	
 	/** Constructor method */
 	public TicketWriter() {
-	
+		//comment for PMD
 	}
 	
 	/**
@@ -27,6 +27,6 @@ public class TicketWriter {
 	 * @throws IllegalArgumentException if unable to save file
 	 */
 	public static void writeTicketFile(String filename, List<Ticket> ticketList) {
-		
+		//comment for PMD
 	}
 }

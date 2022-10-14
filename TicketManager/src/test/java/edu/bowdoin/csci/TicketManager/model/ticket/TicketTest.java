@@ -126,7 +126,7 @@ public class TicketTest {
 	public void testFileTicketConstructorInvalidValues() {
 		
 		Ticket fileTicket = new Ticket(TicketType.REQUEST, "Please add more CS professors", "cs_major", Category.INQUIRY, Priority.MEDIUM, "Course registration. Oof.");
-		
+
 		/* ID must be integer >= 0 */
 		try {
 			fileTicket = new Ticket(-1, Ticket.FEEDBACK_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.F_PROVIDER, notesList); 
