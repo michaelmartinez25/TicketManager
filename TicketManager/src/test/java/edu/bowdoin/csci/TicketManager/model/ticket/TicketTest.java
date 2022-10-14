@@ -438,15 +438,6 @@ public class TicketTest {
 	}
 	
 	/**
-	 * Test updateCommand
-	 * @TODO
-	 */
-	@Test
-	public void testUpdateCommand() {
-		assertEquals(0, 1); 
-	}
-	
-	/**
 	 * Tests transitions from New to both Working and Canceled States
 	 */
 	@Test

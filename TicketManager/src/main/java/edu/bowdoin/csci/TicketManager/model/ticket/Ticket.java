@@ -355,10 +355,34 @@ public class Ticket {
 	
 	/**
 	 * updates the state of the ticket given a Command object
-	 * @param command instructing ticket what action to take\
+	 * @param command instructing ticket what action to take
 	 */
 	public void update(Command c) {
+		String name = state.getStateName();
 		
+		if (name.equals(newState.getStateName())) {
+			newState.updateState(c);
+		}
+		
+		if (name.equals(workingState.getStateName())) {
+			workingState.updateState(c);
+		}
+		
+		if (name.equals(feedbackState.getStateName())) {
+			feedbackState.updateState(c);
+		}
+		
+		if (name.equals(resolvedState.getStateName())) {
+			resolvedState.updateState(c);
+		}
+		
+		if (name.equals(closedState.getStateName())) {
+			closedState.updateState(c);
+		}
+		
+		if (name.equals(canceledState.getStateName())) {
+			canceledState.updateState(c);
+		}
 	}
 	
 	/** NewState inner class */
@@ -675,7 +699,7 @@ public class Ticket {
 		 * @param command user command to execute
 		 */
 		public void updateState(Command command) {
-			
+			throw new UnsupportedOperationException();
 		}
 	}
  }
