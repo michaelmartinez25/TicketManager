@@ -809,7 +809,7 @@ public class TicketTest {
 		Assertions.assertEquals("New", toReopenTicket.getState(),
 				"Newly created notes should have a state attribute as 'New', but does not.");
 		
-		// Test WorkingState
+		// Test WorkingState 
 		toReopenTicket.update(toWorking);
 		Assertions.assertEquals("Working", toReopenTicket.getState(),
 				"Updated ticket should have a state attribute as 'Working', but does not.");
