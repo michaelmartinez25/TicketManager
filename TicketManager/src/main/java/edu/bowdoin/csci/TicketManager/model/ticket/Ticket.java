@@ -30,7 +30,7 @@ public class Ticket {
 	/** String representation for ticket category database */
 	public static final String C_DATABASE = "Database"; 
 	/** String representation for ticket priority urgent */
-	public static final String P_URGENT = "Urgen"; 
+	public static final String P_URGENT = "Urgent"; 
 	/** String representation for ticket priority high */
 	public static final String P_HIGH = "High"; 
 	/** String representation for ticket priority medium */
@@ -262,7 +262,9 @@ public class Ticket {
 				
 		for (int i = 0; i < notes.size(); i++) {
 			output += notes.get(i);
-			output += System.lineSeparator(); 
+			if (i < notes.size() - 1) {
+				output += System.lineSeparator(); 
+			}
 		}
 		
 		return output; 
