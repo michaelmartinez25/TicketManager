@@ -1,7 +1,5 @@
 # project1-10 #
 
-Michael: could you please also implement testUpdateCommand? I think you have a better idea of the FSM since that is what you are working on. Thanks! -Z
-
 NOTE: If you are having trouble with eclipse recognizing packages/tests correctly: right click on project in eclipse finder bar on left, click Refresh Project. Then, right click on the project again, go to Maven->Update Project. 
 
 Expectation: Include Javadocs while stubbing out classes

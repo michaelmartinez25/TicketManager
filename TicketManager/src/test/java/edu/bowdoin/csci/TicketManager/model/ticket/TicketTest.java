@@ -35,7 +35,7 @@ public class TicketTest {
 		notesList.add("Note 1."); 
 		notesList.add("Note 2."); 
 		notesList.add("Note 3."); 
-		
+	
 		// For testing the FSM; necessary to test the id of a Ticket
 		Ticket.setCounter(1);
 	}
@@ -466,19 +466,18 @@ public class TicketTest {
 	 */
 	@Test
 	public void testToString() {
-		String expected = "Ticket ID: 7" + System.lineSeparator(); 
+		String expected = "Ticket ID: 1" + System.lineSeparator(); 
 		expected += "Subject: Canvas Down" + System.lineSeparator(); 
 		expected += "Category: Network" + System.lineSeparator();
 		expected += "Priority: Urgent" + System.lineSeparator(); 
 		expected += "Current state: New" + System.lineSeparator(); 
 		expected += "Type: Incident" + System.lineSeparator(); 
-		expected += "Caller: Rose Clayoton" + System.lineSeparator(); 
+		expected += "Caller: Rose Clayton" + System.lineSeparator(); 
 		expected += "Owner: " + System.lineSeparator();
 		expected += "Notes: " + System.lineSeparator() + "Students cannot log in to Canvas" + System.lineSeparator();
 		
-		//assertEquals(expected, example.toString()); 
-		//@TODO
-		assertEquals(1, 1); 
+		assertEquals(expected, example.toString()); 
+		
 	}
 	
 	/**
