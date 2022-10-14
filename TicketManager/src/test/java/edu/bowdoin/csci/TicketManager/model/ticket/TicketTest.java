@@ -37,7 +37,7 @@ public class TicketTest {
 		notesList.add("Note 3."); 
 		
 		// For testing the FSM; necessary to test the id of a Ticket
-//		Ticket.setCounter(1);
+		Ticket.setCounter(1);
 	}
 	
 	
@@ -514,7 +514,7 @@ public class TicketTest {
 		toFeedbackTicket.update(toFeedback);
 		Assertions.assertEquals("Feedback", toFeedbackTicket.getState(),
 				"Updated ticket should have a state attribute as 'Feedback', but does not.");
-		Assertions.assertEquals("Awaiting Caller", toFeedbackTicket.getFeedbackCode(),
+		Assertions.assertEquals("Awaiting caller", toFeedbackTicket.getFeedbackCode(),
 				"Updated ticket should have a Feedback Code 'Awaiting Caller', but does not.");
 		
 		// Test ResolvedState transitions (for both Incident and Request Tickets)
@@ -551,7 +551,7 @@ public class TicketTest {
 		toCanceledTicket.update(toCanceled);;
 		Assertions.assertEquals("Canceled", toCanceledTicket.getState(),
 				"Updated ticket should have a state attribute as 'Canceled', but does not.");
-		Assertions.assertEquals("Duplicate", toCanceled.getCancellationCode(),
+		Assertions.assertEquals("Duplicate", toCanceledTicket.getCancellationCode(),
 				"Updated ticket should have a Cancellation Code 'Duplicate', but does not.");
 		
 		// Test invalid scenarios
@@ -604,7 +604,7 @@ public class TicketTest {
 		toReopenTicket.update(toFeedback);
 		Assertions.assertEquals("Feedback", toReopenTicket.getState(),
 				"Updated ticket should have a state attribute as 'Feedback', but does not.");
-		Assertions.assertEquals("Awaiting Caller", toReopenTicket.getFeedbackCode(),
+		Assertions.assertEquals("Awaiting caller", toReopenTicket.getFeedbackCode(),
 				"Updated ticket should have a Feedback Code 'Awaiting Caller', but does not.");
 		toReopenTicket.update(toReopen);
 		Assertions.assertEquals("Working", toReopenTicket.getState(),
@@ -621,7 +621,7 @@ public class TicketTest {
 		toResolvedIncTicket.update(toFeedback);
 		Assertions.assertEquals("Feedback", toResolvedIncTicket.getState(),
 				"Updated ticket should have a state attribute as 'Feedback', but does not.");
-		Assertions.assertEquals("Awaiting Caller", toResolvedIncTicket.getFeedbackCode(),
+		Assertions.assertEquals("Awaiting caller", toResolvedIncTicket.getFeedbackCode(),
 				"Updated ticket should have a Feedback Code 'Awaiting Caller', but does not.");
 		toResolvedIncTicket.update(toResolvedInc);
 		Assertions.assertEquals("Resolved", toResolvedIncTicket.getState(), 
@@ -637,7 +637,7 @@ public class TicketTest {
 		toResolvedReqTicket.update(toFeedback);
 		Assertions.assertEquals("Feedback", toResolvedReqTicket.getState(),
 				"Updated ticket should have a state attribute as 'Feedback', but does not.");
-		Assertions.assertEquals("Awaiting Caller", toResolvedReqTicket.getFeedbackCode(),
+		Assertions.assertEquals("Awaiting caller", toResolvedReqTicket.getFeedbackCode(),
 				"Updated ticket should have a Feedback Code 'Awaiting Caller', but does not.");
 		toResolvedReqTicket.update(toResolvedReq);
 		Assertions.assertEquals("Resolved", toResolvedReqTicket.getState(), 
@@ -654,12 +654,12 @@ public class TicketTest {
 		toCanceledTicket.update(toFeedback);
 		Assertions.assertEquals("Feedback", toCanceledTicket.getState(), 
 				"Updated ticket should have a state attribute as 'Feedback', but does not.");
-		Assertions.assertEquals("Awaiting Caller", toCanceledTicket.getFeedbackCode(), 
+		Assertions.assertEquals("Awaiting caller", toCanceledTicket.getFeedbackCode(), 
 				"Updated ticket should have a Feedback Code 'Awaiting Caller");
 		toCanceledTicket.update(toCanceled);;
 		Assertions.assertEquals("Canceled", toCanceledTicket.getState(),
 				"Updated ticket should have a state attribute as 'Canceled', but does not.");
-		Assertions.assertEquals("Duplicate", toCanceled.getCancellationCode(),
+		Assertions.assertEquals("Duplicate", toCanceledTicket.getCancellationCode(),
 				"Updated ticket should have a Cancellation Code 'Duplicate', but does not.");
 		
 		//Test Invalid Scenarios
@@ -719,7 +719,7 @@ public class TicketTest {
 		toFeedbackTicket.update(toFeedback);
 		Assertions.assertEquals("Feedback", toFeedbackTicket.getState(), 
 				"Updated ticket should have a state attribute as 'Feedback', but does not.");
-		Assertions.assertEquals("Awaiting Caller", toFeedbackTicket.getFeedbackCode(), 
+		Assertions.assertEquals("Awaiting caller", toFeedbackTicket.getFeedbackCode(), 
 				"Updated ticket should have a Feedback Code 'Awaiting Caller");
 		
 		// Test WorkingState
@@ -768,7 +768,7 @@ public class TicketTest {
 		toCanceledTicket.update(toCanceled);;
 		Assertions.assertEquals("Canceled", toCanceledTicket.getState(),
 				"Updated ticket should have a state attribute as 'Canceled', but does not.");
-		Assertions.assertEquals("Duplicate", toCanceled.getCancellationCode(),
+		Assertions.assertEquals("Duplicate", toCanceledTicket.getCancellationCode(),
 				"Updated ticket should have a Cancellation Code 'Duplicate', but does not.");
 		
 		// Test Invalid Scenarios
