@@ -698,6 +698,107 @@ public class TicketTest {
 	 */
 	@Test
 	public void testResolvedStateTransitions() {
+		Command toWorking = new Command(CommandValue.PROCESS, "Mikey", null, null, null, "The OG Super Cool Note");
+		Command toResolved = new Command(CommandValue.RESOLVE, "Mikey", null, ResolutionCode.SOLVED, null, "Another Cool Note");
+		// Transition Commands
+		Command toFeedback = new Command(CommandValue.FEEDBACK, "Mikey", FeedbackCode.AWAITING_CALLER, null, null, "Super Cool Note");
+		Command toReopen = new Command(CommandValue.REOPEN, "Mikey", null, null, null, "A Boring Note");
+		Command toClosed = new Command(CommandValue.CONFIRM, "Mikey", null, null, null, "A Not-So-Boring Note");
+		Command toCanceled = new Command(CommandValue.CANCEL, "Mikey", null, null, CancellationCode.DUPLICATE, "Yet Another Epic Note");
+		
+		Ticket toFeedbackTicket = new Ticket(TicketType.INCIDENT, "Subject", "Caller", Category.SOFTWARE, Priority.MEDIUM, "Note");
+		Assertions.assertEquals("New", toFeedbackTicket.getState(),
+				"Newly created notes should have a state attribute as 'New', but does not.");
+		Ticket toReopenTicket = new Ticket(TicketType.INCIDENT, "Subject", "Caller", Category.SOFTWARE, Priority.MEDIUM, "Note");
+		Ticket toClosedTicket = new Ticket(TicketType.INCIDENT, "Subject", "Caller", Category.SOFTWARE, Priority.MEDIUM, "Note");
+		Ticket toCanceledTicket = new Ticket(TicketType.INCIDENT, "Subject", "Caller", Category.SOFTWARE, Priority.MEDIUM, "Note");
+		
+		// Test FeedbackState
+		toFeedbackTicket.update(toWorking);
+		Assertions.assertEquals("Working", toFeedbackTicket.getState(),
+				"Updated ticket should have a state attribute as 'Working', but does not.");
+		Assertions.assertEquals("Mikey", toFeedbackTicket.getOwner(),
+				"Updated ticket should have an owner 'Mikey', but does not.");
+		toFeedbackTicket.update(toResolved);
+		Assertions.assertEquals("Resolved", toFeedbackTicket.getState(),
+				"Updated ticket should have a state attribute as 'Resolved', but does not.");
+		Assertions.assertEquals("Solved", toFeedbackTicket.getResolutionCode(),
+				"Updated ticket should have a Resolution Code 'Solved', but does not.");
+		toFeedbackTicket.update(toFeedback);
+		Assertions.assertEquals("Feedback", toFeedbackTicket.getState(), 
+				"Updated ticket should have a state attribute as 'Feedback', but does not.");
+		Assertions.assertEquals("Awaiting Caller", toFeedbackTicket.getFeedbackCode(), 
+				"Updated ticket should have a Feedback Code 'Awaiting Caller");
+		
+		// Test WorkingState
+		toReopenTicket.update(toWorking);
+		Assertions.assertEquals("Working", toReopenTicket.getState(),
+				"Updated ticket should have a state attribute as 'Working', but does not.");
+		Assertions.assertEquals("Mikey", toReopenTicket.getOwner(),
+				"Updated ticket should have an owner 'Mikey', but does not.");
+		toReopenTicket.update(toResolved);
+		Assertions.assertEquals("Resolved", toReopenTicket.getState(),
+				"Updated ticket should have a state attribute as 'Resolved', but does not.");
+		Assertions.assertEquals("Solved", toReopenTicket.getResolutionCode(),
+				"Updated ticket should have a Resolution Code 'Solved', but does not.");
+		toReopenTicket.update(toReopen);
+		Assertions.assertEquals("Working", toReopenTicket.getState(),
+				"Updated ticket should have a state attribute as 'Working', but does not.");
+		Assertions.assertEquals("Mikey", toReopenTicket.getOwner(),
+				"Updated ticket should have an owner 'Mikey', but does not.");
+		
+		// Test ClosedState
+		toClosedTicket.update(toWorking);
+		Assertions.assertEquals("Working", toClosedTicket.getState(),
+				"Updated ticket should have a state attribute as 'Working', but does not.");
+		Assertions.assertEquals("Mikey", toClosedTicket.getOwner(),
+				"Updated ticket should have an owner 'Mikey', but does not.");
+		toClosedTicket.update(toResolved);
+		Assertions.assertEquals("Resolved", toClosedTicket.getState(),
+				"Updated ticket should have a state attribute as 'Resolved', but does not.");
+		Assertions.assertEquals("Solved", toClosedTicket.getResolutionCode(),
+				"Updated ticket should have a Resolution Code 'Solved', but does not.");
+		toClosedTicket.update(toClosed);
+		Assertions.assertEquals("Closed", toClosedTicket.getState(), 
+				"Updated ticket should have a state attribute as 'Closed', but does not.");
+		
+		// Test CanceledState
+		toCanceledTicket.update(toWorking);
+		Assertions.assertEquals("Working", toCanceledTicket.getState(),
+				"Updated ticket should have a state attribute as 'Working', but does not.");
+		Assertions.assertEquals("Mikey", toCanceledTicket.getOwner(),
+				"Updated ticket should have an owner 'Mikey', but does not.");
+		toCanceledTicket.update(toResolved);
+		Assertions.assertEquals("Resolved", toCanceledTicket.getState(),
+				"Updated ticket should have a state attribute as 'Resolved', but does not.");
+		Assertions.assertEquals("Solved", toCanceledTicket.getResolutionCode(),
+				"Updated ticket should have a Resolution Code 'Solved', but does not.");
+		toCanceledTicket.update(toCanceled);;
+		Assertions.assertEquals("Canceled", toCanceledTicket.getState(),
+				"Updated ticket should have a state attribute as 'Canceled', but does not.");
+		Assertions.assertEquals("Duplicate", toCanceled.getCancellationCode(),
+				"Updated ticket should have a Cancellation Code 'Duplicate', but does not.");
+		
+		// Test Invalid Scenarios
+		Ticket invalidTestTicket = new Ticket(TicketType.INCIDENT, "Subject", "Caller", Category.SOFTWARE, Priority.MEDIUM, "Note");
+		invalidTestTicket.update(toWorking);
+		invalidTestTicket.update(toResolved);
+		
+		try {
+			invalidTestTicket.update(null);
+			Assertions.fail(
+					"Attempting to update a ticket state with a null command should throw UOE, but didn't.");
+		} catch (UnsupportedOperationException uoe) {
+			// Exception expected, carry on.
+		}
+		
+		try {
+			invalidTestTicket.update(toWorking);
+			Assertions.fail(
+					"Attempting to update a ticket state with an invalid command should throw UOE, but didn't.");
+		} catch (UnsupportedOperationException uoe) {
+			// Exception expected, carry on.
+		}
 		
 	}
 	
