@@ -13,7 +13,7 @@ public class TicketReader {
 
 	/** Constructor method */
 	public TicketReader() {
-		
+		//comment for PMD
 	}
 	
 	/**

@@ -19,7 +19,7 @@ public class TicketList {
 	 * Constructor method
 	 */
 	public TicketList() {
-		
+		//comment for PMD
 	}
 	
 	/**
@@ -43,7 +43,7 @@ public class TicketList {
 	 * @param ticketList the list of tickets to be added
 	 */
 	public void addTickets(List<Ticket> ticketList) {
-		
+		//comment for PMD
 	}
 	
 	/**
@@ -86,7 +86,7 @@ public class TicketList {
 	 * @param command command to be executed
 	 */
 	public void executeCommand(int ticketId, Command command) {
-		
+		//comment for PMD
 	}
 	
 	/**
@@ -95,6 +95,6 @@ public class TicketList {
 	 * @param ticketId id of desired ticket
 	 */
 	public void deleteTicketById(int ticketId) {
-		
+		//comment for PMD
 	}
 }

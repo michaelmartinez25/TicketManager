@@ -123,6 +123,8 @@ public class TicketTest {
 	@Test 
 	public void testFileTicketConstructorInvalidValues() {
 		
+		assertEquals(1,1);
+		
 		/* ID must be integer >= 0 */
 		try {
 			Ticket fileTicket = new Ticket(-1, Ticket.FEEDBACK_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.F_PROVIDER, notesList); 

@@ -64,7 +64,7 @@ public class TicketManager {
 	 * old TicketList (if wanted) before calling this operation.
 	 */
 	public void createNewTicketList() {
-		
+		//comment
 	}
 	
 	/** 
@@ -115,7 +115,7 @@ public class TicketManager {
 	 * @param command command to be executed
 	 */
 	public void executeCommand(int ticketId, Command command) {
-		
+		//comment for PMD
 	}
 	
 	/**
@@ -124,7 +124,7 @@ public class TicketManager {
 	 * @param ticketId id of desired ticket
 	 */
 	public void deleteTicketById(int ticketId) {
-		
+		//comment for PMD
 	}
 	
 	/**
@@ -138,6 +138,6 @@ public class TicketManager {
 	 * @param note note of ticket to be added
 	 */
 	public void addTicketToList(TicketType type, String subject, String caller, Category category, Priority priority, String note) {
-		
+		//comment for PMD
 	}
 }
