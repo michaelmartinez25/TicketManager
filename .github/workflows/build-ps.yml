@@ -114,7 +114,7 @@ jobs:
         shell: bash
         if: always()
         run: |
-          tar -xvzf  Project1_Tests.tar.gz -C TicketManager/target/test-classes/ || true
+          tar -xvzf  Project1_Tests.tar.gz -C TicketManager/target/test-classes/
           rm -rf Project1_Tests.tar.gz
           chmod +x .github/check_files.sh
           .github/check_files.sh
@@ -152,6 +152,7 @@ jobs:
           fi
 
       - name: Process Points 2 Milestone Check
+        if: always()
         run: |
           chmod +x .github/pp2.sh
           .github/pp2.sh
