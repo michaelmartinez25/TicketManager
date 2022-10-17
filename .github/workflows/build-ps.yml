@@ -62,6 +62,7 @@ jobs:
       - name: Check coverage across all classes
         if: always()
         run: |
+          echo "INSUFFICIENT_TESTS=0" >> $GITHUB_ENV
           chmod +x .github/testingChecker.sh
           .github/testingChecker.sh
           echo "INSUFFICIENT_TESTS=$?" >> $GITHUB_ENV
@@ -143,11 +144,12 @@ jobs:
 
 
       - name: Run all Teaching Staff testcases
+        if: always()
         run: |
-          if [[ ${{ env.INSUFFICIENT_TESTS }} -eq 0 && ${{ env.BUILD_STATUS }} -eq 0 ]]; then
+          if [[ ${{ env.INSUFFICIENT_TESTS }} -eq 0 ]]; then
             cd TicketManager && mvn --batch-mode surefire:test
           else
-            echo "$(tput  -T linux setaf 2)One or more of your tests failed, or contain 1 or more JUnit-related PMD alerts.  TS tests will not be run$(tput -T linux sgr 0)"
+            echo "$(tput  -T linux setaf 2)Your tests contain 1 or more JUnit-related PMD alerts or their is insufficient coverage.  TS tests will not be run$(tput -T linux sgr 0)"
             exit 37
           fi
 
