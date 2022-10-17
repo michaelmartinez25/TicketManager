@@ -8,11 +8,11 @@ package edu.bowdoin.csci.TicketManager.model.command;
  */
 public class Command {
 	/** String representation for feedback code  */
-	public static final String F_CALLER = "Awaiting caller"; 
+	public static final String F_CALLER = "Awaiting Caller"; 
 	/** String representation for feedback code */ 
-	public static final String F_CHANGE = "Awaiting change"; 
+	public static final String F_CHANGE = "Awaiting Change"; 
 	/** String representation for feedback code */ 
-	public static final String F_PROVIDER = "Awaiting provider"; 
+	public static final String F_PROVIDER = "Awaiting Provider"; 
 	/** String representation for resolution code */ 
 	public static final String RC_COMPLETED = "Completed"; 
 	/** String representation for resolution code */ 
