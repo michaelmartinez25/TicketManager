@@ -137,7 +137,7 @@ public class Ticket {
 		//		if (type == null || subject == null || "".equals(subject) || caller == null || "".equals(caller) || category == null || priority == null || note == null || "".equals(note)) {
 
 		if (id < 0 || state == null || "".equals(state) || ticketType == null || "".equals(ticketType) || subject == null || "".equals(subject) || caller == null || "".equals(caller) || category == null || "".equals(category) || priority == null || "".equals(priority) || code == null || "".equals(code) || notes == null || notes.isEmpty()) {
-			throw new IllegalArgumentException(); 
+			throw new IllegalArgumentException("Ticket id must be a value greater than 0."); 
 		}
 		
 		this.ticketId = id; 
