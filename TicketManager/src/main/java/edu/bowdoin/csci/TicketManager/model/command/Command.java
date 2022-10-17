@@ -8,7 +8,7 @@ package edu.bowdoin.csci.TicketManager.model.command;
  */
 public class Command {
 	/** String representation for feedback code  */
-	public static final String F_CALLER = "Awaiting Caller"; 
+	public static final String F_CALLER = "Awaiting Caller";
 	/** String representation for feedback code */ 
 	public static final String F_CHANGE = "Awaiting Change"; 
 	/** String representation for feedback code */ 
