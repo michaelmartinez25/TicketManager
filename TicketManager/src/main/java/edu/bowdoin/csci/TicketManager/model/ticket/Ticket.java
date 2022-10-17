@@ -106,6 +106,9 @@ public class Ticket {
 	 * @param num number to set counter to 
 	 */
 	public static void setCounter(int num) {
+		if (num < 1) {
+			throw new IllegalArgumentException();
+		}
 		counter = num; 
 	}
 	
@@ -131,8 +134,9 @@ public class Ticket {
 	 * @param notes ArrayList of Strings with each note attached to this ticket. 
 	 * */  
 	public Ticket(int id, String state, String ticketType, String subject, String caller, String category, String priority, String owner, String code, ArrayList<String> notes) {
-		
-		if (id < 0 || state == null || "".equals(state) || ticketType == null || "".equals(ticketType) || subject == null || "".equals(subject) || caller == null || "".equals(caller) || category == null || "".equals(category) || priority == null || "".equals(priority) || owner == null || "".equals(owner) || code == null || "".equals(code) || notes == null || notes.isEmpty()) {
+		//		if (type == null || subject == null || "".equals(subject) || caller == null || "".equals(caller) || category == null || priority == null || note == null || "".equals(note)) {
+
+		if (id < 0 || state == null || "".equals(state) || ticketType == null || "".equals(ticketType) || subject == null || "".equals(subject) || caller == null || "".equals(caller) || category == null || "".equals(category) || priority == null || "".equals(priority) || code == null || "".equals(code) || notes == null || notes.isEmpty()) {
 			throw new IllegalArgumentException(); 
 		}
 		
@@ -192,7 +196,7 @@ public class Ticket {
 		setCaller(caller); 
 		this.category = category; 
 		this.priority = priority; 
-		setOwner(" "); 
+		setOwner(""); 
 		setFeedbackCode(null); 
 		setResolutionCode(null); 
 		setCancellationCode(null); 
@@ -261,7 +265,7 @@ public class Ticket {
 		String output = ""; 
 				
 		for (int i = 0; i < notes.size(); i++) {
-			output += notes.get(i);
+			output += "-" + notes.get(i);
 			if (i < notes.size() - 1) {
 				output += System.lineSeparator(); 
 			}
@@ -424,7 +428,7 @@ public class Ticket {
 	 */ 
 	private void setOwner(String id) {
 		if (id == null || "".equals(id)) {
-			if (state != canceledState) {
+			if (state != canceledState && state != newState) {
 				throw new IllegalArgumentException("The ticket must have an owner if the state is \"Working\", \"Feedback\", \"Resolved\", or \"Closed\""); 
 			}
 			this.owner = ""; 

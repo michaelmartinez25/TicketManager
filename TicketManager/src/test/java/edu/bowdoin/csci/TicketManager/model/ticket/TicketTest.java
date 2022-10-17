@@ -346,7 +346,7 @@ public class TicketTest {
 	 */
 	@Test
 	public void testFileTicketConstructor() {
-		Ticket.setCounter(0); 
+		Ticket.setCounter(1); 
 		Ticket one = new Ticket(37, Ticket.WORKING_NAME, Ticket.TT_REQUEST, "Homework regrade request", "student", Ticket.C_INQUIRY, Ticket.P_LOW, "grader", Command.F_CALLER, notesList); 
 		assertEquals(one.getTicketId(), 37); 
 		Ticket two = new Ticket(TicketType.INCIDENT, "Canvas Down", "Rose Clayton", Category.NETWORK, Priority.URGENT, "Students cannot log in to Canvas"); 
@@ -398,7 +398,7 @@ public class TicketTest {
 	 */
 	@Test
 	public void testGetOwner() {
-		assertEquals(example.getOwner(), " ");
+		assertEquals(example.getOwner(), "");
 	}
 	
 	/**
@@ -473,7 +473,7 @@ public class TicketTest {
 		expected += "Current state: New" + System.lineSeparator(); 
 		expected += "Type: Incident" + System.lineSeparator(); 
 		expected += "Caller: Rose Clayton" + System.lineSeparator(); 
-		expected += "Owner:  " + System.lineSeparator();
+		expected += "Owner: " + System.lineSeparator();
 		expected += "Notes: " + System.lineSeparator() + "Students cannot log in to Canvas" + System.lineSeparator();
 		
 		assertEquals(expected, example.toString()); 
