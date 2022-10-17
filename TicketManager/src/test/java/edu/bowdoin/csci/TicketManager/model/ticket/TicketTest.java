@@ -398,7 +398,7 @@ public class TicketTest {
 	 */
 	@Test
 	public void testGetOwner() {
-		assertEquals(example.getOwner(), "");
+		assertEquals(example.getOwner(), " ");
 	}
 	
 	/**
@@ -473,7 +473,7 @@ public class TicketTest {
 		expected += "Current state: New" + System.lineSeparator(); 
 		expected += "Type: Incident" + System.lineSeparator(); 
 		expected += "Caller: Rose Clayton" + System.lineSeparator(); 
-		expected += "Owner: " + System.lineSeparator();
+		expected += "Owner:  " + System.lineSeparator();
 		expected += "Notes: " + System.lineSeparator() + "Students cannot log in to Canvas" + System.lineSeparator();
 		
 		assertEquals(expected, example.toString()); 
@@ -591,7 +591,7 @@ public class TicketTest {
 				"Updated ticket should have a state attribute as 'Working', but does not.");
 		Assertions.assertEquals("Mikey", toCanceledTicket.getOwner(),
 				"Updated ticket should have an owner 'Mikey', but does not.");
-		toCanceledTicket.update(toCanceled);;
+		toCanceledTicket.update(toCanceled);
 		Assertions.assertEquals("Canceled", toCanceledTicket.getState(),
 				"Updated ticket should have a state attribute as 'Canceled', but does not.");
 		Assertions.assertEquals("Duplicate", toCanceledTicket.getCancellationCode(),
@@ -699,7 +699,7 @@ public class TicketTest {
 				"Updated ticket should have a state attribute as 'Feedback', but does not.");
 		Assertions.assertEquals("Awaiting caller", toCanceledTicket.getFeedbackCode(), 
 				"Updated ticket should have a Feedback Code 'Awaiting Caller");
-		toCanceledTicket.update(toCanceled);;
+		toCanceledTicket.update(toCanceled);
 		Assertions.assertEquals("Canceled", toCanceledTicket.getState(),
 				"Updated ticket should have a state attribute as 'Canceled', but does not.");
 		Assertions.assertEquals("Duplicate", toCanceledTicket.getCancellationCode(),
@@ -808,7 +808,7 @@ public class TicketTest {
 				"Updated ticket should have a state attribute as 'Resolved', but does not.");
 		Assertions.assertEquals("Solved", toCanceledTicket.getResolutionCode(),
 				"Updated ticket should have a Resolution Code 'Solved', but does not.");
-		toCanceledTicket.update(toCanceled);;
+		toCanceledTicket.update(toCanceled);
 		Assertions.assertEquals("Canceled", toCanceledTicket.getState(),
 				"Updated ticket should have a state attribute as 'Canceled', but does not.");
 		Assertions.assertEquals("Duplicate", toCanceledTicket.getCancellationCode(),

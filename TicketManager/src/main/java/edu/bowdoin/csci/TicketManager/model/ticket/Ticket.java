@@ -192,7 +192,7 @@ public class Ticket {
 		setCaller(caller); 
 		this.category = category; 
 		this.priority = priority; 
-		setOwner(""); 
+		setOwner(" "); 
 		setFeedbackCode(null); 
 		setResolutionCode(null); 
 		setCancellationCode(null); 
@@ -381,6 +381,10 @@ public class Ticket {
 		cancellationCode = null; 
 		if (cc == Command.CC_DUPLICATE) cancellationCode = CancellationCode.DUPLICATE; 
 		if (cc == Command.CC_INAPPROPRIATE) cancellationCode = CancellationCode.INAPPROPRIATE; 
+		
+		if (state == canceledState && !(cancellationCode == CancellationCode.DUPLICATE) || cancellationCode == CancellationCode.INAPPROPRIATE) {
+			throw new IllegalArgumentException("The ticket must have a cancellation code of either \"Duplicate\" or \"Inappropriate\", if in the \"Canceled\" state.");
+		}
 	}
 	
 	/**
@@ -419,7 +423,12 @@ public class Ticket {
 	 * @param id string identifying owner of ticket
 	 */ 
 	private void setOwner(String id) {
-		if (id == null) this.owner = ""; 
+		if (id == null || "".equals(id)) {
+			if (state != canceledState) {
+				throw new IllegalArgumentException("The ticket must have an owner if the state is \"Working\", \"Feedback\", \"Resolved\", or \"Closed\""); 
+			}
+			this.owner = ""; 
+		}
 		else this.owner = id; 
 	}
 	
@@ -443,6 +452,9 @@ public class Ticket {
 			return;
 		}
 		
+		if (state == feedbackState && feedbackCode == null) {
+			throw new IllegalArgumentException("The ticket must have a feedback code of either \"Awaiting Caller\", \"Awaiting Change\", or \"Awaiting Provider\" when in the \"Feedback\" state."); 
+		}
 	}
 	
 	/**
@@ -485,6 +497,21 @@ public class Ticket {
 		if (rc == Command.RC_SOLVED) this.resolutionCode = ResolutionCode.SOLVED; 
 		if (rc == Command.RC_NOT_COMPLETED) this.resolutionCode = ResolutionCode.NOT_COMPLETED; 
 		if (rc == Command.RC_WORKAROUND) this.resolutionCode = ResolutionCode.WORKAROUND; 
+		
+		if (state == resolvedState || state == closedState) {
+			if (!(resolutionCode == ResolutionCode.COMPLETED || resolutionCode == ResolutionCode.NOT_COMPLETED || resolutionCode == ResolutionCode.SOLVED || resolutionCode == ResolutionCode.WORKAROUND || resolutionCode == ResolutionCode.NOT_SOLVED || resolutionCode == ResolutionCode.CALLER_CLOSED)) {
+				throw new IllegalArgumentException("The ticket must have a resolution code of either \"Completed\", \"Not Completed\", \"Solved\", \"Workaround\", \"Not Solved\", or \"Caller Closed\" in the \"Resolved\" or \"Closed\" states.");
+			}
+			
+			if (ticketType == TicketType.REQUEST && !(resolutionCode == ResolutionCode.COMPLETED || resolutionCode == ResolutionCode.NOT_COMPLETED || resolutionCode == ResolutionCode.CALLER_CLOSED)) {
+				throw new IllegalArgumentException("If the ticket is a \"Request\", the code can only be \"Completed\", \"Not Completed\", or \"Caller Closed\". "); 
+			}
+			
+			if (ticketType == TicketType.INCIDENT && !(resolutionCode == ResolutionCode.SOLVED || resolutionCode == ResolutionCode.WORKAROUND || resolutionCode == ResolutionCode.NOT_SOLVED || resolutionCode == ResolutionCode.CALLER_CLOSED)) {
+				throw new IllegalArgumentException("If the ticket is an \"Incident\", the code can only be \"Solved\", \"Workaround\", \"Not Solved\", or \"Called Closed\".");
+			}
+		}
+		
 		
 	}
 	
@@ -581,7 +608,7 @@ public class Ticket {
 	/**
 	 * updates the state of the ticket given a Command object
 	 * 
-	 * @param command instructing ticket what action to take
+	 * @param c command instructing ticket what action to take
 	 */
 	public void update(Command c) {
 		String name = state.getStateName();

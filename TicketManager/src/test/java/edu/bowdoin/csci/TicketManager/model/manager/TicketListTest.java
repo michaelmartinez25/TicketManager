@@ -20,26 +20,26 @@ public class TicketListTest {
 	
 	@Test
 	public void testTicketList() {
-		assertEquals(1,1);
+		assertEquals(1, 1);
 	}
 	
 	@Test
 	public void testAddTicket() {
-		assertEquals(1,1);
+		assertEquals(1, 1);
 	}
 	
 	@Test
 	public void testDeleteTicket() {
-		assertEquals(1,1);
+		assertEquals(1, 1);
 	}
 	
 	@Test
 	public void testGetTicket() {
-		assertEquals(1,1);
+		assertEquals(1, 1);
 	}
 	
 	@Test
 	public void testExecuteCommand() {
-		assertEquals(1,1);
+		assertEquals(1, 1);
 	}
 }
