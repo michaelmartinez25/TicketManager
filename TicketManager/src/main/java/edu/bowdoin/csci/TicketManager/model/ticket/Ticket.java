@@ -266,9 +266,9 @@ public class Ticket {
 				
 		for (int i = 0; i < notes.size(); i++) {
 			output += "-" + notes.get(i);
-			if (i < notes.size() - 1) {
-				output += System.lineSeparator(); 
-			}
+			output += System.lineSeparator(); 
+			
+			
 		}
 		
 		return output; 
@@ -604,7 +604,7 @@ public class Ticket {
 		if (feedbackCode != null) output += "Feedback code: " + getFeedbackCode() + System.lineSeparator(); 
 		if (cancellationCode != null) output += "Cancellation code: " + getCancellationCode() + System.lineSeparator();
 		
-		output += "Notes: " + System.lineSeparator() + getNotes() + System.lineSeparator(); 
+		output += "Notes: " + System.lineSeparator() + getNotes(); 
 		
 		return output; 
 	}

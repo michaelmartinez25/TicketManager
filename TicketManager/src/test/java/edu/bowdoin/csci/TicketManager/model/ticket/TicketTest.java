@@ -115,7 +115,7 @@ public class TicketTest {
 		assertEquals(one.getCaller(), "cs_major"); 
 		assertEquals(one.getCategory(), Ticket.C_INQUIRY); 
 		assertEquals(one.getPriority(), Ticket.P_MEDIUM); 
-		assertEquals(one.getNotes(), "Course registration. Oof."); 
+		assertEquals(one.getNotes(), "-Course registration. Oof." + System.lineSeparator()); 
 	}
 	
 	/**
@@ -390,7 +390,8 @@ public class TicketTest {
 	 */
 	@Test
 	public void testGetNotes() {
-		assertEquals(example.getNotes(), "Students cannot log in to Canvas"); 
+		String expected = "-Students cannot log in to Canvas" + System.lineSeparator();
+		assertEquals(example.getNotes(), expected); 
 	}
 	
 	/**
@@ -474,7 +475,7 @@ public class TicketTest {
 		expected += "Type: Incident" + System.lineSeparator(); 
 		expected += "Caller: Rose Clayton" + System.lineSeparator(); 
 		expected += "Owner: " + System.lineSeparator();
-		expected += "Notes: " + System.lineSeparator() + "Students cannot log in to Canvas" + System.lineSeparator();
+		expected += "Notes: " + System.lineSeparator() + "-Students cannot log in to Canvas" + System.lineSeparator();
 		
 		assertEquals(expected, example.toString()); 
 		
