@@ -107,7 +107,7 @@ public class Ticket {
 	 */
 	public static void setCounter(int num) {
 		if (num < 1) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Ticket id must be a value greater than 0.");
 		}
 		counter = num; 
 	}
@@ -580,7 +580,7 @@ public class Ticket {
 		}
 		
 		throw new IllegalArgumentException();
-	}
+	}  
 	
 	/**
 	 * Each field of the ticket is printed with a label, then the notes are printed with one on each line. 
