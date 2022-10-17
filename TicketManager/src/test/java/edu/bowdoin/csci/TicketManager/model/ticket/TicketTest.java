@@ -894,4 +894,23 @@ public class TicketTest {
 			// Exception expected, carry on.
 		}
 	}
+	
+	/**
+	 * Tests transitions from canceled state (none are allowed).
+	 */
+	@Test
+	public void testCanceledState() {
+		try {
+			Command toCanceled = new Command(CommandValue.CANCEL, "Mikey", null, null, CancellationCode.DUPLICATE, "Another Epic Note");
+			Ticket t = new Ticket(TicketType.INCIDENT, "Subject", "Caller", Category.SOFTWARE, Priority.MEDIUM, "Note");
+			t.update(toCanceled); 
+			Command toWorking = new Command(CommandValue.PROCESS, "Mikey", null, null, null, "The OG Super Cool Note");
+			t.update(toWorking);
+			Assertions.fail("Attempting to update a canceled ticket should throw UOE, but didn't.");
+
+		}
+		catch (UnsupportedOperationException uoe) {
+			//Exception expected; carry on
+		}
+	}
 }
