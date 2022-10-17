@@ -15,7 +15,7 @@ import edu.bowdoin.csci.TicketManager.model.ticket.Ticket.TicketType;
 public class TicketManager {
 	
 	/** Stores the one and only instance of this class*/
-	static private TicketManager instance;
+	static private TicketManager instance = new TicketManager();
 	
 	/**
 	 * Constructor for TicketManager.
@@ -32,7 +32,7 @@ public class TicketManager {
 	 * @return TicketManager instance
 	 */
 	public static TicketManager getInstance() {
-		return null;
+		return instance;
 	}
 	
 	/** 
