@@ -559,7 +559,7 @@ public class TicketTest {
 		Assertions.assertEquals("Feedback", toFeedbackTicket.getState(),
 				"Updated ticket should have a state attribute as 'Feedback', but does not.");
 		Assertions.assertEquals("Awaiting caller", toFeedbackTicket.getFeedbackCode(),
-				"Updated ticket should have a Feedback Code 'Awaiting Caller', but does not.");
+				"Updated ticket should have a Feedback Code 'Awaiting caller', but does not.");
 		
 		// Test ResolvedState transitions (for both Incident and Request Tickets)
 		toResolvedIncTicket.update(toWorking);
