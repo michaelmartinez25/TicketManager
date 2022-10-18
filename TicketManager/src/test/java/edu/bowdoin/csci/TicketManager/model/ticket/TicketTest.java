@@ -798,23 +798,6 @@ public class TicketTest {
 		Assertions.assertEquals("Closed", toClosedTicket.getState(), 
 				"Updated ticket should have a state attribute as 'Closed', but does not.");
 		
-		// Test CanceledState
-		toCanceledTicket.update(toWorking);
-		Assertions.assertEquals("Working", toCanceledTicket.getState(),
-				"Updated ticket should have a state attribute as 'Working', but does not.");
-		Assertions.assertEquals("Mikey", toCanceledTicket.getOwner(),
-				"Updated ticket should have an owner 'Mikey', but does not.");
-		toCanceledTicket.update(toResolved);
-		Assertions.assertEquals("Resolved", toCanceledTicket.getState(),
-				"Updated ticket should have a state attribute as 'Resolved', but does not.");
-		Assertions.assertEquals("Solved", toCanceledTicket.getResolutionCode(),
-				"Updated ticket should have a Resolution Code 'Solved', but does not.");
-		toCanceledTicket.update(toCanceled);
-		Assertions.assertEquals("Canceled", toCanceledTicket.getState(),
-				"Updated ticket should have a state attribute as 'Canceled', but does not.");
-		Assertions.assertEquals("Duplicate", toCanceledTicket.getCancellationCode(),
-				"Updated ticket should have a Cancellation Code 'Duplicate', but does not.");
-		
 		// Test Invalid Scenarios
 		Ticket invalidTestTicket = new Ticket(TicketType.INCIDENT, "Subject", "Caller", Category.SOFTWARE, Priority.MEDIUM, "Note");
 		invalidTestTicket.update(toWorking);

@@ -866,11 +866,7 @@ public class Ticket {
 			
 			CommandValue cv = command.getCommand();
 			
-			if (cv.equals(CommandValue.PROCESS)) {
-				throw new UnsupportedOperationException();
-			}
-			
-			if (!cv.equals(CommandValue.FEEDBACK) && !cv.equals(CommandValue.REOPEN) && !cv.equals(CommandValue.CONFIRM) && !cv.equals(CommandValue.CANCEL)) {
+			if (!cv.equals(CommandValue.FEEDBACK) && !cv.equals(CommandValue.REOPEN) && !cv.equals(CommandValue.CONFIRM)) {
 				throw new UnsupportedOperationException();
 			}
 			
@@ -894,17 +890,6 @@ public class Ticket {
 			if (cv.equals(CommandValue.CONFIRM)) {
 				notes.add(command.getNote());
 				state = closedState;
-			}
-			
-			if (cv.equals(CommandValue.CANCEL)) {
-				CancellationCode newCancellationCode = command.getCancellationCode();
-				if (command.getCancellationCode() == null) {
-					throw new UnsupportedOperationException();
-				}
-				resolutionCode = null;
-				cancellationCode = newCancellationCode;
-				notes.add(command.getNote());
-				state = canceledState;
 			}
 		}
 	}
