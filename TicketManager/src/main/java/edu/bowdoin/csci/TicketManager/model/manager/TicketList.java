@@ -83,10 +83,11 @@ public class TicketList {
 	 * @return the desired ticket of ticketId
 	 */
 	public Ticket getTicketById(int ticketId) {
-		if (ticketId < 0 || ticketId > ticketList.size()) {
-			return null;
-		}
-		return ticketList.get(ticketId - 1);
+//		if (ticketId < 1 || ticketId > ticketList.size()) {
+//			return null;
+//		}
+//		return ticketList.get(ticketId - 1);
+		return null;
 	}
 	
 	/**
