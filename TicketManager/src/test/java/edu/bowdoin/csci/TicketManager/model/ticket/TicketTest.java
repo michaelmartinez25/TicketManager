@@ -934,22 +934,4 @@ public class TicketTest {
 		}
 	}
 	
-	/**
-	 * Tests invalid transitions from resolved state -Z
-	 */
-	@Test
-	public void testResolvedStateInvalidTransition() {
-		Ticket t = new Ticket(TicketType.INCIDENT, "Subject", "Caller", Category.SOFTWARE, Priority.URGENT, "Note"); 
-		Command toWorking = new Command(CommandValue.PROCESS, "Mikey", null, null, null, "The OG Super Cool Note");
-		Command toResolved = new Command(CommandValue.RESOLVE, "Mikey", null, ResolutionCode.SOLVED, null, "Another Cool Note");
-		t.update(toWorking);
-		t.update(toResolved);
-		Command toWorkingAgain = new Command(CommandValue.PROCESS, "Mikey", null, null, null, "Another Cool Note");
-		try {
-			t.update(toWorkingAgain);
-		}
-		catch (UnsupportedOperationException uoe) {
-			//carry on
-		}
-	}
 }
