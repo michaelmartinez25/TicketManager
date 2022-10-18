@@ -40,6 +40,25 @@ public class TicketTest {
 		Ticket.setCounter(1);
 	}
 	
+	/**
+	 * Test new ticket construction with string constructor, then use getters
+	 */
+	@Test
+	public void testStringConstructorAndGetters() {
+		Ticket t = new Ticket(8, Ticket.NEW_NAME, Ticket.TT_REQUEST, "Subject A", "Caller", Ticket.C_NETWORK, Ticket.P_URGENT, "Owner B", null, notesList); 
+		assertEquals(t.getTicketId(), 8); 
+		assertEquals(t.getState(), Ticket.NEW_NAME); 
+		assertEquals(t.getTicketTypeString(), Ticket.TT_REQUEST); 
+		assertEquals(t.getTicketType(), TicketType.REQUEST); 
+		assertEquals(t.getSubject(), "Subject A"); 
+		assertEquals(t.getCaller(), "Caller"); 
+		assertEquals(t.getCategory(), Ticket.C_NETWORK); 
+		assertEquals(t.getPriority(), Ticket.P_URGENT); 
+		assertEquals(t.getOwner(), "Owner B"); 
+		assertEquals(t.getFeedbackCode(), null); 
+		assertEquals(t.getCancellationCode(), null); 
+		assertEquals(t.getResolutionCode(), null); 
+	}
 	
 	
 	/**
@@ -733,7 +752,7 @@ public class TicketTest {
 	 * Tests transitions from Resolved to Feedback, Working, Closed, and Canceled States
 	 */
 	@Test
-	public void testResolvedStateTransitions() {
+	public void testResolvedStateTransitions() {  
 		Command toWorking = new Command(CommandValue.PROCESS, "Mikey", null, null, null, "The OG Super Cool Note");
 		Command toResolved = new Command(CommandValue.RESOLVE, "Mikey", null, ResolutionCode.SOLVED, null, "Another Cool Note");
 		// Transition Commands
@@ -897,4 +916,5 @@ public class TicketTest {
 			//Exception expected; carry on
 		}
 	}
+	
 }
