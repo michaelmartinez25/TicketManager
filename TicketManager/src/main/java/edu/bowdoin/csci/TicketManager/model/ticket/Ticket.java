@@ -872,6 +872,10 @@ public class Ticket {
 			
 			CommandValue cv = command.getCommand();
 			
+			if (cv.equals(CommandValue.PROCESS)) {
+				throw new UnsupportedOperationException();
+			}
+			
 			if (!cv.equals(CommandValue.FEEDBACK) && !cv.equals(CommandValue.REOPEN) && !cv.equals(CommandValue.CONFIRM) && !cv.equals(CommandValue.CANCEL)) {
 				throw new UnsupportedOperationException();
 			}

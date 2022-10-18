@@ -558,7 +558,7 @@ public class TicketTest {
 		toFeedbackTicket.update(toFeedback);
 		Assertions.assertEquals("Feedback", toFeedbackTicket.getState(),
 				"Updated ticket should have a state attribute as 'Feedback', but does not.");
-		Assertions.assertEquals("Awaiting caller", toFeedbackTicket.getFeedbackCode(),
+		Assertions.assertEquals("Awaiting Caller", toFeedbackTicket.getFeedbackCode(),
 				"Updated ticket should have a Feedback Code 'Awaiting caller', but does not.");
 		
 		// Test ResolvedState transitions (for both Incident and Request Tickets)
@@ -648,7 +648,7 @@ public class TicketTest {
 		toReopenTicket.update(toFeedback);
 		Assertions.assertEquals("Feedback", toReopenTicket.getState(),
 				"Updated ticket should have a state attribute as 'Feedback', but does not.");
-		Assertions.assertEquals("Awaiting caller", toReopenTicket.getFeedbackCode(),
+		Assertions.assertEquals("Awaiting Caller", toReopenTicket.getFeedbackCode(),
 				"Updated ticket should have a Feedback Code 'Awaiting Caller', but does not.");
 		toReopenTicket.update(toReopen);
 		Assertions.assertEquals("Working", toReopenTicket.getState(),
@@ -665,7 +665,7 @@ public class TicketTest {
 		toResolvedIncTicket.update(toFeedback);
 		Assertions.assertEquals("Feedback", toResolvedIncTicket.getState(),
 				"Updated ticket should have a state attribute as 'Feedback', but does not.");
-		Assertions.assertEquals("Awaiting caller", toResolvedIncTicket.getFeedbackCode(),
+		Assertions.assertEquals("Awaiting Caller", toResolvedIncTicket.getFeedbackCode(),
 				"Updated ticket should have a Feedback Code 'Awaiting Caller', but does not.");
 		toResolvedIncTicket.update(toResolvedInc);
 		Assertions.assertEquals("Resolved", toResolvedIncTicket.getState(), 
@@ -681,7 +681,7 @@ public class TicketTest {
 		toResolvedReqTicket.update(toFeedback);
 		Assertions.assertEquals("Feedback", toResolvedReqTicket.getState(),
 				"Updated ticket should have a state attribute as 'Feedback', but does not.");
-		Assertions.assertEquals("Awaiting caller", toResolvedReqTicket.getFeedbackCode(),
+		Assertions.assertEquals("Awaiting Caller", toResolvedReqTicket.getFeedbackCode(),
 				"Updated ticket should have a Feedback Code 'Awaiting Caller', but does not.");
 		toResolvedReqTicket.update(toResolvedReq);
 		Assertions.assertEquals("Resolved", toResolvedReqTicket.getState(), 
@@ -698,7 +698,7 @@ public class TicketTest {
 		toCanceledTicket.update(toFeedback);
 		Assertions.assertEquals("Feedback", toCanceledTicket.getState(), 
 				"Updated ticket should have a state attribute as 'Feedback', but does not.");
-		Assertions.assertEquals("Awaiting caller", toCanceledTicket.getFeedbackCode(), 
+		Assertions.assertEquals("Awaiting Caller", toCanceledTicket.getFeedbackCode(), 
 				"Updated ticket should have a Feedback Code 'Awaiting Caller");
 		toCanceledTicket.update(toCanceled);
 		Assertions.assertEquals("Canceled", toCanceledTicket.getState(),
@@ -763,7 +763,7 @@ public class TicketTest {
 		toFeedbackTicket.update(toFeedback);
 		Assertions.assertEquals("Feedback", toFeedbackTicket.getState(), 
 				"Updated ticket should have a state attribute as 'Feedback', but does not.");
-		Assertions.assertEquals("Awaiting caller", toFeedbackTicket.getFeedbackCode(), 
+		Assertions.assertEquals("Awaiting Caller", toFeedbackTicket.getFeedbackCode(), 
 				"Updated ticket should have a Feedback Code 'Awaiting Caller");
 		
 		// Test WorkingState
