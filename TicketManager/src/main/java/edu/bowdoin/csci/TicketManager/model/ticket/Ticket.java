@@ -688,7 +688,6 @@ public class Ticket {
 				if (command.getCancellationCode() == null) {
 					throw new UnsupportedOperationException();
 				}
-				
 				cancellationCode = newCancellationCode;
 				notes.add(command.getNote());
 				state = canceledState;
@@ -739,9 +738,21 @@ public class Ticket {
 			}
 			
 			if (cv.equals(CommandValue.RESOLVE)) {
-				ResolutionCode newResolutionCode =  command.getResolutionCode();
-				if (command.getResolutionCode() == null) {
+				ResolutionCode newResolutionCode = command.getResolutionCode();
+				if (newResolutionCode == null) {
 					throw new UnsupportedOperationException();
+				}
+				if (getTicketTypeString().equals(TT_INCIDENT)) {
+					if (!newResolutionCode.equals(ResolutionCode.SOLVED) && !newResolutionCode.equals(ResolutionCode.WORKAROUND) 
+							&& !newResolutionCode.equals(ResolutionCode.NOT_SOLVED) && !newResolutionCode.equals(ResolutionCode.CALLER_CLOSED)) {
+						throw new UnsupportedOperationException();
+					}
+				}
+				if (getTicketTypeString().equals(TT_REQUEST)) {
+					if (!newResolutionCode.equals(ResolutionCode.COMPLETED) && !newResolutionCode.equals(ResolutionCode.NOT_COMPLETED) 
+							&& !newResolutionCode.equals(ResolutionCode.CALLER_CLOSED)) {
+						throw new UnsupportedOperationException();
+					}
 				}
 				resolutionCode = newResolutionCode;
 				notes.add(command.getNote());
@@ -753,7 +764,6 @@ public class Ticket {
 				if (command.getCancellationCode() == null) {
 					throw new UnsupportedOperationException();
 				}
-				
 				cancellationCode = newCancellationCode;
 				notes.add(command.getNote());
 				state = canceledState;
@@ -794,19 +804,29 @@ public class Ticket {
 			}
 			
 			if (cv.equals(CommandValue.REOPEN)) {
-				if (command.getOwnerId() == null || command.getOwnerId() == "") {
-					throw new UnsupportedOperationException();
-				}
-				owner = command.getOwnerId();
+				feedbackCode = null;
 				notes.add(command.getNote());
 				state = workingState;
 			}
 			
 			if (cv.equals(CommandValue.RESOLVE)) {
-				ResolutionCode newResolutionCode =  command.getResolutionCode();
-				if (command.getResolutionCode() == null) {
+				ResolutionCode newResolutionCode = command.getResolutionCode();
+				if (newResolutionCode == null) {
 					throw new UnsupportedOperationException();
 				}
+				if (getTicketTypeString().equals(TT_INCIDENT)) {
+					if (!newResolutionCode.equals(ResolutionCode.SOLVED) && !newResolutionCode.equals(ResolutionCode.WORKAROUND) 
+							&& !newResolutionCode.equals(ResolutionCode.NOT_SOLVED) && !newResolutionCode.equals(ResolutionCode.CALLER_CLOSED)) {
+						throw new UnsupportedOperationException();
+					}
+				}
+				if (getTicketTypeString().equals(TT_REQUEST)) {
+					if (!newResolutionCode.equals(ResolutionCode.COMPLETED) && !newResolutionCode.equals(ResolutionCode.NOT_COMPLETED) 
+							&& !newResolutionCode.equals(ResolutionCode.CALLER_CLOSED)) {
+						throw new UnsupportedOperationException();
+					}
+				}
+				feedbackCode = null;
 				resolutionCode = newResolutionCode;
 				notes.add(command.getNote());
 				state = resolvedState;
@@ -817,7 +837,7 @@ public class Ticket {
 				if (command.getCancellationCode() == null) {
 					throw new UnsupportedOperationException();
 				}
-				
+				feedbackCode = null;
 				cancellationCode = newCancellationCode;
 				notes.add(command.getNote());
 				state = canceledState;
@@ -861,16 +881,13 @@ public class Ticket {
 				if (command.getFeedbackCode() == null) {
 					throw new UnsupportedOperationException();
 				}
+				resolutionCode = null;
 				feedbackCode = newFeedbackCode;
 				notes.add(command.getNote());
 				state = feedbackState;
 			}
 			
 			if (cv.equals(CommandValue.REOPEN)) {
-				if (command.getOwnerId() == null || command.getOwnerId() == "") {
-					throw new UnsupportedOperationException();
-				}
-				owner = command.getOwnerId();
 				notes.add(command.getNote());
 				state = workingState;
 			}
@@ -885,7 +902,7 @@ public class Ticket {
 				if (command.getCancellationCode() == null) {
 					throw new UnsupportedOperationException();
 				}
-				
+				resolutionCode = null;
 				cancellationCode = newCancellationCode;
 				notes.add(command.getNote());
 				state = canceledState;
@@ -925,10 +942,6 @@ public class Ticket {
 			}
 			
 			if (cv.equals(CommandValue.REOPEN)) {
-				if (command.getOwnerId() == null || command.getOwnerId() == "") {
-					throw new UnsupportedOperationException();
-				}
-				owner = command.getOwnerId();
 				notes.add(command.getNote());
 				state = workingState;
 			}
