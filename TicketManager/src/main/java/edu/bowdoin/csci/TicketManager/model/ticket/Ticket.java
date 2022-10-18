@@ -947,6 +947,7 @@ public class Ticket {
 			}
 			
 			if (cv.equals(CommandValue.REOPEN)) {
+				resolutionCode = null;
 				notes.add(command.getNote());
 				state = workingState;
 			}
