@@ -675,7 +675,7 @@ public class Ticket {
 			
 			// Transition to WorkingState
 			if (cv.equals(CommandValue.PROCESS)) {
-				if (command.getOwnerId() == null || command.getOwnerId() == "") {
+				if (command.getOwnerId() == null || command.getOwnerId().equals("")) {
 					throw new UnsupportedOperationException();
 				}
 				owner = command.getOwnerId();
@@ -742,17 +742,14 @@ public class Ticket {
 				if (newResolutionCode == null) {
 					throw new UnsupportedOperationException();
 				}
-				if (getTicketTypeString().equals(TT_INCIDENT)) {
-					if (!newResolutionCode.equals(ResolutionCode.SOLVED) && !newResolutionCode.equals(ResolutionCode.WORKAROUND) 
-							&& !newResolutionCode.equals(ResolutionCode.NOT_SOLVED) && !newResolutionCode.equals(ResolutionCode.CALLER_CLOSED)) {
-						throw new UnsupportedOperationException();
-					}
+				if (getTicketTypeString().equals(TT_INCIDENT) && !newResolutionCode.equals(ResolutionCode.SOLVED) 
+						&& !newResolutionCode.equals(ResolutionCode.WORKAROUND) && !newResolutionCode.equals(ResolutionCode.NOT_SOLVED) 
+						&& !newResolutionCode.equals(ResolutionCode.CALLER_CLOSED)) {
+					throw new UnsupportedOperationException();
 				}
-				if (getTicketTypeString().equals(TT_REQUEST)) {
-					if (!newResolutionCode.equals(ResolutionCode.COMPLETED) && !newResolutionCode.equals(ResolutionCode.NOT_COMPLETED) 
-							&& !newResolutionCode.equals(ResolutionCode.CALLER_CLOSED)) {
-						throw new UnsupportedOperationException();
-					}
+				if (getTicketTypeString().equals(TT_REQUEST) && !newResolutionCode.equals(ResolutionCode.COMPLETED) 
+						&& !newResolutionCode.equals(ResolutionCode.NOT_COMPLETED) && !newResolutionCode.equals(ResolutionCode.CALLER_CLOSED)) {
+					throw new UnsupportedOperationException();
 				}
 				resolutionCode = newResolutionCode;
 				notes.add(command.getNote());
@@ -814,19 +811,15 @@ public class Ticket {
 				if (newResolutionCode == null) {
 					throw new UnsupportedOperationException();
 				}
-				if (getTicketTypeString().equals(TT_INCIDENT)) {
-					if (!newResolutionCode.equals(ResolutionCode.SOLVED) && !newResolutionCode.equals(ResolutionCode.WORKAROUND) 
-							&& !newResolutionCode.equals(ResolutionCode.NOT_SOLVED) && !newResolutionCode.equals(ResolutionCode.CALLER_CLOSED)) {
-						throw new UnsupportedOperationException();
-					}
+				if (getTicketTypeString().equals(TT_INCIDENT) && !newResolutionCode.equals(ResolutionCode.SOLVED) 
+						&& !newResolutionCode.equals(ResolutionCode.WORKAROUND) && !newResolutionCode.equals(ResolutionCode.NOT_SOLVED) 
+						&& !newResolutionCode.equals(ResolutionCode.CALLER_CLOSED)) {
+					throw new UnsupportedOperationException();
 				}
-				if (getTicketTypeString().equals(TT_REQUEST)) {
-					if (!newResolutionCode.equals(ResolutionCode.COMPLETED) && !newResolutionCode.equals(ResolutionCode.NOT_COMPLETED) 
-							&& !newResolutionCode.equals(ResolutionCode.CALLER_CLOSED)) {
-						throw new UnsupportedOperationException();
-					}
+				if (getTicketTypeString().equals(TT_REQUEST) && !newResolutionCode.equals(ResolutionCode.COMPLETED) 
+						&& !newResolutionCode.equals(ResolutionCode.NOT_COMPLETED) && !newResolutionCode.equals(ResolutionCode.CALLER_CLOSED)) {
+					throw new UnsupportedOperationException();
 				}
-				feedbackCode = null;
 				resolutionCode = newResolutionCode;
 				notes.add(command.getNote());
 				state = resolvedState;
