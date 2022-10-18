@@ -1,5 +1,6 @@
 package edu.bowdoin.csci.TicketManager.model.manager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.bowdoin.csci.TicketManager.model.command.Command;
@@ -15,11 +16,14 @@ import edu.bowdoin.csci.TicketManager.model.ticket.Ticket.TicketType;
  */
 public class TicketList {
 
+	private ArrayList<Ticket> ticketList;
+	
 	/**
 	 * Constructor method
 	 */
 	public TicketList() {
-		//comment for PMD
+		ticketList = new ArrayList<Ticket>();
+		Ticket.setCounter(1);
 	}
 	
 	/**
@@ -34,7 +38,14 @@ public class TicketList {
 	 * @return index of the newly added ticket
 	 */
 	public int addTicket(TicketType type, String subject, String caller, Category category, Priority priority, String note) {
-		return 0;
+		Ticket newTicket = null;
+		try {
+			newTicket = new Ticket(type, subject, caller, category, priority, note);
+		} catch(IllegalArgumentException iae) {
+			throw new IllegalArgumentException();
+		}
+		ticketList.add(newTicket);
+		return newTicket.getTicketId();
 	}
 	
 	/**
@@ -72,7 +83,10 @@ public class TicketList {
 	 * @return the desired ticket of ticketId
 	 */
 	public Ticket getTicketById(int ticketId) {
-		return null;
+		if (ticketId < 0 || ticketId > ticketList.size()) {
+			return null;
+		}
+		return ticketList.get(ticketId - 1);
 	}
 	
 	/**
