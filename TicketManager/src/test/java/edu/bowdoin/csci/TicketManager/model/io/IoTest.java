@@ -37,8 +37,8 @@ public class IoTest {
 	 */
 	@Test
 	public void testReaderLoadValidFile() {
-		ArrayList<Ticket> tickets = TicketReader.readTicketFile("TicketManager/test-files/ticket1.txt");
-		assertNotNull(tickets); 
+		ArrayList<Ticket> tickets = TicketReader.readTicketFile("test-files/ticket1.txt");
+		assertEquals(tickets.size(), 6);  
 	}
 	
 	@Test

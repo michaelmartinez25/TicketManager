@@ -383,10 +383,10 @@ public class Ticket {
 	 */ 
 	private void setCancellationCode(String cc) {
 		cancellationCode = null; 
-		if (cc == Command.CC_DUPLICATE) cancellationCode = CancellationCode.DUPLICATE; 
-		if (cc == Command.CC_INAPPROPRIATE) cancellationCode = CancellationCode.INAPPROPRIATE; 
+		if (Command.CC_DUPLICATE.equals(cc)) cancellationCode = CancellationCode.DUPLICATE; 
+		if (Command.CC_INAPPROPRIATE.equals(cc)) cancellationCode = CancellationCode.INAPPROPRIATE; 
 		
-		if (state == canceledState && !(cancellationCode == CancellationCode.DUPLICATE) || cancellationCode == CancellationCode.INAPPROPRIATE) {
+		if ((state == canceledState && cancellationCode != CancellationCode.DUPLICATE) && (state == canceledState && cancellationCode != CancellationCode.INAPPROPRIATE)) {
 			throw new IllegalArgumentException("The ticket must have a cancellation code of either \"Duplicate\" or \"Inappropriate\", if in the \"Canceled\" state.");
 		}
 	}
@@ -398,23 +398,23 @@ public class Ticket {
 	private void setCategory(String category) {
 		
 		this.category = null;
-		if (category == C_DATABASE) {
+		if (C_DATABASE.equals(category)) {
 			this.category = Category.DATABASE; 
 			return;
 		}
-		if (category == C_NETWORK) {
+		if (C_NETWORK.equals(category)) {
 			this.category = Category.NETWORK; 
 			return;
 		}
-		if (category == C_SOFTWARE) {
+		if (C_SOFTWARE.equals(category)) {
 			this.category = Category.SOFTWARE; 
 			return;
 		}
-		if (category == C_HARDWARE) {
+		if (C_HARDWARE.equals(category)) {
 			this.category = Category.HARDWARE; 
 			return;
 		}
-		if (category == C_INQUIRY) {
+		if (C_INQUIRY.equals(category)) {
 			this.category = Category.INQUIRY; 
 			return;
 		}
@@ -443,15 +443,15 @@ public class Ticket {
 	private void setFeedbackCode(String fc) {
 		this.feedbackCode = null;
 		
-		if (fc == Command.F_CALLER) {
+		if (Command.F_CALLER.equals(fc)) {
 			this.feedbackCode = FeedbackCode.AWAITING_CALLER;
 			return;
 		}
-		if (fc == Command.F_CHANGE) {
+		if (Command.F_CHANGE.equals(fc)) {
 			this.feedbackCode = FeedbackCode.AWAITING_CHANGE;
 			return;
 		}
-		if (fc == Command.F_PROVIDER) {
+		if (Command.F_PROVIDER.equals(fc)) {
 			this.feedbackCode = FeedbackCode.AWAITING_PROVIDER; 
 			return;
 		}
@@ -467,19 +467,19 @@ public class Ticket {
 	 */ 
 	private void setPriority(String priority) {
 		
-		if (priority == P_URGENT) {
+		if (P_URGENT.equals(priority)) {
 			this.priority = Priority.URGENT; 
 			return;
 		}
-		if (priority == P_HIGH) {
+		if (P_HIGH.equals(priority)) {
 			this.priority = Priority.HIGH; 
 			return;
 		}
-		if (priority == P_MEDIUM) {
+		if (P_MEDIUM.equals(priority)) {
 			this.priority = Priority.MEDIUM; 
 			return;
 		}
-		if (priority == P_LOW) {
+		if (P_LOW.equals(priority)) {
 			this.priority = Priority.LOW;
 			return;
 		}
@@ -495,12 +495,12 @@ public class Ticket {
 		
 		this.resolutionCode = null;
 		
-		if (rc == Command.RC_CALLER_CLOSED) this.resolutionCode = ResolutionCode.CALLER_CLOSED; 
-		if (rc == Command.RC_COMPLETED) this.resolutionCode = ResolutionCode.COMPLETED;
-		if (rc == Command.RC_NOT_COMPLETED) this.resolutionCode = ResolutionCode.NOT_COMPLETED; 
-		if (rc == Command.RC_SOLVED) this.resolutionCode = ResolutionCode.SOLVED; 
-		if (rc == Command.RC_NOT_COMPLETED) this.resolutionCode = ResolutionCode.NOT_COMPLETED; 
-		if (rc == Command.RC_WORKAROUND) this.resolutionCode = ResolutionCode.WORKAROUND; 
+		if (Command.RC_CALLER_CLOSED.equals(rc)) this.resolutionCode = ResolutionCode.CALLER_CLOSED; 
+		if (Command.RC_COMPLETED.equals(rc)) this.resolutionCode = ResolutionCode.COMPLETED;
+		if (Command.RC_NOT_COMPLETED.equals(rc)) this.resolutionCode = ResolutionCode.NOT_COMPLETED; 
+		if (Command.RC_SOLVED.equals(rc)) this.resolutionCode = ResolutionCode.SOLVED; 
+		if (Command.RC_NOT_COMPLETED.equals(rc)) this.resolutionCode = ResolutionCode.NOT_COMPLETED; 
+		if (Command.RC_WORKAROUND.equals(rc)) this.resolutionCode = ResolutionCode.WORKAROUND; 
 		
 		if (state == resolvedState || state == closedState) {
 			if (!(resolutionCode == ResolutionCode.COMPLETED || resolutionCode == ResolutionCode.NOT_COMPLETED || resolutionCode == ResolutionCode.SOLVED || resolutionCode == ResolutionCode.WORKAROUND || resolutionCode == ResolutionCode.NOT_SOLVED || resolutionCode == ResolutionCode.CALLER_CLOSED)) {
@@ -524,27 +524,27 @@ public class Ticket {
 	 * @param s name of desired ticket state, as a string */ 
 	private void setState(String s) {
 		
-		if (s == NEW_NAME) {
+		if (NEW_NAME.equals(s)) {
 			this.state = newState; 
 			return;
 		}
-		if (s == WORKING_NAME) {
+		if (WORKING_NAME.equals(s)) {
 			this.state = workingState; 
 			return;
 		}
-		if (s == FEEDBACK_NAME) {
+		if (FEEDBACK_NAME.equals(s)) {
 			this.state = feedbackState;
 			return;
 		}
-		if (s == CANCELED_NAME) {
+		if (CANCELED_NAME.equals(s)) {
 			this.state = canceledState; 
 			return;
 		}
-		if (s == CLOSED_NAME) {
+		if (CLOSED_NAME.equals(s)) {
 			this.state = closedState; 
 			return;
 		}
-		if (s == RESOLVED_NAME) {
+		if (RESOLVED_NAME.equals(s)) {
 			this.state = resolvedState; 
 			return;
 		}
@@ -570,11 +570,11 @@ public class Ticket {
 	 */ 
 	private void setTicketType(String tt) {
 		
-		if (tt == TT_INCIDENT) {
+		if (TT_INCIDENT.equals(tt)) {
 			ticketType = TicketType.INCIDENT; 
 			return;
 		}
-		if (tt == TT_REQUEST) {
+		if (TT_REQUEST.equals(tt)) {
 			ticketType = TicketType.REQUEST; 
 			return;
 		}
