@@ -136,8 +136,8 @@ public class Ticket {
 	public Ticket(int id, String state, String ticketType, String subject, String caller, String category, String priority, String owner, String code, ArrayList<String> notes) {
 		//		if (type == null || subject == null || "".equals(subject) || caller == null || "".equals(caller) || category == null || priority == null || note == null || "".equals(note)) {
 
-		if (id < 0 || state == null || "".equals(state) || ticketType == null || "".equals(ticketType) || subject == null || "".equals(subject) || caller == null || "".equals(caller) || category == null || "".equals(category) || priority == null || "".equals(priority) || code == null || "".equals(code) || notes == null || notes.isEmpty()) {
-			throw new IllegalArgumentException("Ticket id must be a value greater than 0."); 
+		if (id < 0 || state == null || "".equals(state) || ticketType == null || "".equals(ticketType) || subject == null || "".equals(subject) || caller == null || "".equals(caller) || category == null || "".equals(category) || priority == null || "".equals(priority) || notes == null || notes.isEmpty()) {
+			throw new IllegalArgumentException("Ticket ID must be > 0 and most parameters may not be null"); 
 		}
 		
 		this.ticketId = id; 
