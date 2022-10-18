@@ -30,7 +30,7 @@ Write unit tests for Command class | 4 | Depends on skeleton | Zeb | 13 October 
 Implement Command class, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 5 | Zeb | 13 october | Done 10/9
 
 Write unit tests for Ticket class | 7 | Depends on skeleton | Zeb | 13 October | Done 10/12
-Implement Ticket class, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 8 | Zeb | 13 october | Started 10/12
+Implement Ticket class, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 8 | Zeb | 13 october | Done 10/18
 
 Implement State interface | 3 | Depends on skeleton | N/A | 13 October | Done
 
@@ -57,8 +57,8 @@ Implement ResolvedState class, ensure it passes all unit tests, PMD/Checkstyle, 
 Write unit tests for TicketList | 4 | Depends on Ticket, TicketList| Michael | 18 October | Started 10/7
 Implement TicketList, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 6 | Michael | 17 October | Not Started 
 
-Write unit tests for TicketReader | 2 | Depends on Ticket, TicketList | Zeb | 18 October | Not Started 
-Implement TicketReader, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 6 | Zeb | 17 October | Not Started 
+Write unit tests for TicketReader | 2 | Depends on Ticket, TicketList | Zeb | 18 October | Started 10/17 
+Implement TicketReader, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 6 | Zeb | 17 October | Started 10/18
 
 Write unit tests for TicketWriter | 2 | Depends on Ticket, TicketList| Zeb | 18 October | Not Started 
 Implement TicketWriter, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 6 | Zeb | 17 October | Not Started 
