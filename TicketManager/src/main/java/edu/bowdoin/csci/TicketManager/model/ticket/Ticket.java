@@ -853,7 +853,7 @@ public class Ticket {
 		 */
 		public String getStateName() {
 			return RESOLVED_NAME;
-		}
+		} 
 		
 		/**
 		 * Updates state based on given command
