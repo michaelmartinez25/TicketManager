@@ -820,6 +820,7 @@ public class Ticket {
 						&& !newResolutionCode.equals(ResolutionCode.NOT_COMPLETED) && !newResolutionCode.equals(ResolutionCode.CALLER_CLOSED)) {
 					throw new UnsupportedOperationException();
 				}
+				feedbackCode = null;
 				resolutionCode = newResolutionCode;
 				notes.add(command.getNote());
 				state = resolvedState;
