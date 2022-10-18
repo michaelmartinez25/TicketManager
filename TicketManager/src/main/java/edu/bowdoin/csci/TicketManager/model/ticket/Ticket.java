@@ -835,7 +835,7 @@ public class Ticket {
 				cancellationCode = newCancellationCode;
 				notes.add(command.getNote());
 				state = canceledState;
-			}
+			} 
 		}
 	}
 	
