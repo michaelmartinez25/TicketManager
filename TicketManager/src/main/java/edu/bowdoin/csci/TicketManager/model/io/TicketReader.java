@@ -71,7 +71,7 @@ public class TicketReader {
 						throw iae; 
 					}
 					
-					prevNote += line; 
+					prevNote += "\n" + line; 
 				}
 			
 			}
