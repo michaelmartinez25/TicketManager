@@ -1,9 +1,8 @@
 package edu.bowdoin.csci.TicketManager.model.io;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.regex.Pattern;
-import java.io.*;
 import edu.bowdoin.csci.TicketManager.model.ticket.Ticket;
 
 /**
@@ -40,45 +39,56 @@ public class TicketReader {
 			
 			ArrayList<String> currentNotes = null; 
 			String prevTicketString = null; 
+			String prevNote = null; 
 			
 			while (scanner.hasNextLine()) {
 				
 				String line = scanner.nextLine(); 
 				
-				if (line.charAt(0) == '*' || line.charAt(0) == '-') {
-					if (line.charAt(0) == '-') {
-						if (currentNotes == null) {
-							currentNotes = new ArrayList<String>(); 
-						}
-						addNote(line, currentNotes); 
+				if (line.charAt(0) == '*') {
+					
+					if (prevNote != null) {
+						addNote(prevNote, currentNotes); 
+						prevNote = null;
 					}
-					if (line.charAt(0) == '*') {
-						if (currentNotes != null && prevTicketString != null) {
-							list.add(readTicketLine(prevTicketString, currentNotes)); 
-						}
+					
+					if (prevTicketString != null) {
+						list.add(readTicketLine(prevTicketString, currentNotes)); 
+						prevTicketString = null; 
 						currentNotes = null; 
-						prevTicketString = line; 
 					}
+					
+					prevTicketString = line; 
+					currentNotes = new ArrayList<String>(); 
+				} else if (line.charAt(0) == '-') {
+					if (prevNote != null) {
+						addNote(prevNote, currentNotes); 
+					}
+					prevNote = line; 
+				} else {
+					if (prevNote == null) {
+						scanner.close();
+						throw iae; 
+					}
+					
+					prevNote += line; 
 				}
-				else {
-					scanner.close();
-					throw iae; 
-				}
+			
 			}
 			
 			//add last ticket 
+			if (prevNote != null) {
+				addNote(prevNote, currentNotes); 
+			}
 			if (prevTicketString != null && currentNotes != null) {
 				list.add(readTicketLine(prevTicketString, currentNotes)); 
 			}
-			
 			scanner.close();
 			return list; 
-		}
 		
-		catch (Exception e) {
+		} catch (Exception e) {
 			throw iae; 
-		}
-
+		} 
 	}
 	
 	private static Ticket readTicketLine(String line, ArrayList<String> notes) {
@@ -108,8 +118,13 @@ public class TicketReader {
 		
 	}
 	
+	/**
+	 * Helper method to ensure consistent internal representation of notes
+	 * @param note to be added
+	 * @param notes list of notes to add note to
+	 */ 
 	private static void addNote(String note, ArrayList<String> notes) {
-		//strip leading '-'
+		//strip leading '-', then add to list
 		notes.add(note.substring(1));
 	}
 }
