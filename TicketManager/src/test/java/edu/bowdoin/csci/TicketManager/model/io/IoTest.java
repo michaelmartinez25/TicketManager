@@ -202,7 +202,7 @@ public class IoTest {
 		assertEquals(tickets.size(), fromFile.size()); 
 		
 		
-		
+		 
 	}
 	
 	/**
@@ -220,6 +220,7 @@ public class IoTest {
 		try {
 			List<Ticket> tickets = TicketReader.readTicketFile("test-files/ticket1.txt"); 
 			TicketWriter.writeTicketFile(null, tickets); 
+			fail("Null filename should throw IAE");
 		}
 		catch (IllegalArgumentException iae) {
 			//exception expected; carry on. 

@@ -366,7 +366,7 @@ public class TicketTest {
 	@Test
 	public void testFileTicketConstructor() {
 		Ticket.setCounter(1); 
-		Ticket one = new Ticket(37, Ticket.WORKING_NAME, Ticket.TT_REQUEST, "Homework regrade request", "student", Ticket.C_INQUIRY, Ticket.P_LOW, "grader", Command.F_CALLER, notesList); 
+		Ticket one = new Ticket(37, Ticket.WORKING_NAME, Ticket.TT_REQUEST, "Homework regrade request", "student", Ticket.C_INQUIRY, Ticket.P_LOW, "grader", null, notesList); 
 		assertEquals(one.getTicketId(), 37); 
 		Ticket two = new Ticket(TicketType.INCIDENT, "Canvas Down", "Rose Clayton", Category.NETWORK, Priority.URGENT, "Students cannot log in to Canvas"); 
 		assertEquals(two.getTicketId(), 38);
