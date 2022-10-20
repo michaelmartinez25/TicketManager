@@ -2,6 +2,7 @@ package edu.bowdoin.csci.TicketManager.model.manager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import edu.bowdoin.csci.TicketManager.model.command.Command;
 import edu.bowdoin.csci.TicketManager.model.ticket.Ticket;
@@ -54,7 +55,13 @@ public class TicketList {
 	 * @param ticketList the list of tickets to be added
 	 */
 	public void addTickets(List<Ticket> ticketList) {
-		//comment for PMD
+		if (ticketList == null || ticketList.size() == 0) {
+			throw new IllegalArgumentException();
+		}
+		
+		for (Ticket ticket: ticketList) {
+			this.ticketList.add(ticket);
+		}
 	}
 	
 	/**
@@ -63,7 +70,7 @@ public class TicketList {
 	 * @return the entire list
 	 */
 	public List<Ticket> getTickets() {
-		return null;
+		return ticketList;
 	}
 	
 	/**
@@ -73,7 +80,18 @@ public class TicketList {
 	 * @return the filtered list of the desired type
 	 */
 	public List<Ticket> getTicketsByType(TicketType type) {
-		return null;
+		if (type == null) {
+			throw new IllegalArgumentException();
+		}
+		
+		List<Ticket> filteredList = new ArrayList<Ticket>();
+		for (Ticket ticket: ticketList) {
+			if (ticket.getTicketType().equals(type)) {
+				filteredList.add(ticket);
+			}
+		}
+		
+		return filteredList;
 	}
 	
 	/**
@@ -83,25 +101,56 @@ public class TicketList {
 	 * @return the desired ticket of ticketId
 	 */
 	public Ticket getTicketById(int ticketId) {
-//		if (ticketId < 1 || ticketId > ticketList.size()) {
-//			return null;
-//		}
-//		return ticketList.get(ticketId - 1);
-		return null;
+		if (ticketId < 1 || ticketId > ticketList.size()) {
+			return null;
+		}
+		return ticketList.get(ticketId - 1);
 	}
 	
 	/**
 	 * Executes a given command on a ticket associated
 	 * with the given ticketId.
 	 * 
-	 * Note: Implementation notes do not specify 'int' parameter,
-	 * so Michael assumed it's a ticketId.
-	 * 
 	 * @param ticketId id of desired ticket
 	 * @param command command to be executed
 	 */
 	public void executeCommand(int ticketId, Command command) {
-		//comment for PMD
+		if (ticketId < 1 || ticketId > ticketList.size() || command == null) {
+			throw new IllegalArgumentException();
+		}
+		
+		Ticket updatedTicket = ticketList.get(ticketId - 1);
+		
+		try {
+			updatedTicket.update(command);
+		} catch (UnsupportedOperationException uoe) {
+			throw new IllegalArgumentException();
+		}
+		
+		ArrayList<String> notes = new ArrayList<String>();
+		Scanner scan = new Scanner(updatedTicket.getNotes());
+		while (scan.hasNextLine()) {
+			String note = scan.nextLine();
+			if (note.equals("\n")) {
+				break;
+			}
+			notes.add(note.substring(1));
+		}
+		
+		String code = null;
+		if (updatedTicket.getFeedbackCode() != null) {
+			code = updatedTicket.getFeedbackCode();
+		}
+		if (updatedTicket.getResolutionCode() != null) {
+			code = updatedTicket.getResolutionCode();
+		}
+		if (updatedTicket.getCancellationCode() != null) {
+			code = updatedTicket.getCancellationCode();
+		}
+		
+		Ticket replaceTicket = new Ticket(ticketId, updatedTicket.getState(), updatedTicket.getTicketTypeString(), updatedTicket.getSubject(), updatedTicket.getCaller(), updatedTicket.getCategory(), updatedTicket.getPriority(), updatedTicket.getOwner(), code, notes);
+		
+		ticketList.set(ticketId - 1, replaceTicket);
 	}
 	
 	/**
@@ -110,6 +159,10 @@ public class TicketList {
 	 * @param ticketId id of desired ticket
 	 */
 	public void deleteTicketById(int ticketId) {
-		//comment for PMD
+		if (ticketId < 1 || ticketId > ticketList.size()) {
+			throw new IllegalArgumentException();
+		}
+		
+		ticketList.remove(ticketId - 1);
 	}
 }
