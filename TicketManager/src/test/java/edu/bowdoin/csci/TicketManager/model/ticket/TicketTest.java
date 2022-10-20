@@ -759,14 +759,12 @@ public class TicketTest {
 		Command toFeedback = new Command(CommandValue.FEEDBACK, "Mikey", FeedbackCode.AWAITING_CALLER, null, null, "Super Cool Note");
 		Command toReopen = new Command(CommandValue.REOPEN, "Mikey", null, null, null, "A Boring Note");
 		Command toClosed = new Command(CommandValue.CONFIRM, "Mikey", null, null, null, "A Not-So-Boring Note");
-		Command toCanceled = new Command(CommandValue.CANCEL, "Mikey", null, null, CancellationCode.DUPLICATE, "Yet Another Epic Note");
 		
 		Ticket toFeedbackTicket = new Ticket(TicketType.INCIDENT, "Subject", "Caller", Category.SOFTWARE, Priority.MEDIUM, "Note");
 		Assertions.assertEquals("New", toFeedbackTicket.getState(),
 				"Newly created notes should have a state attribute as 'New', but does not.");
 		Ticket toReopenTicket = new Ticket(TicketType.INCIDENT, "Subject", "Caller", Category.SOFTWARE, Priority.MEDIUM, "Note");
 		Ticket toClosedTicket = new Ticket(TicketType.INCIDENT, "Subject", "Caller", Category.SOFTWARE, Priority.MEDIUM, "Note");
-		Ticket toCanceledTicket = new Ticket(TicketType.INCIDENT, "Subject", "Caller", Category.SOFTWARE, Priority.MEDIUM, "Note");
 		
 		// Test FeedbackState
 		toFeedbackTicket.update(toWorking);
