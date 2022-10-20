@@ -1,4 +1,4 @@
-*3#Closed#Request#Subject line#caller#Inquiry#Medium#owner#
+*3#Closed#Request#Subject line#caller#Inquiry#Medium#owner#Not Completed
 -a note
 -a note with
 a new line
