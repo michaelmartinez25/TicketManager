@@ -302,7 +302,7 @@ public class Ticket {
 	 */ 
 	public String getResolutionCode() {
 		
-		if (state != resolvedState) return null;
+		if (state != resolvedState && state != closedState) return null;
 		
 		if (resolutionCode == ResolutionCode.CALLER_CLOSED) return Command.RC_CALLER_CLOSED; 
 		if (resolutionCode == ResolutionCode.COMPLETED) return Command.RC_COMPLETED; 
