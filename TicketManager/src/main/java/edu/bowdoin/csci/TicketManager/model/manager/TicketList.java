@@ -59,9 +59,18 @@ public class TicketList {
 			throw new IllegalArgumentException();
 		}
 		
+		ticketList.clear();
+		int counter = 0;
+		
 		for (Ticket ticket: ticketList) {
+			if (ticket.getTicketId() > counter) {
+				counter = ticket.getTicketId();
+			}
+	
 			this.ticketList.add(ticket);
 		}
+		
+		Ticket.setCounter(counter + 1);
 	}
 	
 	/**
@@ -85,7 +94,7 @@ public class TicketList {
 		}
 		
 		List<Ticket> filteredList = new ArrayList<Ticket>();
-		for (Ticket ticket: ticketList) {
+		for (Ticket ticket:ticketList) {
 			if (ticket.getTicketType().equals(type)) {
 				filteredList.add(ticket);
 			}
@@ -101,10 +110,13 @@ public class TicketList {
 	 * @return the desired ticket of ticketId
 	 */
 	public Ticket getTicketById(int ticketId) {
-		if (ticketId < 1 || ticketId > ticketList.size()) {
-			return null;
+		for (Ticket ticket:ticketList) {
+			if (ticket.getTicketId() == ticketId) {
+				return ticket;
+			}
 		}
-		return ticketList.get(ticketId - 1);
+		
+		return null;
 	}
 	
 	/**
@@ -115,11 +127,17 @@ public class TicketList {
 	 * @param command command to be executed
 	 */
 	public void executeCommand(int ticketId, Command command) {
-		if (ticketId < 1 || ticketId > ticketList.size() || command == null) {
-			throw new IllegalArgumentException();
-		}
 		
-		Ticket updatedTicket = ticketList.get(ticketId - 1);
+		Ticket updatedTicket = null;
+		int index = 0;
+		
+		for (int i = 0; i < ticketList.size(); i++) {
+			if (ticketList.get(i).getTicketId() == ticketId) {
+				updatedTicket = ticketList.get(i);
+				index = i;
+				break;
+			}
+		}
 		
 		try {
 			updatedTicket.update(command);
@@ -127,30 +145,30 @@ public class TicketList {
 			throw new IllegalArgumentException();
 		}
 		
-		ArrayList<String> notes = new ArrayList<String>();
-		Scanner scan = new Scanner(updatedTicket.getNotes());
-		while (scan.hasNextLine()) {
-			String note = scan.nextLine();
-			if (note.equals("\n")) {
-				break;
-			}
-			notes.add(note.substring(1));
-		}
+		ticketList.set(index, updatedTicket);
 		
-		String code = null;
-		if (updatedTicket.getFeedbackCode() != null) {
-			code = updatedTicket.getFeedbackCode();
-		}
-		if (updatedTicket.getResolutionCode() != null) {
-			code = updatedTicket.getResolutionCode();
-		}
-		if (updatedTicket.getCancellationCode() != null) {
-			code = updatedTicket.getCancellationCode();
-		}
-		
-		Ticket replaceTicket = new Ticket(ticketId, updatedTicket.getState(), updatedTicket.getTicketTypeString(), updatedTicket.getSubject(), updatedTicket.getCaller(), updatedTicket.getCategory(), updatedTicket.getPriority(), updatedTicket.getOwner(), code, notes);
-		
-		ticketList.set(ticketId - 1, replaceTicket);
+//		ArrayList<String> notes = new ArrayList<String>();
+//		Scanner scan = new Scanner(updatedTicket.getNotes());
+//		while (scan.hasNextLine()) {
+//			String note = scan.nextLine();
+//			if (note.equals("\n")) {
+//				break;
+//			}
+//			notes.add(note.substring(1));
+//		}
+//		
+//		String code = null;
+//		if (updatedTicket.getFeedbackCode() != null) {
+//			code = updatedTicket.getFeedbackCode();
+//		}
+//		if (updatedTicket.getResolutionCode() != null) {
+//			code = updatedTicket.getResolutionCode();
+//		}
+//		if (updatedTicket.getCancellationCode() != null) {
+//			code = updatedTicket.getCancellationCode();
+//		}
+//		
+//		Ticket replaceTicket = new Ticket(ticketId, desiredTicket.getState(), desiredTicket.getTicketTypeString(), desiredTicket.getSubject(), desiredTicket.getCaller(), desiredTicket.getCategory(), desiredTicket.getPriority(), desiredTicket.getOwner(), code, notes);
 	}
 	
 	/**
@@ -159,10 +177,15 @@ public class TicketList {
 	 * @param ticketId id of desired ticket
 	 */
 	public void deleteTicketById(int ticketId) {
-		if (ticketId < 1 || ticketId > ticketList.size()) {
-			throw new IllegalArgumentException();
+		int index = 0;
+		
+		for (int i = 0; i < ticketList.size(); i++) {
+			if (ticketList.get(i).getTicketId() == ticketId) {
+				index = i;
+				break;
+			}
 		}
 		
-		ticketList.remove(ticketId - 1);
+		ticketList.remove(index);
 	}
 }
