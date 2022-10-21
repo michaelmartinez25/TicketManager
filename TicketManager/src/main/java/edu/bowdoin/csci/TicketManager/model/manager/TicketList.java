@@ -17,6 +17,7 @@ import edu.bowdoin.csci.TicketManager.model.ticket.Ticket.TicketType;
  */
 public class TicketList {
 
+	/** Backing ticketList holds tickets for each instance of class. */
 	private ArrayList<Ticket> ticketList;
 	
 	/**
@@ -30,13 +31,13 @@ public class TicketList {
 	/**
 	 * Adds a ticket to the list
 	 * 
-	 * @param type type of the ticket to be added
-	 * @param subject subject of the ticket to be added
-	 * @param caller caller of the ticket to be added
-	 * @param category category of the ticket to be added
-	 * @param priority priority of the ticket to be added
-	 * @param note note of the ticket to be added
-	 * @return index of the newly added ticket
+	 * @param type type of the ticket to be added, as TicketType
+	 * @param subject subject of the ticket to be added, as String
+	 * @param caller caller of the ticket to be added, as String
+	 * @param category category of the ticket to be added, as Category
+	 * @param priority priority of the ticket to be added, as Priority
+	 * @param note note of the ticket to be added, as String
+	 * @return index of the newly added ticket, as integer
 	 */
 	public int addTicket(TicketType type, String subject, String caller, Category category, Priority priority, String note) {
 		Ticket newTicket = null;
@@ -50,7 +51,7 @@ public class TicketList {
 	}
 	
 	/**
-	 * Adds a list of tickets to the current list
+	 * Adds a list of tickets to the current list. 
 	 * 
 	 * @param ticketList the list of tickets to be added
 	 */
@@ -65,7 +66,7 @@ public class TicketList {
 	}
 	
 	/**
-	 * Gets the entire list of tickets
+	 * Gets the entire list of tickets. 
 	 * 
 	 * @return the entire list
 	 */
@@ -74,7 +75,7 @@ public class TicketList {
 	}
 	
 	/**
-	 * Gets a filtered list based on the given type
+	 * Gets a list of only tickets from this ticket list that match the given type. 
 	 * 
 	 * @param type type to filter the list by
 	 * @return the filtered list of the desired type
@@ -95,7 +96,7 @@ public class TicketList {
 	}
 	
 	/**
-	 * Gets a single ticket based on the given ticketId
+	 * Gets single ticket with ticket ID matching input ID. 
 	 * 
 	 * @param ticketId id of desired ticket in list
 	 * @return the desired ticket of ticketId
@@ -131,7 +132,7 @@ public class TicketList {
 		Scanner scan = new Scanner(updatedTicket.getNotes());
 		while (scan.hasNextLine()) {
 			String note = scan.nextLine();
-			if (note.equals("\n")) {
+			if ("\n".equals(note)) {
 				break;
 			}
 			notes.add(note.substring(1));

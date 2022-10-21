@@ -6,8 +6,9 @@ import edu.bowdoin.csci.TicketManager.model.ticket.Ticket;
 
 import java.io.FileWriter;
 /**
- * Writes ticket files
+ * TicketWriter provides static methods for writing lists of tickets to text files for storage. 
  * 
+ * @author zbecker2
  * @author mmartinez
  */
 public class TicketWriter {
@@ -21,14 +22,14 @@ public class TicketWriter {
 	 * Receives a String with the file name to write to and a List of Tickets
 	 * to write. Uses Ticket's toString() method to create the properly formatted
 	 * output for a Ticket. If there are any errors, an IllegalArgumentException
-	 * is thrown with the message "Unable to save file"
+	 * is thrown with the message "Unable to save file."
 	 * 
 	 * @param filename file to write to 
 	 * @param ticketList list of Tickets to write
 	 * @throws IllegalArgumentException if unable to save file
 	 */
 	public static void writeTicketFile(String filename, List<Ticket> ticketList) {
-		//comment for PMD
+		
 		IllegalArgumentException iae = new IllegalArgumentException("Unable to save file."); 
 		
 		if (filename == null || ticketList == null) {
@@ -42,7 +43,7 @@ public class TicketWriter {
 		}
 		
 		try {
-			//append = false. Overwrite file. 
+			//append = false tells FileWriter to overwrite the given file. 
 			FileWriter writer = new FileWriter(filename, false); 
 			writer.write(output); 
 			writer.close(); 
@@ -50,6 +51,7 @@ public class TicketWriter {
 		catch (Exception e) {
 			throw iae; 
 		}
+	
 		
 		
 	}

@@ -102,8 +102,9 @@ public class Ticket {
 	}
 	
 	/** 
-	 * set counter to number 
-	 * @param num number to set counter to 
+	 * Set counter element of Ticket to number.  
+	 * @param num number to set counter to. Must be > 0. 
+	 * @throws IAE if num is not a valid integer > 0. 
 	 */
 	public static void setCounter(int num) {
 		if (num < 1) {
@@ -113,7 +114,7 @@ public class Ticket {
 	}
 	
 	/** 
-	 * Constructor for existing ticket being read from file
+	 * Constructor for existing tickets being read from file
 	 * 
 	 * This constructor is intended to create a Ticket when reading input from a 
 	 * ticket file (as per UC1). Additionally, the Ticket.counter should be 
@@ -122,19 +123,18 @@ public class Ticket {
 	 * 
 	 * @throws IllegalArgumentException if any of the rules in UC1 are broken.
 	 * 
-	 * @param id Unique integer ID for this ticket
-	 * @param state : String representing current state of this ticket
-	 * @param ticketType String representing type of this ticket
-	 * @param subject String representing subject of this ticket
-	 * @param caller String identifying caller who originated the ticket
-	 * @param category String identifying category of this ticket
-	 * @param priority String determining what priority level this ticket has
-	 * @param owner String representing owner responsible for this ticket
-	 * @param code String determining what code this ticket has
-	 * @param notes ArrayList of Strings with each note attached to this ticket. 
+	 * @param id Unique integer ID for this ticket.
+	 * @param state : String representing current state of this ticket.
+	 * @param ticketType : String representing type of this ticket.
+	 * @param subject : String representing subject of this ticket.
+	 * @param caller : String identifying caller who originated the ticket.
+	 * @param category : String identifying category of this ticket.
+	 * @param priority : String determining what priority level this ticket has.
+	 * @param owner : String representing owner responsible for this ticket.
+	 * @param code : String determining what code this ticket has.
+	 * @param notes : ArrayList of Strings with each note attached to this ticket. 
 	 * */  
 	public Ticket(int id, String state, String ticketType, String subject, String caller, String category, String priority, String owner, String code, ArrayList<String> notes) {
-		//		if (type == null || subject == null || "".equals(subject) || caller == null || "".equals(caller) || category == null || priority == null || note == null || "".equals(note)) {
 
 		if (id < 0 || state == null || "".equals(state) || ticketType == null || "".equals(ticketType) || subject == null || "".equals(subject) || caller == null || "".equals(caller) || category == null || "".equals(category) || priority == null || "".equals(priority) || notes == null || notes.isEmpty()) {
 			throw new IllegalArgumentException("Ticket ID must be > 0 and most parameters may not be null"); 
@@ -171,14 +171,14 @@ public class Ticket {
 	 * appropriate. The owner field should be initialized to an empty string (e.g., "").
 	 * 
 	 * @throws IllegalArgumentException is thrown if any of the parameters are null 
-	 * or empty strings (if a String type), 
+	 * or empty strings (if a String type), or if ticket rules are broken. 
 	 * 
-	 * @param type Type of ticket
-	 * @param subject String noting subject of this ticket 
-	 * @param caller String identifying caller who originated the ticket
-	 * @param category Category identifying what category of issue this ticket relates to
-	 * @param priority Priority of ticket
-	 * @param note String? Blank on spec. Guessing this should be note. 
+	 * @param type Type of ticket. 
+	 * @param subject String noting subject of this ticket. 
+	 * @param caller String identifying caller who originated the ticket. 
+	 * @param category Category identifying what category of issue this ticket relates to. 
+	 * @param priority Priority of ticket as Priority. 
+	 * @param note String first note for this ticket. 
 	 * 
 	 *  */ 
 	public Ticket(TicketType type, String subject, String caller, Category category, Priority priority, String note) {
@@ -207,7 +207,7 @@ public class Ticket {
 	}
 	
 	/** 
-	 * Get identifier of caller who originated the ticket
+	 * Get identifier of caller who originated the ticket, as String. 
 	 * @return callerID
 	 */ 
 	public String getCaller() {
@@ -215,8 +215,8 @@ public class Ticket {
 	}
 	
 	/**
-	 *  Get cancellation code, if one exists. Return string representation. 
-	 *  @return cancellationCode 
+	 *  Get cancellation code, if one exists. Return string representation.  
+	 *  @return cancellationCode as String. 
 	 */
 	public String getCancellationCode() {
 		
@@ -228,8 +228,8 @@ public class Ticket {
 	}
 	
 	/**
-	 *  Get ticket category
-	 *  @return category
+	 *  Get ticket category String representation
+	 *  @return category 
 	 */ 
 	public String getCategory() {
 		
@@ -243,7 +243,7 @@ public class Ticket {
 	}
 	
 	/**
-	 *  Get feedback code, if one exists 
+	 *  Get feedback code, if one exists. String representation. 
 	 *  @return feedbackCode
 	 */ 
 	public String getFeedbackCode() {
@@ -257,7 +257,7 @@ public class Ticket {
 	
 	/** 
 	 * Get set of notes for this ticket, represented as a string. 
-	 * Each individual note occurs on its own line, with one newline character following. 
+	 * Each individual note occurs on its own line, preceded by a '-' character and with one newline character following. 
 	 * @return notes as string 
 	 */ 
 	public String getNotes() {
@@ -267,15 +267,13 @@ public class Ticket {
 		for (int i = 0; i < notes.size(); i++) {
 			output += "-" + notes.get(i);
 			output += System.lineSeparator(); 
-			
-			
 		}
 		
 		return output; 
 	}
 	
 	/** 
-	 * Get id of owner who is responsible for this ticket 
+	 * Get String identifying owner who is responsible for this ticket.  
 	 * @return ownerId
 	 */
 	public String getOwner() {
@@ -283,7 +281,7 @@ public class Ticket {
 	}
 	
 	/** 
-	 * Get priority of ticket, represented as string
+	 * Get priority of ticket, represented as string. 
 	 * @return priority
 	 */ 
 	public String getPriority() {
@@ -297,7 +295,8 @@ public class Ticket {
 	}
 	
 	/**
-	 *  Get resolution code if one exists 
+	 *  Get resolution code, represented as String, if one exists and 
+	 *  the ticket is in a state that can have an active resolution code. 
 	 * @return resolutionCode
 	 */ 
 	public String getResolutionCode() {
@@ -315,7 +314,7 @@ public class Ticket {
 	}
 	
 	/**
-	 *  Get current state of this ticket, returned as string 
+	 *  Get current state of this ticket, represented as string.  
 	 *  @return state as string 
 	 */ 
 	public String getState() {
@@ -331,7 +330,7 @@ public class Ticket {
 	}
 	
 	/** 
-	 * Get subject of this ticket 
+	 * Get subject of this ticket. 
 	 * @return ticketSubject
 	 */ 
 	public String getSubject() {
@@ -339,7 +338,7 @@ public class Ticket {
 	}
 	
 	/**
-	 * Get id of this ticket
+	 * Get id of this ticket.
 	 * @return ticketID
 	 */
 	public int getTicketId() {
@@ -347,7 +346,7 @@ public class Ticket {
 	}
 	
 	/** 
-	 * Get type of ticket 
+	 * Get type of ticket, as TicketType. 
 	 * @return ticketType
 	 */ 
 	public TicketType getTicketType() {
@@ -355,7 +354,8 @@ public class Ticket {
 	}
 	
 	/**
-	 * Get ticket type represented as a string 
+	 * Get ticket type represented as a string. 
+	 * @throws IAE if ticket does not have a valid ticket type. 
 	 * @return ticketType
 	 */
 	public String getTicketTypeString() {
@@ -367,8 +367,9 @@ public class Ticket {
 	}
 	
 	/**
-	 * Set and validate id of caller who originated the ticket
-	 * @param callerId identifier for caller
+	 * Set and validate id of caller who originated the ticket.
+	 * @throws IAE if ticket does not have a caller. 
+	 * @param callerId identifier for caller.
 	 */ 
 	private void setCaller(String callerId) {
 		if (callerId == null || "".equals(callerId)) {
@@ -380,8 +381,11 @@ public class Ticket {
 	}
 	
 	/**
-	 * Set cancellation code based on CC name string
-	 * @param cc desired cancellation code
+	 * Set cancellation code based on CC name string. 
+	 * Validate that ticket is in state that accepts cancellation codes. 
+	 * @throws IAE if ticket is in a state that should have a cancellation code and does not, 
+	 * or if ticket has a cancellation code but is in a state that should not. 
+	 * @param cc desired cancellation code as String. 
 	 */ 
 	private void setCancellationCode(String cc) {
 		cancellationCode = null; 
@@ -398,7 +402,8 @@ public class Ticket {
 	}
 	
 	/**
-	 * Set category based on category name string 
+	 * Set category based on category name string.
+	 * @throws IAE if input string does not match name of any Category.   
 	 * @param category of ticket
 	 */ 
 	private void setCategory(String category) {
@@ -430,6 +435,7 @@ public class Ticket {
 	
 	/** 
 	 * Set and validate id of owner who is responsible for ticket
+	 * @throws IAE if ticket is in a state that requires an owner and it does not have an owner. 
 	 * @param id string identifying owner of ticket
 	 */ 
 	private void setOwner(String id) {
@@ -443,7 +449,9 @@ public class Ticket {
 	}
 	
 	/**
-	 * Set feedback code based on fc name string
+	 * Set feedback code as the FeedbackCode whose name matches the input string. 
+	 * @throws IAE if ticket is in a state that requires a feedback code but does not have one, 
+	 * or if ticket is in state that should not have a feedback code but it does. 
 	 * @param fc feedbackCode to be set
 	 */ 
 	private void setFeedbackCode(String fc) {
@@ -469,7 +477,8 @@ public class Ticket {
 	}
 	
 	/**
-	 * Set priority of this ticket based on string
+	 * Set priority of this ticket as Priority whose name matches input string.  
+	 * @throws IAE if input string does not match any Priority name. 
 	 * @param priority of ticket as string 
 	 */ 
 	private void setPriority(String priority) {
@@ -495,7 +504,9 @@ public class Ticket {
 	}
 	
 	/**
-	 * Set and validate resolution code
+	 * Set resolution code as the ResolutionCode whose name matches the input string. 
+	 * @throws IAE if the ticket is in a state that requires a resolution code but does not have one, 
+	 * or if the ticket has a resolution code but should not. 
 	 * @param rc name of resolutionCode to be set, as string
 	 */ 
 	private void setResolutionCode(String rc) {
@@ -526,11 +537,11 @@ public class Ticket {
 				throw new IllegalArgumentException("Tickets not in resolved or closed states should not accept resolution codes"); 
 			}
 		}
-		
 	}
 	
 	/**
-	 * Set and validate current ticket state
+	 * Set ticket state to TicketState whose name matches the input string. 
+	 * @throws IAE if input string does not match any state names. 
 	 * @param s name of desired ticket state, as a string */ 
 	private void setState(String s) {
 		
@@ -563,8 +574,9 @@ public class Ticket {
 	}
 	
 	/**
-	 * Set and validate ticket subject
-	 * @param s subject of ticket
+	 * Set and validate ticket subject.
+	 * @param s subject of ticket.
+	 * @throws IAE if input string is empty or null. 
 	 */ 
 	private void setSubject(String s) {
 		if (s == null || "".equals(s)) {
@@ -575,8 +587,9 @@ public class Ticket {
 	}
 	
 	/**
-	 * Set and validate ticket type
-	 * @param tt name of ticket type, as string
+	 * Set ticket type to TicketType whose name matches input string. 
+	 * @param tt name of ticket type, as string.
+	 * @throws IAE if input string does not match any TicketType names. 
 	 */ 
 	private void setTicketType(String tt) {
 		
@@ -593,7 +606,9 @@ public class Ticket {
 	}  
 	
 	/**
-	 * Each field of the ticket is printed with a label, then the notes are printed with one on each line. 
+	 * String representation of this Ticket. 
+	 * Each field of the ticket is printed on its own line, with a label.
+	 * Then the notes are printed with each one on each line, using Ticket.getNotes() method. 
 	 * @return string representation of this ticket object
 	 */
 	@Override
@@ -620,9 +635,11 @@ public class Ticket {
 	}
 	
 	/**
-	 * updates the state of the ticket given a Command object
+	 * Updates the state of the ticket given a Command object.
+	 * Delegates actual transition to concrete State the ticket is currently in, implementing the 
+	 * Finite State Machine pattern. 
 	 * 
-	 * @param c command instructing ticket what action to take
+	 * @param c command instructing ticket what action to take.
 	 */
 	public void update(Command c) {
 		String name = state.getStateName();
@@ -662,14 +679,15 @@ public class Ticket {
 		
 		/**
 		 * Gets state name
-		 * @return state name
+		 * @return state name as String
 		 */
 		public String getStateName() {
 			return NEW_NAME;
 		}
 		
 		/**
-		 * Updates state based on given command
+		 * Updates state based on given command. 
+		 * @throws UOE if command would cause a transition that is not allowed. 
 		 * @param command user command to execute
 		 */
 		public void updateState(Command command) {
@@ -723,7 +741,8 @@ public class Ticket {
 		}
 		
 		/**
-		 * Updates state based on given command
+		 * Updates state based on given command.
+		 * @throws UOE if command would cause a transition that is not allowed. 
 		 * @param command user command to execute
 		 */
 		public void updateState(Command command) {
@@ -796,8 +815,9 @@ public class Ticket {
 		}
 		
 		/**
-		 * Updates state based on given command
-		 * @param command user command to execute
+		 * Updates state based on given command.
+		 * @throws UOE if command would cause a transition that is not allowed. 
+		 * @param command user command to execute.
 		 */
 		public void updateState(Command command) {
 			if (command == null) {
@@ -866,8 +886,9 @@ public class Ticket {
 		} 
 		
 		/**
-		 * Updates state based on given command
-		 * @param command user command to execute
+		 * Updates state based on given command.
+		 * @throws UOE if command would cause a transition that is not allowed. 
+		 * @param command user command to execute.
 		 */
 		public void updateState(Command command) {
 			if (command == null) {
@@ -921,8 +942,9 @@ public class Ticket {
 		}
 		
 		/**
-		 * Updates state based on given command
-		 * @param command user command to execute
+		 * Updates state based on given command.
+		 * @throws UOE if command would cause a transition that is not allowed. 
+		 * @param command user command to execute.
 		 */
 		public void updateState(Command command) {
 			if (command == null) {
@@ -960,8 +982,9 @@ public class Ticket {
 		}
 		
 		/**
-		 * Updates state based on given command
-		 * @param command user command to execute
+		 * Updates state based on given command.
+		 * @throws UOE if command would cause a transition that is not allowed. 
+		 * @param command user command to execute.
 		 */
 		public void updateState(Command command) {
 			throw new UnsupportedOperationException();

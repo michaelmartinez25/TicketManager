@@ -32,10 +32,6 @@ public class CommandTest {
 	}
 	
 	
-	
-	
-	
-	
 	/**
 	 * Constructor should reject invalid or missing arguments
 	 */
