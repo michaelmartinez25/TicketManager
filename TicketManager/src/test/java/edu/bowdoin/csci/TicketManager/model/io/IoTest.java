@@ -3,29 +3,19 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.jupiter.api.Test;
 
-import edu.bowdoin.csci.TicketManager.model.manager.TicketList;
 import edu.bowdoin.csci.TicketManager.model.ticket.Ticket;
 
 /**
- * Glass box unit tests for TicketReader and TicketWriter classes. 
+ * Glass box unit tests for TicketReader and TicketWriter classes.  
  * @author zbecker2
  *
  */
 public class IoTest {
 	
-	/** Shared instance of TicketReader for use in all tests. 
-	TicketReader r = new TicketReader(); 
-	
-	@Test
-	public void testTests() {
-		assertEquals(1,1); 
-	}
-	
 	/**
-	 * Makes sure reader throws IAE when given null file
+	 * Makes sure reader throws IAE when given files that should not load. 
 	 */
 	@Test
 	public void testReaderInvalidlFiles() {
@@ -172,7 +162,7 @@ public class IoTest {
 	}
 	
 	/**
-	 * Basic test on hopefully working file
+	 * Basic check to confirm that valid ticket files are read successfully
 	 */
 	@Test
 	public void testReaderLoadValidFiles() {
@@ -183,11 +173,10 @@ public class IoTest {
 		//ticket2- Valid ticket file with multi-line notes
 		tickets = TicketReader.readTicketFile("test-files/ticket2.txt"); 	
 		assertEquals(tickets.size(), 3); 
-		
 	}
 	
 	/**
-	 * test writer with valid files
+	 * Ensure valid files are written successfully.
 	 */
 	@Test
 	public void testWriterValidFile() {
@@ -201,13 +190,10 @@ public class IoTest {
 		TicketWriter.writeTicketFile("test-files/testfile.txt", tickets); 
 		fromFile = TicketReader.readTicketFile("test-files/testfile.txt"); 
 		assertEquals(tickets.size(), fromFile.size()); 
-		
-		
-		 
 	}
 	
 	/**
-	 * Test ticketWriter on invalid files
+	 * Ensure that null parameters throw IAE. 
 	 */
 	@Test
 	public void testWriterInvalidFiles() {
@@ -226,21 +212,5 @@ public class IoTest {
 		catch (IllegalArgumentException iae) {
 			//exception expected; carry on. 
 		}
-		
-		/** 
-		 * Not actually sure if it is not allowed to write to new file
-		 * 
-		try {
-			List<Ticket> tickets = TicketReader.readTicketFile("test-files/ticket1.txt"); 
-			TicketWriter.writeTicketFile("test-files/this_file_does_not_exist.txt", tickets); 
-			fail("Non-existent output file should throw IAE"); 
-		}
-		catch (IllegalArgumentException iae) {
-			//exception expected; carry on.
-		}
-		*/
-		
 	}
-		
-	
 }

@@ -388,7 +388,7 @@ public class Ticket {
 		if (Command.CC_DUPLICATE.equals(cc)) cancellationCode = CancellationCode.DUPLICATE; 
 		if (Command.CC_INAPPROPRIATE.equals(cc)) cancellationCode = CancellationCode.INAPPROPRIATE; 
 		
-		if ((state == canceledState && cancellationCode != CancellationCode.DUPLICATE) && (state == canceledState && cancellationCode != CancellationCode.INAPPROPRIATE)) {
+		if (state == canceledState && cancellationCode != CancellationCode.DUPLICATE && state == canceledState && cancellationCode != CancellationCode.INAPPROPRIATE) {
 			throw new IllegalArgumentException("The ticket must have a cancellation code of either \"Duplicate\" or \"Inappropriate\", if in the \"Canceled\" state.");
 		}
 		

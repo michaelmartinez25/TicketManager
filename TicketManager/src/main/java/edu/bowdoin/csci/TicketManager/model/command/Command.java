@@ -115,14 +115,14 @@ public class Command {
 	
 	/**
 	 * Get command value
-	 * @return command value/type of this command
+	 * @return type of command
 	 */
 	public CommandValue getCommand() {
 		return cv;
 	}
 	
 	/**
-	 * get owner id
+	 * Get String ownerId
 	 * @return ID of owner who is responsible for this ticket
 	 */
 	public String getOwnerId() {
@@ -130,15 +130,15 @@ public class Command {
 	}
 	
 	/**
-	 * get resolution code
-	 * @return resolution code of command, if any
+	 * get resolution code of this command as type ResolutionCode
+	 * @return resolution code of command. Null if no active resolution code. 
 	 */
 	public ResolutionCode getResolutionCode() {
 		return rc;
 	}
 	
 	/**
-	 * get note
+	 * get note as string
 	 * @return note attached to this command, as a string 
 	 */
 	public String getNote() {
@@ -146,16 +146,16 @@ public class Command {
 	}
 	
 	/**
-	 * get feedback code
-	 * @return feedback code this command is setting the code of the target ticket to
+	 * get feedback code of this command as FeedbackCode
+	 * @return feedback code this command is setting the code of the target ticket to. Null if no active feedback code. 
 	 */
 	public FeedbackCode getFeedbackCode() {
 		return fc; 
 	}
 	
 	/**
-	 * get cancellation code
-	 * @return cancellation code this command is setting the code of the target ticket to
+	 * get cancellation code of this command as CancellationCode
+	 * @return cancellation code this command is setting the code of the target ticket to. Null if no active cancellation code. 
 	 */
 	public CancellationCode getCancellationCode() {
 		return cc;
