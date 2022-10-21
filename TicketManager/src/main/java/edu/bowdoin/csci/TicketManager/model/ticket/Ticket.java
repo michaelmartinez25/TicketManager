@@ -302,6 +302,8 @@ public class Ticket {
 	 */ 
 	public String getResolutionCode() {
 		
+		if (state != resolvedState && state != closedState) return null;
+		
 		if (resolutionCode == ResolutionCode.CALLER_CLOSED) return Command.RC_CALLER_CLOSED; 
 		if (resolutionCode == ResolutionCode.COMPLETED) return Command.RC_COMPLETED; 
 		if (resolutionCode == ResolutionCode.NOT_COMPLETED) return Command.RC_NOT_COMPLETED; 
@@ -386,8 +388,12 @@ public class Ticket {
 		if (Command.CC_DUPLICATE.equals(cc)) cancellationCode = CancellationCode.DUPLICATE; 
 		if (Command.CC_INAPPROPRIATE.equals(cc)) cancellationCode = CancellationCode.INAPPROPRIATE; 
 		
-		if ((state == canceledState && cancellationCode != CancellationCode.DUPLICATE) && (state == canceledState && cancellationCode != CancellationCode.INAPPROPRIATE)) {
+		if (state == canceledState && cancellationCode != CancellationCode.DUPLICATE && state == canceledState && cancellationCode != CancellationCode.INAPPROPRIATE) {
 			throw new IllegalArgumentException("The ticket must have a cancellation code of either \"Duplicate\" or \"Inappropriate\", if in the \"Canceled\" state.");
+		}
+		
+		if (state != canceledState && cancellationCode != null) {
+			throw new IllegalArgumentException("Tickets not in Canceled state should not accept cancellation codes.");
 		}
 	}
 	
@@ -445,20 +451,21 @@ public class Ticket {
 		
 		if (Command.F_CALLER.equals(fc)) {
 			this.feedbackCode = FeedbackCode.AWAITING_CALLER;
-			return;
 		}
 		if (Command.F_CHANGE.equals(fc)) {
 			this.feedbackCode = FeedbackCode.AWAITING_CHANGE;
-			return;
 		}
 		if (Command.F_PROVIDER.equals(fc)) {
 			this.feedbackCode = FeedbackCode.AWAITING_PROVIDER; 
-			return;
 		}
 		
 		if (state == feedbackState && feedbackCode == null) {
 			throw new IllegalArgumentException("The ticket must have a feedback code of either \"Awaiting Caller\", \"Awaiting Change\", or \"Awaiting Provider\" when in the \"Feedback\" state."); 
 		}
+		if (state != feedbackState && feedbackCode != null) {
+			throw new IllegalArgumentException("Tickets not in Feedback state should not accept a feedback code."); 
+		}
+		
 	}
 	
 	/**
@@ -514,8 +521,11 @@ public class Ticket {
 			if (ticketType == TicketType.INCIDENT && !(resolutionCode == ResolutionCode.SOLVED || resolutionCode == ResolutionCode.WORKAROUND || resolutionCode == ResolutionCode.NOT_SOLVED || resolutionCode == ResolutionCode.CALLER_CLOSED)) {
 				throw new IllegalArgumentException("If the ticket is an \"Incident\", the code can only be \"Solved\", \"Workaround\", \"Not Solved\", or \"Called Closed\".");
 			}
+		} else {
+			if (resolutionCode != null) {
+				throw new IllegalArgumentException("Tickets not in resolved or closed states should not accept resolution codes"); 
+			}
 		}
-		
 		
 	}
 	

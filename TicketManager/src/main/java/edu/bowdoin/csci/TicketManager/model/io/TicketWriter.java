@@ -4,8 +4,6 @@ import java.util.List;
 
 import edu.bowdoin.csci.TicketManager.model.ticket.Ticket;
 
-import static org.junit.Assert.assertNotNull;
-
 import java.io.FileWriter;
 /**
  * Writes ticket files
