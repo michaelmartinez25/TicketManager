@@ -12,7 +12,7 @@ import edu.bowdoin.csci.TicketManager.model.ticket.Ticket;
  * @author zbecker2
  *
  */
-public class IoTest {
+public class IoTest { 
 	
 	/**
 	 * Makes sure reader throws IAE when given files that should not load. 

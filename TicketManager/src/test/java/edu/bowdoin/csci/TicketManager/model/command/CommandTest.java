@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Glass box unit tests for the command class.  
  * @author zbecker2
- *
+ * 
  */
 public class CommandTest { 
 	
@@ -24,7 +24,7 @@ public class CommandTest {
 	 */
 	@BeforeEach
 	public void setup() {
-		CommandValue cv = CommandValue.CONFIRM; 
+		CommandValue cv = CommandValue.CONFIRM;  
 		FeedbackCode fc = FeedbackCode.AWAITING_CHANGE;
 		CancellationCode cc = CancellationCode.INAPPROPRIATE; 
 		ResolutionCode rc = ResolutionCode.WORKAROUND; 
@@ -33,7 +33,7 @@ public class CommandTest {
 	
 	
 	/**
-	 * Constructor should reject invalid or missing arguments
+	 * Ensure that constructor rejects invalid or missing arguments
 	 */
 	@Test
 	public void testConstructorIllegalArguments() {

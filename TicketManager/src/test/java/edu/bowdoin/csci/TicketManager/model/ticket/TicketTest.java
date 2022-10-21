@@ -37,7 +37,7 @@ public class TicketTest {
 		notesList.add("Note 3."); 
 	
 		// For testing the FSM; necessary to test the id of a Ticket
-		Ticket.setCounter(1);
+		Ticket.setCounter(1); 
 	}
 	
 	/**
@@ -67,7 +67,7 @@ public class TicketTest {
 	@Test
 	public void testNewTicketConstructorInvalidValues() {
 		Ticket t = new Ticket(TicketType.REQUEST, "Please add more CS professors", "cs_major", Category.INQUIRY, Priority.MEDIUM, "Course registration. Oof.");
-		
+		assertNotNull(t); 
 		try {
 			t = new Ticket(null, "Espresso Machine Broken", "Andrea R.", Category.HARDWARE, Priority.HIGH, "Italian department espresso machine is broken"); 
 			fail("Constructing a new ticket with a null value or empty string input should throw IAE"); 
@@ -145,7 +145,7 @@ public class TicketTest {
 	public void testFileTicketConstructorInvalidValues() {
 		
 		Ticket fileTicket = new Ticket(TicketType.REQUEST, "Please add more CS professors", "cs_major", Category.INQUIRY, Priority.MEDIUM, "Course registration. Oof.");
-
+		assertNotNull(fileTicket); 
 		/* ID must be integer >= 0 */
 		try {
 			fileTicket = new Ticket(-1, Ticket.FEEDBACK_NAME, Ticket.TT_INCIDENT, "Broken rigger on Dowse", "Jumpy", Ticket.C_HARDWARE, Ticket.P_LOW, "Coxswain", Command.F_PROVIDER, notesList); 
@@ -351,7 +351,8 @@ public class TicketTest {
 			//Exception expected; carry on. 
 		}
 		
-		/* The note may include new line characters. The note text is processed until the next '-' or '*' character that starts a new line. This means that the '-' and '*' characters can appear in a note, 
+		/* The note may include new line characters. The note text is processed until the next 
+		 * '-' or '*' character that starts a new line. This means that the '-' and '*' characters can appear in a note, 
 		 * but not as the first character in a new line - that would be considered a new note.
 		 */
 	
