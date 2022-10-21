@@ -87,7 +87,7 @@ public class TicketTest {
 			t = new Ticket(TicketType.INCIDENT, "Espresso Machine Broken", "", Category.HARDWARE, Priority.HIGH, "Italian department espresso machine is broken"); 
 			fail("Constructing a new ticket with a null value or empty string input should throw IAE"); 
 		}
-		catch (IllegalArgumentException iae) {
+		catch (IllegalArgumentException iae) { 
 			//Exception expected; carry on
 		}
 		try {
