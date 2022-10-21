@@ -745,7 +745,7 @@ public class Ticket {
 				if (getTicketTypeString().equals(TT_INCIDENT) && !newResolutionCode.equals(ResolutionCode.SOLVED) 
 						&& !newResolutionCode.equals(ResolutionCode.WORKAROUND) && !newResolutionCode.equals(ResolutionCode.NOT_SOLVED) 
 						&& !newResolutionCode.equals(ResolutionCode.CALLER_CLOSED)) {
-					throw new UnsupportedOperationException();
+					throw new UnsupportedOperationException(); 
 				}
 				if (getTicketTypeString().equals(TT_REQUEST) && !newResolutionCode.equals(ResolutionCode.COMPLETED) 
 						&& !newResolutionCode.equals(ResolutionCode.NOT_COMPLETED) && !newResolutionCode.equals(ResolutionCode.CALLER_CLOSED)) {

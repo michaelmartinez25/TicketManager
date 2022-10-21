@@ -590,7 +590,7 @@ public class TicketTest {
 		Assertions.assertEquals("Resolved", toResolvedIncTicket.getState(),
 				"Updated ticket should have a state attribute as 'Resolved', but does not.");
 		Assertions.assertEquals("Solved", toResolvedIncTicket.getResolutionCode(),
-				"Updated ticket should have a Resolution Code 'Solved', but does not.");
+				"Updated ticket should have a Resolution Code 'Solved', but does not."); 
 		
 		
 		toResolvedReqTicket.update(toWorking);
@@ -618,23 +618,40 @@ public class TicketTest {
 				"Updated ticket should have a Cancellation Code 'Duplicate', but does not.");
 		
 		// Test invalid scenarios
-		Ticket invalidTestTicket = new Ticket(TicketType.INCIDENT, "Subject", "Caller", Category.SOFTWARE, Priority.MEDIUM, "Note");
-		invalidTestTicket.update(toWorking);
+		Ticket invalidTestTicketInc = new Ticket(TicketType.INCIDENT, "Subject", "Caller", Category.SOFTWARE, Priority.MEDIUM, "Note");
+		Ticket invalidTestTicketReq = new Ticket(TicketType.REQUEST, "Subject", "Caller", Category.SOFTWARE, Priority.MEDIUM, "Note");
+		invalidTestTicketInc.update(toWorking);
 		
 		try {
-			invalidTestTicket.update(null);
+			invalidTestTicketInc.update(null);
 			Assertions.fail(
-					"Attempting to update a ticket state with a null command should throw UOE, but didn't");
+					"Attempting to update a ticket state with a null command should throw UOE, but didn't.");
 		} catch (UnsupportedOperationException uoe) {
 			// Exception expected, carry on
 		}
 		
 		try {
-			invalidTestTicket.update(toWorking);
+			invalidTestTicketInc.update(toWorking);
 			Assertions.fail(
-					"Attempting to update a Working ticket with an invalid command should throw UOE, but didn't");
+					"Attempting to update a Working ticket with an invalid command should throw UOE, but didn't.");
 		} catch (UnsupportedOperationException uoe) {
 			//Exception expected, carry on
+		}
+		
+		try {
+			invalidTestTicketInc.update(toResolvedReq);
+			Assertions.fail(
+					"Attempting to update a Working ticket with an invalid Resolved command should throw an UOE, but didn't.");
+		} catch (UnsupportedOperationException uoe) {
+			// Exception expected, carry on
+		}
+		
+		try {
+			invalidTestTicketReq.update(toResolvedInc);
+			Assertions.fail(
+					"Attempting to update a Working ticket with an invalid Resolved command should throw an UOE, but didn't.");
+		} catch (UnsupportedOperationException uoe) {
+			// Exception expected, carry on
 		}
 	}
 	
