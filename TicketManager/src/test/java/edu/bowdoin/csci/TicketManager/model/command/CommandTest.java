@@ -10,17 +10,17 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
- * Glass box unit tests for the command class. 
+ * Glass box unit tests for the command class.  
  * @author zbecker2
  *
  */
-public class CommandTest {
+public class CommandTest { 
 	
-	/** testC is a command for easily testing getter functions */
+	/** testC is an example command for easily testing getter functions */
 	private Command testC; 
 	
 	/**
-	 * Create test command as set up for testing getters
+	 * Create test command as set up for testing getters. 
 	 */
 	@BeforeEach
 	public void setup() {
