@@ -60,7 +60,7 @@ public class TicketList {
 			throw new IllegalArgumentException();
 		}
 		
-		ticketList.clear();
+		this.ticketList.clear();
 		int counter = 0;
 		
 		for (Ticket ticket: ticketList) {
@@ -145,42 +145,8 @@ public class TicketList {
 		} catch (UnsupportedOperationException uoe) {
 			throw new IllegalArgumentException();
 		}
-		
 
 		ticketList.set(index, updatedTicket);
-
-//		ArrayList<String> notes = new ArrayList<String>();
-//		Scanner scan = new Scanner(updatedTicket.getNotes());
-//		while (scan.hasNextLine()) {
-//			String note = scan.nextLine();
-//			if ("\n".equals(note)) {
-//				break;
-//			}
-//			notes.add(note.substring(1));
-//		}
-//		
-//		ArrayList<String> notes = new ArrayList<String>();
-//		Scanner scan = new Scanner(updatedTicket.getNotes());
-//		while (scan.hasNextLine()) {
-//			String note = scan.nextLine();
-//			if (note.equals("\n")) {
-//				break;
-//			}
-//			notes.add(note.substring(1));
-//		}
-//		
-//		String code = null;
-//		if (updatedTicket.getFeedbackCode() != null) {
-//			code = updatedTicket.getFeedbackCode();
-//		}
-//		if (updatedTicket.getResolutionCode() != null) {
-//			code = updatedTicket.getResolutionCode();
-//		}
-//		if (updatedTicket.getCancellationCode() != null) {
-//			code = updatedTicket.getCancellationCode();
-//		}
-//		
-//		Ticket replaceTicket = new Ticket(ticketId, desiredTicket.getState(), desiredTicket.getTicketTypeString(), desiredTicket.getSubject(), desiredTicket.getCaller(), desiredTicket.getCategory(), desiredTicket.getPriority(), desiredTicket.getOwner(), code, notes);
 	}
 	
 	/**
