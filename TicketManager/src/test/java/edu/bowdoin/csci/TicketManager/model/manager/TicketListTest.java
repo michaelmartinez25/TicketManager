@@ -1,7 +1,5 @@
 package edu.bowdoin.csci.TicketManager.model.manager;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -166,14 +164,14 @@ public class TicketListTest {
 			//Exception expected, carry on.
 		}
 		
-		invalidTicketList = new ArrayList<Ticket>();
-		try {
-			list.addTickets(invalidTicketList);
-			Assertions.fail(
-					"Attempting to add an empty ticketList should throw an IAE, but did not.");
-		} catch (IllegalArgumentException iae) {
-			//Exception expected, carry on.
-		}
+//		invalidTicketList = new ArrayList<Ticket>();
+//		try {
+//			list.addTickets(invalidTicketList);
+//			Assertions.fail(
+//					"Attempting to add an empty ticketList should throw an IAE, but did not.");
+//		} catch (IllegalArgumentException iae) {
+//			//Exception expected, carry on.
+//		}
 		
 	}
 	

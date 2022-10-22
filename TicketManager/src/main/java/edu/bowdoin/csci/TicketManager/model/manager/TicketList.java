@@ -2,7 +2,6 @@ package edu.bowdoin.csci.TicketManager.model.manager;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import edu.bowdoin.csci.TicketManager.model.command.Command;
 import edu.bowdoin.csci.TicketManager.model.ticket.Ticket;
@@ -56,7 +55,7 @@ public class TicketList {
 	 * @param ticketList the list of tickets to be added
 	 */
 	public void addTickets(List<Ticket> ticketList) {
-		if (ticketList == null || ticketList.size() == 0) {
+		if (ticketList == null) {
 			throw new IllegalArgumentException();
 		}
 		
