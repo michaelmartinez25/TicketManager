@@ -143,7 +143,7 @@ public class TicketList {
 		try {
 			updatedTicket.update(command);
 		} catch (UnsupportedOperationException uoe) {
-			throw new IllegalArgumentException();
+			throw new UnsupportedOperationException();
 		}
 
 		ticketList.set(index, updatedTicket);
@@ -155,7 +155,8 @@ public class TicketList {
 	 * @param ticketId id of desired ticket
 	 */
 	public void deleteTicketById(int ticketId) {
-		if (ticketId < 0) {
+		int maxId = findMaxTicketId();
+		if (ticketId < 0 || ticketId > maxId) {
 			return;
 		}
 		
@@ -169,5 +170,17 @@ public class TicketList {
 		}
 		
 		ticketList.remove(index);
+	}
+	
+	private int findMaxTicketId() {
+		int maxId = 0;
+		for (Ticket ticket:ticketList) {
+			int currId = ticket.getTicketId();
+			if (currId > maxId) {
+				maxId = currId;
+			}
+		}
+		
+		return maxId;
 	}
 }

@@ -265,7 +265,7 @@ public class TicketListTest {
 			list.executeCommand(1, null);
 			Assertions.fail(
 					"Attempting to execute a null command should throw IAE, but did not.");
-		} catch (IllegalArgumentException iae) {
+		} catch (UnsupportedOperationException uoe) {
 			// Exception expected, carry on
 		}
 		
@@ -273,7 +273,7 @@ public class TicketListTest {
 			list.executeCommand(1, toWorking);
 			Assertions.fail(
 					"Attempting to execute an invalid command should throw IAE, but did not.");
-		} catch (IllegalArgumentException iae) {
+		} catch (UnsupportedOperationException uoe) {
 			// Exception expected, carry on
 		}
 	}
