@@ -43,7 +43,7 @@ public class TicketList {
 		try {
 			newTicket = new Ticket(type, subject, caller, category, priority, note);
 		} catch(IllegalArgumentException iae) {
-			throw new UnsupportedOperationException();
+			throw new IllegalArgumentException();
 		}
 		ticketList.add(newTicket);
 		return newTicket.getTicketId();
@@ -56,7 +56,7 @@ public class TicketList {
 	 */
 	public void addTickets(List<Ticket> ticketList) {
 		if (ticketList == null) {
-			throw new UnsupportedOperationException();
+			throw new IllegalArgumentException();
 		}
 		
 		this.ticketList.clear();

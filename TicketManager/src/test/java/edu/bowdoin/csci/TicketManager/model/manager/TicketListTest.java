@@ -70,7 +70,7 @@ public class TicketListTest {
 			list.addTicket(null, "Subject", "Caller", Category.SOFTWARE, Priority.LOW, "Note");
 			Assertions.fail(
 					"Attempting to leave the TicketType field blank should throw an IAE, but did not.");
-		} catch (UnsupportedOperationException iae) {
+		} catch (IllegalArgumentException iae) {
 			// Exception expected; carry on.
 		}
 		
@@ -78,7 +78,7 @@ public class TicketListTest {
 			list.addTicket(TicketType.REQUEST, null, "Caller", Category.SOFTWARE, Priority.LOW, "Note");
 			Assertions.fail(
 					"Attempting to leave the Subject field blank should throw an IAE, but did not.");
-		} catch (UnsupportedOperationException iae) {
+		} catch (IllegalArgumentException iae) {
 			// Exception expected; carry on.
 		}
 		
@@ -86,7 +86,7 @@ public class TicketListTest {
 			list.addTicket(TicketType.REQUEST, "", "Caller", Category.SOFTWARE, Priority.LOW, "Note");
 			Assertions.fail(
 					"Attempting to leave the Subject field as an empty String should throw an IAE, but did not.");
-		} catch (UnsupportedOperationException iae) {
+		} catch (IllegalArgumentException iae) {
 			// Exception expected; carry on.
 		}
 		
@@ -94,7 +94,7 @@ public class TicketListTest {
 			list.addTicket(TicketType.REQUEST, "Subject", null, Category.SOFTWARE, Priority.LOW, "Note");
 			Assertions.fail(
 					"Attempting to leave the Caller field blank should throw an IAE, but did not.");
-		} catch (UnsupportedOperationException iae) {
+		} catch (IllegalArgumentException iae) {
 			// Exception expected; carry on.
 		}
 		
@@ -102,7 +102,7 @@ public class TicketListTest {
 			list.addTicket(TicketType.REQUEST, "Subject", "", Category.SOFTWARE, Priority.LOW, "Note");
 			Assertions.fail(
 					"Attempting to leave the Caller field as an empty String should throw an IAE, but did not.");
-		} catch (UnsupportedOperationException iae) {
+		} catch (IllegalArgumentException iae) {
 			// Exception expected; carry on.
 		}
 		
@@ -110,7 +110,7 @@ public class TicketListTest {
 			list.addTicket(TicketType.REQUEST, "Subject", "Caller", null, Priority.LOW, "Note");
 			Assertions.fail(
 					"Attempting to leave the Category field blank should throw an IAE, but did not.");
-		} catch (UnsupportedOperationException iae) {
+		} catch (IllegalArgumentException iae) {
 			// Exception expected; carry on.
 		}
 		
@@ -118,7 +118,7 @@ public class TicketListTest {
 			list.addTicket(TicketType.REQUEST, "Subject", "Caller", Category.SOFTWARE, null, "Note");
 			Assertions.fail(
 					"Attempting to leave the Priority field blank should throw an IAE, but did not.");
-		} catch (UnsupportedOperationException iae) {
+		} catch (IllegalArgumentException iae) {
 			// Exception expected; carry on.
 		}
 		
@@ -126,7 +126,7 @@ public class TicketListTest {
 			list.addTicket(TicketType.REQUEST, "Subject", "Caller", Category.SOFTWARE, Priority.LOW, null);
 			Assertions.fail(
 					"Attempting to leave the Note field blank should throw an IAE, but did not.");
-		} catch (UnsupportedOperationException iae) {
+		} catch (IllegalArgumentException iae) {
 			// Exception expected; carry on.
 		}
 		
@@ -134,7 +134,7 @@ public class TicketListTest {
 			list.addTicket(TicketType.REQUEST, "Subject", "Caller", Category.SOFTWARE, Priority.LOW, "");
 			Assertions.fail(
 					"Attempting to leave the Note field as an empty String should throw an IAE, but did not.");
-		} catch (UnsupportedOperationException iae) {
+		} catch (IllegalArgumentException iae) {
 			// Exception expected; carry on.
 		}
 	}
