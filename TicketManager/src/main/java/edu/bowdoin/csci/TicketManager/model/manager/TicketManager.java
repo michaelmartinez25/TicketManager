@@ -1,6 +1,11 @@
 package edu.bowdoin.csci.TicketManager.model.manager;
 
+import java.io.IOException;
+import java.util.List;
+
 import edu.bowdoin.csci.TicketManager.model.command.Command;
+import edu.bowdoin.csci.TicketManager.model.io.TicketReader;
+import edu.bowdoin.csci.TicketManager.model.io.TicketWriter;
 import edu.bowdoin.csci.TicketManager.model.ticket.Ticket;
 import edu.bowdoin.csci.TicketManager.model.ticket.Ticket.Category;
 import edu.bowdoin.csci.TicketManager.model.ticket.Ticket.Priority;
@@ -16,6 +21,7 @@ public class TicketManager {
 	
 	/** Stores the one and only instance of this class*/
 	static private TicketManager instance = new TicketManager();
+	private TicketList ticketList = new TicketList();
 	
 	/**
 	 * Constructor for TicketManager.
@@ -23,7 +29,7 @@ public class TicketManager {
 	 * of the Singleton Design Pattern.
 	 */
 	private TicketManager() {
-		
+		// Comment for PMD
 	}
 	
 	/** 
@@ -44,6 +50,11 @@ public class TicketManager {
 	public void saveTicketsToFile(String filename) {
 		// If TicketWriter throws an IOException
 		// 		catch and throw IllegalArgumentException
+		try {
+			TicketWriter.writeTicketFile(filename, ticketList.getTickets());
+		} catch (IllegalArgumentException iae) {
+			throw new IllegalArgumentException();
+		}
 	}
 	
 	/** 
@@ -55,6 +66,14 @@ public class TicketManager {
 	public void loadTicketsFromFile(String filename) {
 		// If TicketReader throws an IOException
 		// 		catch and throw IllegalArgumentException
+		List<Ticket> tickets;
+		try {
+			tickets = TicketReader.readTicketFile(filename);
+		} catch (IllegalArgumentException iae) {
+			throw new IllegalArgumentException();
+		}
+		
+		ticketList.addTickets(tickets);
 	}
 	
 	/** 
@@ -64,7 +83,7 @@ public class TicketManager {
 	 * old TicketList (if wanted) before calling this operation.
 	 */
 	public void createNewTicketList() {
-		//comment
+		ticketList = new TicketList();
 	}
 	
 	/** 
@@ -101,21 +120,18 @@ public class TicketManager {
 	 * @return the ticket associated with the ticketId
 	 */
 	public Ticket getTicketById(int ticketId) {
-		return null;
+		return ticketList.getTicketById(ticketId);
 	}
 	
 	/**
 	 * Executes a given command on a ticket associated
 	 * with the given ticketId.
 	 * 
-	 * Note: Implementation notes do not specify 'int' parameter,
-	 * so Michael assumed it's a ticketId.
-	 * 
 	 * @param ticketId id of desired ticket
 	 * @param command command to be executed
 	 */
 	public void executeCommand(int ticketId, Command command) {
-		//comment for PMD
+		ticketList.executeCommand(ticketId, command);
 	}
 	
 	/**
@@ -124,7 +140,7 @@ public class TicketManager {
 	 * @param ticketId id of desired ticket
 	 */
 	public void deleteTicketById(int ticketId) {
-		//comment for PMD
+		ticketList.deleteTicketById(ticketId);
 	}
 	
 	/**
@@ -138,6 +154,6 @@ public class TicketManager {
 	 * @param note note of ticket to be added
 	 */
 	public void addTicketToList(TicketType type, String subject, String caller, Category category, Priority priority, String note) {
-		//comment for PMD
+		ticketList.addTicket(type, subject, caller, category, priority, note);
 	}
 }

@@ -22,59 +22,31 @@ public class TicketManagerTest {
 		manager = TicketManager.getInstance();
 	}
 	
+	/**
+	 * Tests TicketManager instance
+	 * May not be necessary
+	 */
 	@Test
 	public void testTicketManager() {
-		TicketManager tm = TicketManager.getInstance(); 
-		assertEquals(1,1);
+		manager = TicketManager.getInstance(); 
+		assertNotNull(manager);
 	}
 	
-	@Test
-	public void testSavingTickets() {
-		manager.saveTicketsToFile(null);
-		assertEquals(1,1);
-	}
-	
-	@Test
-	public void testLoadingTickets() {
-		manager.loadTicketsFromFile(null);
-		assertEquals(1,1);
-	}
-	
+	/**
+	 * Tests createNewTicketList()
+	 */
 	@Test
 	public void testNewTicketList() {
 		manager.createNewTicketList();
-		assertEquals(1,1);
+		assertNotNull(manager);
 	}
 	
+	/**
+	 * Tests saveTicketsToFile()
+	 */
 	@Test
-	public void testDisplayTickets() {
-		manager.getTicketsForDisplay();
-		manager.getTicketsForDisplayByType(TicketType.INCIDENT);
-		assertEquals(1,1);
+	public void testSaveTicketsToFile() {
+		// commend for PMD
 	}
 	
-	@Test
-	public void testAddTicket() {
-		manager.addTicketToList(null, null, null, null, null, null);
-		assertEquals(1,1);
-	}
-	 
-	@Test
-	public void testRemoveTicket() {
-		manager.deleteTicketById(0);
-	
-		assertEquals(1,1);
-	}
-	
-	@Test
-	public void testGetTicket() {
-		manager.getTicketById(0);
-		assertEquals(1,1);
-	}
-	
-	@Test
-	public void testExecuteCommand() {
-		manager.executeCommand(0, null);;
-		assertEquals(1,1);
-	}
 }
