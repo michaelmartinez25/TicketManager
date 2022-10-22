@@ -155,6 +155,10 @@ public class TicketList {
 	 * @param ticketId id of desired ticket
 	 */
 	public void deleteTicketById(int ticketId) {
+		if (ticketId < 0) {
+			return;
+		}
+		
 		int index = 0;
 		
 		for (int i = 0; i < ticketList.size(); i++) {

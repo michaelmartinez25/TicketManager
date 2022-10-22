@@ -312,5 +312,9 @@ public class TicketListTest {
 		list.deleteTicketById(3);
 		Assertions.assertEquals(testTicketList3, list.getTickets(),
 				"Middle element in TicketList should have been deleted, but was not.");
+		
+		// test invalid scenarios
+		list.deleteTicketById(-1);
+		Assertions.assertEquals(testTicketList3, list.getTickets());
 	}
 }
