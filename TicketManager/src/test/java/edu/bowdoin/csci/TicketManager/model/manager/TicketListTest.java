@@ -22,12 +22,12 @@ import edu.bowdoin.csci.TicketManager.model.ticket.Ticket.TicketType;
  */
 public class TicketListTest {
 
+	/** shared ticketList for easier testing  */ 
 	private TicketList list;
 	
 	/**
 	 * Sets up the test.
-	 * 
-	 * @throws java.lang.Exception
+	 * @throws java.lang.Exception if there is an issue with constructor
 	 */
 	@BeforeEach
 	public void setUp() throws Exception {
@@ -315,4 +315,16 @@ public class TicketListTest {
 		list.deleteTicketById(-1);
 		Assertions.assertEquals(testTicketList3, list.getTickets());
 	}
+	
+	/**
+	 * Test empty ticket list behavior 
+	 */
+	@Test
+	public void testEmptyTicketList() {
+		TicketList empty = new TicketList(); 
+		
+		
+	}
+	
+	
 }

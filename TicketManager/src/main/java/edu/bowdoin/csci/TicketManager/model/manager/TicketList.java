@@ -55,9 +55,12 @@ public class TicketList {
 	 * @param ticketList the list of tickets to be added
 	 */
 	public void addTickets(List<Ticket> ticketList) {
+		
+		/*
 		if (ticketList == null) {
 			throw new IllegalArgumentException();
 		}
+		*/
 		
 		this.ticketList.clear();
 		int counter = 0;
@@ -89,9 +92,11 @@ public class TicketList {
 	 * @return the filtered list of the desired type
 	 */
 	public List<Ticket> getTicketsByType(TicketType type) {
+		/*
 		if (type == null) {
 			throw new IllegalArgumentException();
 		}
+		*/
 		
 		List<Ticket> filteredList = new ArrayList<Ticket>();
 		for (Ticket ticket:ticketList) {
