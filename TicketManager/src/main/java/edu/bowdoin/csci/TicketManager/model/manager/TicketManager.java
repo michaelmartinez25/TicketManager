@@ -21,6 +21,7 @@ public class TicketManager {
 	
 	/** Stores the one and only instance of this class*/
 	static private TicketManager instance = new TicketManager();
+	/** The active ticketList */
 	private TicketList ticketList;
 	
 	/**

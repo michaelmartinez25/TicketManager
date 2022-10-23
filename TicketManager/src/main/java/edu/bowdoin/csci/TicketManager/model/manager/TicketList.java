@@ -76,7 +76,7 @@ public class TicketList {
 	/**
 	 * Gets the entire list of tickets. 
 	 * 
-	 * @return the entire list
+	 * @return the entire list as List of Tickets
 	 */
 	public List<Ticket> getTickets() {
 		return ticketList;
@@ -128,6 +128,11 @@ public class TicketList {
 	 */
 	public void executeCommand(int ticketId, Command command) {
 		
+		Ticket t = getTicketById(ticketId); 
+		t.update(command);
+		
+		
+		/*
 		Ticket updatedTicket = null;
 		int index = 0;
 		
@@ -139,6 +144,10 @@ public class TicketList {
 			}
 		}
 		
+		if (updatedTicket == null) {
+			throw new UnsupportedOperationException(); 
+		}
+		
 		try {
 			updatedTicket.update(command);
 		} catch (UnsupportedOperationException uoe) {
@@ -146,6 +155,7 @@ public class TicketList {
 		}
 
 		ticketList.set(index, updatedTicket);
+		*/
 	}
 	
 	/**
