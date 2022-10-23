@@ -21,7 +21,7 @@ public class TicketManager {
 	
 	/** Stores the one and only instance of this class*/
 	static private TicketManager instance = new TicketManager();
-	private TicketList ticketList = new TicketList();
+	private TicketList ticketList;
 	
 	/**
 	 * Constructor for TicketManager.
@@ -29,7 +29,7 @@ public class TicketManager {
 	 * of the Singleton Design Pattern.
 	 */
 	private TicketManager() {
-		// Comment for PMD
+		ticketList = new TicketList();
 	}
 	
 	/** 
@@ -48,8 +48,6 @@ public class TicketManager {
 	 * @throws IllegalArgumentException if it catches an IOException
 	 */
 	public void saveTicketsToFile(String filename) {
-		// If TicketWriter throws an IOException
-		// 		catch and throw IllegalArgumentException
 		try {
 			TicketWriter.writeTicketFile(filename, ticketList.getTickets());
 		} catch (IllegalArgumentException iae) {
@@ -64,8 +62,6 @@ public class TicketManager {
 	 * @throws IllegalException if it catches an IOException
 	 */
 	public void loadTicketsFromFile(String filename) {
-		// If TicketReader throws an IOException
-		// 		catch and throw IllegalArgumentException
 		List<Ticket> tickets;
 		try {
 			tickets = TicketReader.readTicketFile(filename);
@@ -94,7 +90,20 @@ public class TicketManager {
 	 * @return a String representation of ticket list
 	 */
 	public String[][] getTicketsForDisplay() {
-		return null;
+		List<Ticket> tickets = ticketList.getTickets();
+		String[][] ticketDisplay = new String[tickets.size()][6];
+		for (int i = 0; i < tickets.size(); i++) {
+			Ticket currTicket = tickets.get(i);
+			Integer ticketId = currTicket.getTicketId();
+			ticketDisplay[i][0] = ticketId.toString();
+			ticketDisplay[i][1] = currTicket.getTicketTypeString();
+			ticketDisplay[i][2] = currTicket.getState();
+			ticketDisplay[i][3] = currTicket.getSubject();
+			ticketDisplay[i][4] = currTicket.getCategory();
+			ticketDisplay[i][5] = currTicket.getPriority();
+		}
+		
+		return ticketDisplay;
 	}
 	
 	/**
@@ -110,7 +119,20 @@ public class TicketManager {
 			throw new IllegalArgumentException();
 		}
 		
-		return null;
+		List<Ticket> filteredTickets = ticketList.getTicketsByType(type);
+		String[][] ticketDisplay = new String[filteredTickets.size()][6];
+		for (int i = 0; i < filteredTickets.size(); i++) {
+			Ticket currTicket = filteredTickets.get(i);
+			Integer ticketId = currTicket.getTicketId();
+			ticketDisplay[i][0] = ticketId.toString();
+			ticketDisplay[i][1] = currTicket.getTicketTypeString();
+			ticketDisplay[i][2] = currTicket.getState();
+			ticketDisplay[i][3] = currTicket.getSubject();
+			ticketDisplay[i][4] = currTicket.getCategory();
+			ticketDisplay[i][5] = currTicket.getPriority();
+		}
+		
+		return ticketDisplay;
 	}
 	
 	/**
@@ -131,7 +153,11 @@ public class TicketManager {
 	 * @param command command to be executed
 	 */
 	public void executeCommand(int ticketId, Command command) {
-		ticketList.executeCommand(ticketId, command);
+		try {
+			ticketList.executeCommand(ticketId, command);
+		} catch (UnsupportedOperationException uoe) {
+			throw new IllegalArgumentException();
+		}
 	}
 	
 	/**
