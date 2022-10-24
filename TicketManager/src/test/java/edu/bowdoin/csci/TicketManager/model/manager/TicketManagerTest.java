@@ -1,22 +1,30 @@
 package edu.bowdoin.csci.TicketManager.model.manager;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import edu.bowdoin.csci.TicketManager.model.command.Command;
+import edu.bowdoin.csci.TicketManager.model.command.Command.CommandValue;
+import edu.bowdoin.csci.TicketManager.model.command.Command.FeedbackCode;
 import edu.bowdoin.csci.TicketManager.model.ticket.Ticket.Category;
 import edu.bowdoin.csci.TicketManager.model.ticket.Ticket.Priority;
 import edu.bowdoin.csci.TicketManager.model.ticket.Ticket.TicketType;
 
 import org.junit.jupiter.api.BeforeEach;
 
-
+/**
+ * Glass Box Unit Tests for TicketManager
+ * @author Michael Martinez
+ */
 public class TicketManagerTest {
 	
+	/** Stores the one and only instance of TicketManager */
 	private TicketManager manager;
 	
 	/**
 	 * Sets up the test.
-	 * 
 	 * @throws java.lang.Exception
 	 */
 	@BeforeEach
@@ -27,14 +35,11 @@ public class TicketManagerTest {
 	
 	/**
 	 * Tests TicketManager instance
-	 * May not be necessary
-	 * In Progress
 	 */
 	@Test
 	public void testTicketManager() {
-		manager = TicketManager.getInstance(); 
 		assertNotNull(manager, 
-				"");
+				"The TicketManager object should not be null, but was.");
 	}
 	
 	/**
@@ -50,17 +55,16 @@ public class TicketManagerTest {
 	
 	/**
 	 * Tests getTicketsForDisplayByType
-	 * In Progress
 	 */
 	@Test
 	public void testGetTicketsForDisplayByType() {
 		manager.loadTicketsFromFile("test-files/ticket1.txt");
 		String[][] incidentTickets = manager.getTicketsForDisplayByType(TicketType.INCIDENT);
 		assertEquals(2, incidentTickets.length, 
-				"");
+				"There should be two incident tickets to display.");
 		String[][] requestTickets = manager.getTicketsForDisplayByType(TicketType.REQUEST);
 		assertEquals(4, requestTickets.length, 
-				"");
+				"There should be four request tickets to display.");
 	}
 	
 	/**
@@ -76,13 +80,12 @@ public class TicketManagerTest {
 	
 	/**
 	 * Tests invalid inputs for loadTicketsFromFile()
-	 * In Progress
 	 */
 	@Test
-	public void testLoadTicketsFromFile() {
+	public void testInvalidLoadTicketsFromFile() {
 		try {
 			manager.loadTicketsFromFile("test-files/tickets1.txt");
-			fail("");
+			fail("Attempting to load tickets from an invalid file should throw an IAE, but did not.");
 		} catch (IllegalArgumentException iae) {
 			// Exception expected, carry on
 		}
@@ -90,7 +93,6 @@ public class TicketManagerTest {
 	
 	/**
 	 * Tests saveTicketsToFile()
-	 * In Progress
 	 */
 	@Test
 	public void testSaveTicketsToFile() {
@@ -110,7 +112,7 @@ public class TicketManagerTest {
 		// Test invalid input
 		try {
 			manager.saveTicketsToFile("test-file/tickets.txt");
-			fail("");
+			fail("Attempting to save tickets to an invalid file should throw an IAE, but did not.");
 		} catch (IllegalArgumentException iae) {
 			// Exception expected, carry on
 		}
@@ -118,7 +120,6 @@ public class TicketManagerTest {
 	
 	/**
 	 * Tests getTicketById() & addTicketToList() & deleteTicketById()
-	 * In Progress
 	 */
 	@Test
 	public void testGetTicketById() {
@@ -126,37 +127,130 @@ public class TicketManagerTest {
 		String[][] tickets = manager.getTicketsForDisplay();
 		Integer ticketId = manager.getTicketById(1).getTicketId();
 		assertEquals(tickets[0][0], ticketId.toString(), 
-				"");
+				"The first ticket's id should be 1, but wasn't.");
 		manager.addTicketToList(TicketType.REQUEST, "Subject", "Caller", Category.DATABASE, Priority.HIGH, "Note");
 		manager.deleteTicketById(1);
 		tickets = manager.getTicketsForDisplay();
 		ticketId = manager.getTicketById(2).getTicketId();
 		assertEquals(tickets[0][0], ticketId.toString(), 
-				"");
+				"The first ticket's id should be 2, but wasn't.");
 		
 		
 		// test invalid input for getTicketById()
 		assertNull(manager.getTicketById(0), 
-				"");
+				"Invalid inputs for getTicketById should return null, but did not.");
 	}
 	
 	/**
 	 * Tests invalid inputs for addTicketToList()
-	 * In Progress
 	 */
 	@Test
 	public void testInvalidAddTicketToList() {
-		// Comment for PMD
-		assertEquals(1, 1); 
+		try {
+			manager.addTicketToList(null, "Subject", "Caller", Category.SOFTWARE, Priority.LOW, "Note");
+			Assertions.fail(
+					"Attempting to leave the TicketType field blank should throw an IAE, but did not.");
+		} catch (IllegalArgumentException iae) {
+			// Exception expected; carry on.
+		}
+		
+		try {
+			manager.addTicketToList(TicketType.REQUEST, null, "Caller", Category.SOFTWARE, Priority.LOW, "Note");
+			Assertions.fail(
+					"Attempting to leave the Subject field blank should throw an IAE, but did not.");
+		} catch (IllegalArgumentException iae) {
+			// Exception expected; carry on.
+		}
+		
+		try {
+			manager.addTicketToList(TicketType.REQUEST, "", "Caller", Category.SOFTWARE, Priority.LOW, "Note");
+			Assertions.fail(
+					"Attempting to leave the Subject field as an empty String should throw an IAE, but did not.");
+		} catch (IllegalArgumentException iae) {
+			// Exception expected; carry on.
+		}
+		
+		try {
+			manager.addTicketToList(TicketType.REQUEST, "Subject", null, Category.SOFTWARE, Priority.LOW, "Note");
+			Assertions.fail(
+					"Attempting to leave the Caller field blank should throw an IAE, but did not.");
+		} catch (IllegalArgumentException iae) {
+			// Exception expected; carry on.
+		}
+		
+		try {
+			manager.addTicketToList(TicketType.REQUEST, "Subject", "", Category.SOFTWARE, Priority.LOW, "Note");
+			Assertions.fail(
+					"Attempting to leave the Caller field as an empty String should throw an IAE, but did not.");
+		} catch (IllegalArgumentException iae) {
+			// Exception expected; carry on.
+		}
+		
+		try {
+			manager.addTicketToList(TicketType.REQUEST, "Subject", "Caller", null, Priority.LOW, "Note");
+			Assertions.fail(
+					"Attempting to leave the Category field blank should throw an IAE, but did not.");
+		} catch (IllegalArgumentException iae) {
+			// Exception expected; carry on.
+		}
+		
+		try {
+			manager.addTicketToList(TicketType.REQUEST, "Subject", "Caller", Category.SOFTWARE, null, "Note");
+			Assertions.fail(
+					"Attempting to leave the Priority field blank should throw an IAE, but did not.");
+		} catch (IllegalArgumentException iae) {
+			// Exception expected; carry on.
+		}
+		
+		try {
+			manager.addTicketToList(TicketType.REQUEST, "Subject", "Caller", Category.SOFTWARE, Priority.LOW, null);
+			Assertions.fail(
+					"Attempting to leave the Note field blank should throw an IAE, but did not.");
+		} catch (IllegalArgumentException iae) {
+			// Exception expected; carry on.
+		}
+		
+		try {
+			manager.addTicketToList(TicketType.REQUEST, "Subject", "Caller", Category.SOFTWARE, Priority.LOW, "");
+			Assertions.fail(
+					"Attempting to leave the Note field as an empty String should throw an IAE, but did not.");
+		} catch (IllegalArgumentException iae) {
+			// Exception expected; carry on.
+		}
 	}
 	
 	/**
 	 * Tests executeCommand()
-	 * In Progress
 	 */
 	@Test
 	public void testExecuteCommand() {
-		// Comment for PMD
-		assertEquals(1, 1);
+		Command toWorking = new Command(CommandValue.PROCESS, "Mikey", null, null, null, "The OG Super Cool Note");
+		Command toFeedback = new Command(CommandValue.FEEDBACK, "Mikey", FeedbackCode.AWAITING_CALLER, null, null, "Super Cool Note");
+		
+		manager.loadTicketsFromFile("test-files/ticket1.txt");
+		
+		manager.executeCommand(1, toWorking);
+		Assertions.assertEquals("Working", manager.getTicketById(1).getState(), 
+				"Ticket 1 should be updated to the Working state, but did not.");
+		
+		manager.executeCommand(2, toFeedback);
+		Assertions.assertEquals("Feedback", manager.getTicketById(2).getState(), 
+				"Ticket 2 should be updated to the Feedback state, but did not.");
+
+		try {
+			manager.executeCommand(1, null);
+			Assertions.fail(
+					"Attempting to execute a null command should throw IAE, but did not.");
+		} catch (UnsupportedOperationException uoe) {
+			// Exception expected, carry on
+		}
+		
+		try {
+			manager.executeCommand(1, toWorking);
+			Assertions.fail(
+					"Attempting to execute an invalid command should throw IAE, but did not.");
+		} catch (UnsupportedOperationException uoe) {
+			// Exception expected, carry on
+		}
 	}
 }

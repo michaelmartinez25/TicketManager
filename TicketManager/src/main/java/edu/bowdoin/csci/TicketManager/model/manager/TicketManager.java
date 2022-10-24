@@ -14,7 +14,7 @@ import edu.bowdoin.csci.TicketManager.model.ticket.Ticket.TicketType;
  * Concrete class that maintains the 'TicketList' and handles 'Commands' from the GUI.
  * Implements the Singleton Design Pattern.
  * Controls the creation and modification of TicketLists
- * @author mmartinez
+ * @author Michael Martinez
  */
 public class TicketManager {
 	
@@ -45,7 +45,7 @@ public class TicketManager {
 	 * Saves an active ticket list into a given file
 	 * 
 	 * @param filename file user saves ticket list to
-	 * @throws IllegalArgumentException if it catches an IOException
+	 * @throws IllegalArgumentException if it catches an IllegalArgumentException
 	 */
 	public void saveTicketsToFile(String filename) {
 		try {
@@ -59,7 +59,7 @@ public class TicketManager {
 	 * Loads a ticket list from a given file
 	 * 
 	 * @param filename file user loads ticket list from
-	 * @throws IllegalException if it catches an IOException
+	 * @throws IllegalException if it catches an IllegalArgumentException
 	 */
 	public void loadTicketsFromFile(String filename) {
 		List<Ticket> tickets;
@@ -151,6 +151,7 @@ public class TicketManager {
 	 * 
 	 * @param ticketId id of desired ticket
 	 * @param command command to be executed
+	 * @throws UnsupportedOperationException if invalid command for ticket
 	 */
 	public void executeCommand(int ticketId, Command command) {
 		try {

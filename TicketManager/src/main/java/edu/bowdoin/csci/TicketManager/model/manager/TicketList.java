@@ -11,8 +11,7 @@ import edu.bowdoin.csci.TicketManager.model.ticket.Ticket.TicketType;
 
 /**
  * Maintains a list of tickets.
- * 
- * @author mmartinez
+ * @author Michael Martinez
  */
 public class TicketList {
 
@@ -37,6 +36,7 @@ public class TicketList {
 	 * @param priority priority of the ticket to be added, as Priority
 	 * @param note note of the ticket to be added, as String
 	 * @return index of the newly added ticket, as integer
+	 * @throws IllegalArgumentException if ticket could not be created
 	 */
 	public int addTicket(TicketType type, String subject, String caller, Category category, Priority priority, String note) {
 		Ticket newTicket = null;
@@ -53,22 +53,17 @@ public class TicketList {
 	 * Adds a list of tickets to the current list. 
 	 * 
 	 * @param ticketList the list of tickets to be added
+	 * @throws IllegalArgumentException if given list is null
 	 */
 	public void addTickets(List<Ticket> ticketList) {
-		
-
 		if (ticketList == null) {
 			throw new IllegalArgumentException();
 		}
 		
 		this.ticketList.clear();
-		int counter = 0;
+		int counter = findMaxTicketId();
 		
 		for (Ticket ticket: ticketList) {
-			if (ticket.getTicketId() > counter) {
-				counter = ticket.getTicketId();
-			}
-	
 			this.ticketList.add(ticket);
 		}
 		
@@ -89,6 +84,7 @@ public class TicketList {
 	 * 
 	 * @param type type to filter the list by
 	 * @return the filtered list of the desired type
+	 * @throws IllegalArgumentException if given type is null
 	 */
 	public List<Ticket> getTicketsByType(TicketType type) {
 		if (type == null) {
@@ -127,6 +123,7 @@ public class TicketList {
 	 * 
 	 * @param ticketId id of desired ticket
 	 * @param command command to be executed
+	 * @throws UnsupportedOperationException if invalid command for ticket
 	 */
 	public void executeCommand(int ticketId, Command command) {
 		
@@ -177,6 +174,12 @@ public class TicketList {
 		ticketList.remove(index);
 	}
 	
+	/**
+	 * Helper method for addTickets () & deleteTicketById()
+	 * Finds the highest ticket id in list
+	 * 
+	 * @return highest id of ticket list
+	 */
 	private int findMaxTicketId() {
 		int maxId = 0;
 		for (Ticket ticket:ticketList) {

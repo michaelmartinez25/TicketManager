@@ -3,7 +3,7 @@ package edu.bowdoin.csci.TicketManager.model.command;
 /**
  * Command objects represent commands/user actions sent from the UI to the model. 
  * Commands cause the state of a ticket to update. 
- * @author zbecker2
+ * @author Zeb Becker
  *
  */
 public class Command {

@@ -18,7 +18,7 @@ import edu.bowdoin.csci.TicketManager.model.ticket.Ticket.TicketType;
 
 /**
  * Glass Box Unit Tests for TicketList
- * @author mmartinez
+ * @author Michael Martinez
  */
 public class TicketListTest {
 
@@ -163,16 +163,6 @@ public class TicketListTest {
 		} catch (IllegalArgumentException iae) {
 			//Exception expected, carry on.
 		}
-		
-//		invalidTicketList = new ArrayList<Ticket>();
-//		try {
-//			list.addTickets(invalidTicketList);
-//			Assertions.fail(
-//					"Attempting to add an empty ticketList should throw an IAE, but did not.");
-//		} catch (IllegalArgumentException iae) {
-//			//Exception expected, carry on.
-//		}
-		
 	}
 	
 	/**
@@ -315,20 +305,4 @@ public class TicketListTest {
 		list.deleteTicketById(-1);
 		Assertions.assertEquals(testTicketList3, list.getTickets());
 	}
-	
-//	/**
-//	 * Test empty ticket list behavior 
-//	 */
-//	@Test
-//	public void testEmptyTicketList() {
-//		TicketList empty = new TicketList(); 
-//		empty.executeCommand(1, new Command(CommandValue.PROCESS, "Mikey", null, null, null, "The OG Super Cool Note"));
-//		
-//		empty.deleteTicketById(23);
-//		
-//		empty.getTickets();
-//		empty.getTicketById(0); 
-//		empty.addTickets(null);
-//		empty.addTicket(null, null, null, null, null, null); 
-//	}
 }

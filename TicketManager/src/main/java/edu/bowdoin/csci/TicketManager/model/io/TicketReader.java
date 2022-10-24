@@ -8,8 +8,7 @@ import edu.bowdoin.csci.TicketManager.model.ticket.Ticket;
 /**
  * The TicketReader class provides static methods for reading tickets from a text file. 
  * 
- * @author zbecker2
- * @author mmartinez
+ * @author Zeb Becker
  */
 public class TicketReader {
 

@@ -8,8 +8,7 @@ import java.io.FileWriter;
 /**
  * TicketWriter provides static methods for writing lists of tickets to text files for storage. 
  * 
- * @author zbecker2
- * @author mmartinez
+ * @author Zeb Becker
  */
 public class TicketWriter {
 	

@@ -18,8 +18,8 @@ import edu.bowdoin.csci.TicketManager.model.ticket.Ticket.TicketType;
 
 /**
  * Glass box unit tests for the Ticket class. 
- * @author zbecker2
- *
+ * @author Zeb Becker
+ * @author Michael Martinez
  */
 public class TicketTest {
 	

@@ -10,8 +10,8 @@ import edu.bowdoin.csci.TicketManager.model.command.Command.ResolutionCode;
 
 /**
  * Ticket object represents a single filed ticket containing information about a specific issue/request.
- * @author zbecker2
- * @author mmartinez
+ * @author Zeb Becker
+ * @author Michael Martinez
  */
 public class Ticket {
 	

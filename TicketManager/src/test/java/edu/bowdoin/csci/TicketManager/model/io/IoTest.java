@@ -9,7 +9,7 @@ import edu.bowdoin.csci.TicketManager.model.ticket.Ticket;
 
 /**
  * Glass box unit tests for TicketReader and TicketWriter classes.  
- * @author zbecker2
+ * @author Zeb Becker
  *
  */
 public class IoTest { 

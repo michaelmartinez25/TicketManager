@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Glass box unit tests for the command class.  
- * @author zbecker2
+ * @author Zeb Becker
  * 
  */
 public class CommandTest { 
