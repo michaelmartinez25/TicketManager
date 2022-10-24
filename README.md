@@ -68,7 +68,7 @@ Implement TicketManager, ensure it passes all unit tests, PMD/Checkstyle, TS tes
 
 ---
 
-First pass of system test, debug any issues found | 4 | depends on implementation being complete. | Michael | 21 October | Started 10/24
+First pass of system test, debug any issues found | 4 | depends on implementation being complete. | Michael | 21 October | Done 10/24
 
 Review and update javadoc to ensure that it meets standards and reflects final implementation | 4 | Depends on implementation being completed. | Zeb | 21 October | Started 10/21
 
