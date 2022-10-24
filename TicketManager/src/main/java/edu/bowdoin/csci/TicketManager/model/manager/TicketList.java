@@ -61,9 +61,12 @@ public class TicketList {
 		}
 		
 		this.ticketList.clear();
-		int counter = findMaxTicketId();
+		int counter = 0;
 		
 		for (Ticket ticket: ticketList) {
+			if (ticket.getTicketId() > counter) {
+ 				counter = ticket.getTicketId();
+ 			}
 			this.ticketList.add(ticket);
 		}
 		
@@ -175,7 +178,7 @@ public class TicketList {
 	}
 	
 	/**
-	 * Helper method for addTickets () & deleteTicketById()
+	 * Helper method for deleteTicketById()
 	 * Finds the highest ticket id in list
 	 * 
 	 * @return highest id of ticket list
