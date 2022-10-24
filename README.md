@@ -55,7 +55,7 @@ Implement ResolvedState class, ensure it passes all unit tests, PMD/Checkstyle, 
 ---
 
 Write unit tests for TicketList | 4 | Depends on Ticket, TicketList| Michael | 18 October | Done 10/20
-Implement TicketList, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 6 | Michael | 17 October | Done 10/20 (1 Failure to Ask About) 
+Implement TicketList, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 6 | Michael | 17 October | Done 10/20
 
 Write unit tests for TicketReader | 2 | Depends on Ticket, TicketList | Zeb | 18 October | Done 10/19
 Implement TicketReader, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 6 | Zeb | 17 October | Done 10/19
@@ -63,12 +63,12 @@ Implement TicketReader, ensure it passes all unit tests, PMD/Checkstyle, TS test
 Write unit tests for TicketWriter | 2 | Depends on Ticket, TicketList| Zeb | 18 October | Done 10/20
 Implement TicketWriter, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 6 | Zeb | 17 October | Done 10/20
 
-Write unit tests for TicketManager | 6 | Depends on Ticket, TicketList| Michael | 19 October | Start 10/22
-Implement TicketManager, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 8 | Michael | 19 October | Start 10/22
+Write unit tests for TicketManager | 6 | Depends on Ticket, TicketList| Michael | 19 October | Done 10/24
+Implement TicketManager, ensure it passes all unit tests, PMD/Checkstyle, TS tests | 8 | Michael | 19 October | Done 10/24
 
 ---
 
-First pass of system test, debug any issues found | 4 | depends on implementation being complete. | Michael | 21 October
+First pass of system test, debug any issues found | 4 | depends on implementation being complete. | Michael | 21 October | Started 10/24
 
 Review and update javadoc to ensure that it meets standards and reflects final implementation | 4 | Depends on implementation being completed. | Zeb | 21 October | Started 10/21
 
