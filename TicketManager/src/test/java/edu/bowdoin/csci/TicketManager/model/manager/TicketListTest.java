@@ -18,7 +18,7 @@ import edu.bowdoin.csci.TicketManager.model.ticket.Ticket.TicketType;
 
 /**
  * Glass Box Unit Tests for TicketList
- * @author Michael Martinez
+ * @author mmartinez
  */
 public class TicketListTest {
 
@@ -163,6 +163,16 @@ public class TicketListTest {
 		} catch (IllegalArgumentException iae) {
 			//Exception expected, carry on.
 		}
+		
+//		invalidTicketList = new ArrayList<Ticket>();
+//		try {
+//			list.addTickets(invalidTicketList);
+//			Assertions.fail(
+//					"Attempting to add an empty ticketList should throw an IAE, but did not.");
+//		} catch (IllegalArgumentException iae) {
+//			//Exception expected, carry on.
+//		}
+		
 	}
 	
 	/**

@@ -16,7 +16,7 @@ import org.junit.jupiter.api.BeforeEach;
 
 /**
  * Glass Box Unit Tests for TicketManager
- * @author Michael Martinez
+ * @author mmartinez
  */
 public class TicketManagerTest {
 	
@@ -25,7 +25,7 @@ public class TicketManagerTest {
 	
 	/**
 	 * Sets up the test.
-	 * @throws java.lang.Exception
+	 * @throws java.lang.Exception when create an error is encountered. 
 	 */
 	@BeforeEach
 	public void setUp() throws Exception {
