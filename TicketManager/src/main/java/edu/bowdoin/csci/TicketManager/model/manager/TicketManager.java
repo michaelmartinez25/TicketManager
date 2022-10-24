@@ -1,6 +1,5 @@
 package edu.bowdoin.csci.TicketManager.model.manager;
 
-import java.io.IOException;
 import java.util.List;
 
 import edu.bowdoin.csci.TicketManager.model.command.Command;

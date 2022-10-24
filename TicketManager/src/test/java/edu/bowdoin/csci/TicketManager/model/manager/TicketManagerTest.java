@@ -3,7 +3,6 @@ package edu.bowdoin.csci.TicketManager.model.manager;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
-import edu.bowdoin.csci.TicketManager.model.ticket.Ticket;
 import edu.bowdoin.csci.TicketManager.model.ticket.Ticket.Category;
 import edu.bowdoin.csci.TicketManager.model.ticket.Ticket.Priority;
 import edu.bowdoin.csci.TicketManager.model.ticket.Ticket.TicketType;
@@ -104,7 +103,7 @@ public class TicketManagerTest {
 		manager.saveTicketsToFile("test-files/tickets.txt");
 		manager.loadTicketsFromFile("test-files/tickets.txt");
 		String[][] fileTickets = manager.getTicketsForDisplay();
-		assertEquals(6, tickets.length, 
+		assertEquals(6, fileTickets.length, 
 				"Ticket Manager should have saved six tickets to a new file, but did not.");
 		
 		
