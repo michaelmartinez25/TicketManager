@@ -316,21 +316,19 @@ public class TicketListTest {
 		Assertions.assertEquals(testTicketList3, list.getTickets());
 	}
 	
-	/**
-	 * Test empty ticket list behavior 
-	 */
-	@Test
-	public void testEmptyTicketList() {
-		TicketList empty = new TicketList(); 
-		empty.executeCommand(1, new Command(CommandValue.PROCESS, "Mikey", null, null, null, "The OG Super Cool Note"));
-		
-		empty.deleteTicketById(23);
-		
-		empty.getTickets();
-		empty.getTicketById(0); 
-		empty.addTickets(null);
-		empty.addTicket(null, null, null, null, null, null); 
-	}
-	
-	
+//	/**
+//	 * Test empty ticket list behavior 
+//	 */
+//	@Test
+//	public void testEmptyTicketList() {
+//		TicketList empty = new TicketList(); 
+//		empty.executeCommand(1, new Command(CommandValue.PROCESS, "Mikey", null, null, null, "The OG Super Cool Note"));
+//		
+//		empty.deleteTicketById(23);
+//		
+//		empty.getTickets();
+//		empty.getTicketById(0); 
+//		empty.addTickets(null);
+//		empty.addTicket(null, null, null, null, null, null); 
+//	}
 }

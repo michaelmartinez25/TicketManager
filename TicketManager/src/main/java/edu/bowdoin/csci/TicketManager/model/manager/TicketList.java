@@ -130,11 +130,6 @@ public class TicketList {
 	 */
 	public void executeCommand(int ticketId, Command command) {
 		
-		Ticket t = getTicketById(ticketId); 
-		t.update(command);
-		
-		
-		/*
 		Ticket updatedTicket = null;
 		int index = 0;
 		
@@ -147,7 +142,7 @@ public class TicketList {
 		}
 		
 		if (updatedTicket == null) {
-			throw new UnsupportedOperationException(); 
+			return; 
 		}
 		
 		try {
@@ -157,7 +152,6 @@ public class TicketList {
 		}
 
 		ticketList.set(index, updatedTicket);
-		*/
 	}
 	
 	/**

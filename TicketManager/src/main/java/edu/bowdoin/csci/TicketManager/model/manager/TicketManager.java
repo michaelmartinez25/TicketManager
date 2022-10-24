@@ -157,7 +157,7 @@ public class TicketManager {
 		try {
 			ticketList.executeCommand(ticketId, command);
 		} catch (UnsupportedOperationException uoe) {
-			throw new IllegalArgumentException();
+			throw new UnsupportedOperationException();
 		}
 	}
 	
