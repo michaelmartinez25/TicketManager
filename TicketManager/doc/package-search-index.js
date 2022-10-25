@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"edu.bowdoin.csci.TicketManager.model.command"},{"l":"edu.bowdoin.csci.TicketManager.model.io"},{"l":"edu.bowdoin.csci.TicketManager.model.manager"},{"l":"edu.bowdoin.csci.TicketManager.model.ticket"},{"l":"edu.bowdoin.csci.TicketManager.view.ui"}];updateSearchResults();

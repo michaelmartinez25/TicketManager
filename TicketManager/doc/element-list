@@ -1,0 +1,5 @@
+edu.bowdoin.csci.TicketManager.model.command
+edu.bowdoin.csci.TicketManager.model.io
+edu.bowdoin.csci.TicketManager.model.manager
+edu.bowdoin.csci.TicketManager.model.ticket
+edu.bowdoin.csci.TicketManager.view.ui

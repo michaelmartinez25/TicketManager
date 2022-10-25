@@ -70,13 +70,13 @@ Implement TicketManager, ensure it passes all unit tests, PMD/Checkstyle, TS tes
 
 First pass of system test, debug any issues found | 4 | depends on implementation being complete. | Michael | 21 October | Done 10/24
 
-Review and update javadoc to ensure that it meets standards and reflects final implementation | 4 | Depends on implementation being completed. | Zeb | 21 October | Started 10/21
+Review and update javadoc to ensure that it meets standards and reflects final implementation | 4 | Depends on implementation being completed. | Zeb | 21 October | Done 10/24
 
-Run javadoc utility, ensure everything looks good, commit doc folder to GitHub | Depends on implementation being complete and javadoc review | Zeb | 21 October  | Not Started
+Run javadoc utility, ensure everything looks good, commit doc folder to GitHub | Depends on implementation being complete and javadoc review | Zeb | 21 October  | Done 10/25
 
-Final check for FindBugs, PMD, Checkstyle errors as recorded by Github Actions | 2 | Depends on implementation being complete | Zeb | 21 October | Not started
+Final check for FindBugs, PMD, Checkstyle errors as recorded by Github Actions | 2 | Depends on implementation being complete | Zeb | 21 October | Done 10/24
 
-Final system test, record results and submit as pdf in project_docs folder on Github| 3 | Depends on implementation being complete | Michael | 21 October | Not Started
+Final system test, record results and submit as pdf in project_docs folder on Github| 3 | Depends on implementation being complete | Michael | 21 October | Done 10/24
 
 ---
 
